@@ -1,0 +1,123 @@
+"use client";
+
+import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { type FormEvent, useState } from "react";
+import { Button } from "@/components/ui/button";
+
+export function LoginForm() {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (!email.trim() || !password) {
+      setError("Email dan password wajib diisi.");
+      return;
+    }
+
+    setError(null);
+    setLoading(true);
+
+    try {
+      const response = await fetch("/api/v1/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const payload = await response.json();
+
+      if (!response.ok || !payload.success) {
+        setError(payload?.error?.message ?? "Email atau password tidak valid.");
+        setLoading(false);
+        return;
+      }
+
+      router.push("/app/dashboard");
+      router.refresh();
+    } catch {
+      setError("Tidak dapat menghubungi server. Coba lagi.");
+      setLoading(false);
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-5">
+      <div>
+        <label
+          htmlFor="email"
+          className="text-xs font-semibold text-text-primary"
+        >
+          Email
+        </label>
+        <input
+          id="email"
+          type="email"
+          autoComplete="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          placeholder="nama@instansi.go.id"
+          className="mt-1.5 w-full rounded-xl border border-border bg-white px-3.5 py-2.5 text-sm text-text-primary outline-none focus:border-primary focus:ring-2 focus:ring-primary-light"
+        />
+      </div>
+
+      <div>
+        <label
+          htmlFor="password"
+          className="text-xs font-semibold text-text-primary"
+        >
+          Password
+        </label>
+        <div className="relative mt-1.5">
+          <input
+            id="password"
+            type={showPassword ? "text" : "password"}
+            autoComplete="current-password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            placeholder="••••••••"
+            className="w-full rounded-xl border border-border bg-white px-3.5 py-2.5 pr-10 text-sm text-text-primary outline-none focus:border-primary focus:ring-2 focus:ring-primary-light"
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword((value) => !value)}
+            aria-label={
+              showPassword ? "Sembunyikan password" : "Tampilkan password"
+            }
+            className="absolute inset-y-0 right-0 flex items-center px-3 text-text-muted hover:text-text-secondary"
+          >
+            {showPassword ? (
+              <EyeOff className="h-4 w-4" />
+            ) : (
+              <Eye className="h-4 w-4" />
+            )}
+          </button>
+        </div>
+      </div>
+
+      {error ? (
+        <p
+          role="alert"
+          className="rounded-lg bg-red-50 px-3.5 py-2.5 text-sm text-red-700"
+        >
+          {error}
+        </p>
+      ) : null}
+
+      <Button type="submit" disabled={loading} className="w-full">
+        {loading ? (
+          <>
+            <Loader2 className="h-4 w-4 animate-spin" /> Memproses...
+          </>
+        ) : (
+          "Masuk"
+        )}
+      </Button>
+    </form>
+  );
+}
