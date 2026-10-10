@@ -1,16 +1,87 @@
 import type { Types } from "mongoose";
 import type { z } from "zod";
-import { loadBatchForWrite } from "@/lib/access";
+import { loadBatchForRead, loadBatchForWrite } from "@/lib/access";
 import { forbidden } from "@/lib/api/errors";
 import { recordAudit } from "@/lib/audit";
 import { type AuthUser, requireOrganization } from "@/lib/auth/guard";
 import { notifyRoles } from "@/lib/notifications";
+import { batchScopeAsync } from "@/lib/permissions";
 import {
   BATCH_TRANSITIONS,
+  type batchListQuerySchema,
   type batchStatusSchema,
 } from "@/lib/validations/batch";
+import {
+  buildSort,
+  dateRangeFilter,
+  mergeFilters,
+  paginationMeta,
+  searchFilter,
+  skipFor,
+  toObjectId,
+} from "@/lib/validations/common";
 import { assertTransition } from "@/lib/workflow";
 import FoodBatch, { type IFoodBatch } from "@/models/FoodBatch";
+
+type BatchListQuery = z.infer<typeof batchListQuerySchema>;
+
+const LIST_SORTABLE = [
+  "batchCode",
+  "menuName",
+  "productionDate",
+  "status",
+  "createdAt",
+] as const;
+
+/** List read for `/app/batches`, mirroring app/api/v1/batches/route.ts GET. */
+export async function listBatches(actor: AuthUser, query: BatchListQuery) {
+  const filter = mergeFilters(
+    await batchScopeAsync(actor),
+    searchFilter(query.search, ["batchCode", "menuName"]),
+    query.status ? { status: query.status } : {},
+    query.sppgId ? { sppgId: toObjectId(query.sppgId) } : {},
+    query.menuName
+      ? { menuName: { $regex: query.menuName, $options: "i" } }
+      : {},
+    dateRangeFilter("productionDate", query.from, query.to),
+  );
+
+  const [data, total] = await Promise.all([
+    FoodBatch.find(filter)
+      .populate("sppgId", "code name")
+      .sort(
+        buildSort(
+          query.sortBy,
+          query.sortOrder,
+          LIST_SORTABLE,
+          "productionDate",
+        ),
+      )
+      .skip(skipFor(query.page, query.limit))
+      .limit(query.limit)
+      .lean()
+      .exec(),
+    FoodBatch.countDocuments(filter).exec(),
+  ]);
+
+  return { data, pagination: paginationMeta(query.page, query.limit, total) };
+}
+
+/** Detail read for `/app/batches/[id]`, mirroring app/api/v1/batches/[id]/route.ts GET. */
+export async function getBatchById(actor: AuthUser, id: Types.ObjectId) {
+  await loadBatchForRead(actor, id);
+
+  return FoodBatch.findById(id)
+    .populate("sppgId", "code name status")
+    .populate(
+      "ingredients.supplierId",
+      "code name supplierType verificationStatus",
+    )
+    .populate("createdBy", "name email")
+    .populate("updatedBy", "name email")
+    .lean()
+    .exec();
+}
 
 type BatchStatus = z.infer<typeof batchStatusSchema>;
 
@@ -30,7 +101,10 @@ const TARGET_STATUS: Record<ContainmentAction, BatchStatus> = {
  * authorised party. Hold is broader because it is a precautionary flag that
  * investigators also need to be able to raise.
  */
-const ALLOWED_ROLES: Record<ContainmentAction, readonly AuthUser["role"][]> = {
+export const ALLOWED_ROLES: Record<
+  ContainmentAction,
+  readonly AuthUser["role"][]
+> = {
   hold: ["admin", "sppg_operator", "investigator"],
   release: ["admin", "sppg_operator"],
   recall: ["admin"],

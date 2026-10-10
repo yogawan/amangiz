@@ -1,5 +1,7 @@
 import type { Types } from "mongoose";
+import { loadBatchForRead } from "@/lib/access";
 import { notFound } from "@/lib/api/errors";
+import type { AuthUser } from "@/lib/auth/guard";
 import Distribution from "@/models/Distribution";
 import FoodBatch from "@/models/FoodBatch";
 import Incident from "@/models/Incident";
@@ -44,6 +46,11 @@ export interface TraceabilityResult {
     receivedTemperature?: number;
     dispatchRecorded: boolean;
     receiptConfirmed: boolean;
+    deliveryEvidence: Array<{
+      url: string;
+      publicId: string;
+      uploadedAt: Date;
+    }>;
   }>;
   relatedIncidents: unknown[];
   summary: {
@@ -103,6 +110,7 @@ export async function buildBatchTraceability(
     receivedTemperature: distribution.receivedTemperature,
     dispatchRecorded: Boolean(distribution.dispatchedAt),
     receiptConfirmed: Boolean(distribution.receivedAt),
+    deliveryEvidence: distribution.deliveryEvidence ?? [],
   }));
 
   const uniqueSchools = new Set(
@@ -135,4 +143,27 @@ export async function buildBatchTraceability(
       relatedIncidentCount: relatedIncidents.length,
     },
   };
+}
+
+/**
+ * Search entry point for `/app/traceability` (PRD 9.2 #5). Looks the batch up
+ * by its human-entered code, then authorises the caller against it the same
+ * way the batch detail route does (PRD 3.2: Traceability is Full for
+ * admin/investigator, Own for SPPG/School operators) — so this never returns
+ * more than `/app/batches/[id]` would let the same user see. Returns `null`
+ * for "no such batch" so the page can show a plain not-found state instead of
+ * an error boundary; an authorization failure still throws.
+ */
+export async function getTraceabilityByBatchCode(
+  actor: AuthUser,
+  batchCode: string,
+): Promise<TraceabilityResult | null> {
+  const batch = await FoodBatch.findOne({ batchCode: batchCode.trim() })
+    .select("_id")
+    .lean()
+    .exec();
+  if (!batch) return null;
+
+  await loadBatchForRead(actor, batch._id);
+  return buildBatchTraceability(batch._id);
 }
