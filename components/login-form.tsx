@@ -4,6 +4,19 @@ import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { type FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { loginSchema } from "@/lib/validations/auth";
+
+/**
+ * Only follow `next` back into the app, never anywhere else — it comes from a
+ * URL query param (proxy.ts sets it when redirecting from `/app/*`), so it is
+ * attacker-controlled. Whitelisting the one prefix proxy.ts ever produces
+ * closes off open-redirect tricks like `//evil.com` or `/\evil.com`.
+ */
+function safeNextPath(value: string | null): string {
+  return value?.startsWith("/app") ? value : "/app/dashboard";
+}
 
 export function LoginForm() {
   const router = useRouter();
@@ -16,8 +29,9 @@ export function LoginForm() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (!email.trim() || !password) {
-      setError("Email dan password wajib diisi.");
+    const parsed = loginSchema.safeParse({ email, password });
+    if (!parsed.success) {
+      setError("Format email atau password belum sesuai.");
       return;
     }
 
@@ -28,7 +42,7 @@ export function LoginForm() {
       const response = await fetch("/api/v1/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify(parsed.data),
       });
       const payload = await response.json();
 
@@ -38,7 +52,8 @@ export function LoginForm() {
         return;
       }
 
-      router.push("/app/dashboard");
+      const next = new URLSearchParams(window.location.search).get("next");
+      router.push(safeNextPath(next));
       router.refresh();
     } catch {
       setError("Tidak dapat menghubungi server. Coba lagi.");
@@ -49,39 +64,29 @@ export function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <label
-          htmlFor="email"
-          className="text-xs font-semibold text-text-primary"
-        >
-          Email
-        </label>
-        <input
+        <Label htmlFor="email">Email</Label>
+        <Input
           id="email"
           type="email"
           autoComplete="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           placeholder="nama@instansi.go.id"
-          className="mt-1.5 w-full rounded-xl border border-border bg-white px-3.5 py-2.5 text-sm text-text-primary outline-none focus:border-primary focus:ring-2 focus:ring-primary-light"
+          className="mt-1.5"
         />
       </div>
 
       <div>
-        <label
-          htmlFor="password"
-          className="text-xs font-semibold text-text-primary"
-        >
-          Password
-        </label>
+        <Label htmlFor="password">Password</Label>
         <div className="relative mt-1.5">
-          <input
+          <Input
             id="password"
             type={showPassword ? "text" : "password"}
             autoComplete="current-password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             placeholder="••••••••"
-            className="w-full rounded-xl border border-border bg-white px-3.5 py-2.5 pr-10 text-sm text-text-primary outline-none focus:border-primary focus:ring-2 focus:ring-primary-light"
+            className="pr-10"
           />
           <button
             type="button"
