@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
-    "seed": "bun build --target=node --format=esm -e mongoose -e bcryptjs -e jose --outfile=node_modules/.seed-build.mjs scripts/seed.ts && node --env-file=.env.local node_modules/.seed-build.mjs"
+    "seed": "bun build --target=node --format=esm -e mongoose -e bcryptjs -e jose --outfile=node_modules/.seed-build.mjs scripts/seed.ts && node --env-file=.env.local node_modules/.seed-build.mjs",
+    "seed:demo": "bun build --target=node --format=esm -e mongoose -e bcryptjs -e jose --outfile=node_modules/.seed-demo-build.mjs scripts/seed-demo.ts && node --env-file=.env.local node_modules/.seed-demo-build.mjs",
+    "verify:demo": "bun build --target=node --format=esm -e mongoose -e bcryptjs -e jose --outfile=node_modules/.verify-demo-build.mjs scripts/verify-demo.ts && node --env-file=.env.local node_modules/.verify-demo-build.mjs"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.2.7",

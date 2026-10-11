@@ -386,6 +386,14 @@ bun run seed
 
 > The `seed` script bundles `scripts/seed.ts` with `bun build` and runs the result with `node`, instead of executing the TypeScript file directly under Bun. This works around a current incompatibility where Mongoose's BSON dependency calls a `node:v8` API that Bun's runtime doesn't implement yet — it isn't a workaround for anything in this project's own code.
 
+That baseline leaves every list page on an empty state, which is correct but unhelpful for a walkthrough. For a populated database — 88 batches, 250 distributions, 48 incidents with engine-computed risk assessments, 37 investigations, and ~1,200 audit entries across 4 SPPGs and 16 schools:
+
+```bash
+bun run seed:demo
+```
+
+> ⚠️ `seed:demo` **deletes and rebuilds** the transactional collections (batches, distributions, incidents, risk assessments, investigations, notifications, audit logs) so repeated runs stay predictable. Master data and user accounts are upserted, never dropped. Point it only at a demo database. The presentation walkthrough built on this dataset lives in `docs/DEMO_SCENARIO.md` (local, not tracked in git).
+
 See [Demo & Screenshots](#demo--screenshots) for the resulting login credentials.
 
 ## Available Scripts
@@ -397,7 +405,9 @@ See [Demo & Screenshots](#demo--screenshots) for the resulting login credentials
 | `bun run start` | Serve the production build |
 | `bun run lint` | Check lint rules and formatting with Biome |
 | `bun run format` | Auto-format the codebase with Biome |
-| `bun run seed` | Bundle and run `scripts/seed.ts` to populate baseline demo data |
+| `bun run seed` | Bundle and run `scripts/seed.ts` to populate baseline data (one account per role + sample master data) |
+| `bun run seed:demo` | Populate a full presentation dataset — batches, distributions, incidents, engine-computed risk assessments, investigations, notifications, audit trail. **Resets transactional collections**; see `docs/DEMO_SCENARIO.md` (local, not tracked in git) |
+| `bun run verify:demo` | Replay the risk engine against the seeded demo data and print the expected score breakdown |
 
 ## Roadmap
 
