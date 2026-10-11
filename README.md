@@ -12,6 +12,8 @@
 
 *Jaga Gizi. Jaga Generasi.*
 
+**[Live Demo → amangiz.vercel.app](https://amangiz.vercel.app)**
+
 <p>
   <img alt="Next.js" src="https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js&logoColor=white">
   <img alt="React" src="https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black">
@@ -59,7 +61,7 @@ AMANGIZ ("Amankan Gizi") is a food-safety traceability and incident-response pla
 
 **Core workflow:** `Detect → Trace → Assess → Contain → Investigate → Resolve`
 
-**Current state.** Authentication, role-based access control, master-data management, batch management, distribution tracking, and traceability are fully implemented end to end — UI included. Incident management, risk analysis, investigation workflow, the full operational dashboard, and notifications already have a complete REST API, data model, and permission layer; their dedicated screens are the next body of work (see [Roadmap](#roadmap)).
+**Current state.** All core workflows are implemented end to end — API and UI included: authentication, role-based access control, master-data management, batch management, distribution tracking, traceability, incident reporting, rule-based risk assessment, investigation & response, the operational dashboard, notifications, and the audit log. A public "Tentang Kami" page (`/about`) introduces the team behind the project. See [Roadmap](#roadmap) for what's next.
 
 ## Background & Problem Statement
 
@@ -117,12 +119,12 @@ AMANGIZ connects food-batch data, distribution records, beneficiary information,
 | **Batch Management** | Record batch identity, ingredients/suppliers, production and storage info, status, and Hold / Release / Recall containment actions | ✅ Implemented |
 | **Distribution Tracking** | Schedule, dispatch, and confirm receipt of shipments to schools, with delivery-evidence upload | ✅ Implemented |
 | **Food Traceability** | Trace a batch across Supplier → Ingredients → Batch → SPPG → Distribution → School → related Incidents, with explicit confirmed/pending receipt status | ✅ Implemented |
-| **Incident Reporting** | Structured report form with chronology, related batch/distribution, and evidence upload | 🚧 API & data model complete, UI in progress |
-| **Rule-Based Risk Assessment** | Deterministic scoring engine — shows which rules triggered, what data is missing, and the resulting priority level | 🚧 Engine complete, UI in progress |
-| **Investigation & Response** | Assignment, timeline, findings, lab results, and corrective actions on one case record | 🚧 API & data model complete, UI in progress |
-| **Notifications** | In-app notifications targeted by role and case | 🚧 API complete, UI in progress |
-| **Audit Log** | Append-only record of every meaningful state change, with actor and before/after detail | 🚧 API complete, UI in progress |
-| **Operational Dashboard** | Summary statistics, recent incidents, distribution and risk overview | 🚧 Shell implemented, widgets in progress |
+| **Incident Reporting** | Structured report form with chronology, related batch/distribution, and evidence upload | ✅ Implemented |
+| **Rule-Based Risk Assessment** | Deterministic scoring engine — shows which rules triggered, what data is missing, and the resulting priority level | ✅ Implemented |
+| **Investigation & Response** | Assignment, timeline, findings, lab results, and corrective actions on one case record | ✅ Implemented |
+| **Notifications** | In-app notifications targeted by role and case | ✅ Implemented |
+| **Audit Log** | Append-only record of every meaningful state change, with actor and before/after detail | ✅ Implemented |
+| **Operational Dashboard** | Summary statistics, recent incidents, distribution and risk overview | ✅ Implemented |
 
 ## Demo & Screenshots
 
@@ -132,7 +134,7 @@ AMANGIZ connects food-batch data, distribution records, beneficiary information,
 </p>
 <p align="center"><em>Left: public landing page hero. Right: login page illustration panel.</em></p>
 
-The public landing page (`/`) and the authentication flow (`/login`) are fully built, including the custom teal/green isometric illustration set below. The authenticated application — dashboard shell, batch management, distribution, traceability, and user/master-data administration — is implemented and functional. Screenshots of the remaining screens (incident management, risk analysis, investigation, full dashboard) will be added as they're completed; see [Roadmap](#roadmap).
+The public site (`/` landing, `/login`, `/about`) and the full authenticated application — dashboard, batch management, distribution, traceability, incidents, risk analysis, investigations, audit log, and user/master-data administration — are implemented and functional, all on a single teal-based design system (brand tokens in `app/globals.css`).
 
 | Asset | Used in |
 |---|---|
@@ -146,7 +148,16 @@ The public landing page (`/`) and the authentication flow (`/login`) are fully b
 | `Telusuri distribusi.png` | Landing — solution highlight 2 |
 | `Prioritaskan pemeriksaan.png` | Landing — solution highlight 3 |
 | `Dokumentasikan respons.png` | Landing — solution highlight 4 |
-| `Thumb.png` | README banner / social preview |
+| `Kenali riwayat setiap batch.png` | Landing — feature card 1 (Batch Management) |
+| `Telusuri jalur dari produksi hingga penerima.png` | Landing — feature card 2 (Food Traceability) |
+| `Pantau status pengiriman.png` | Landing — feature card 3 (Distribution Tracking) |
+| `Ubah laporan menjadi informasi yang dapat ditindaklanjuti.png` | Landing — feature card 4 (Incident Reporting) |
+| `Pahami faktor yang memengaruhi prioritas.png` | Landing — feature card 5 (Rule-Based Risk Assessment) |
+| `Dokumentasikan proses hingga selesai.png` | Landing — feature card 6 (Investigation & Response) |
+| `Administrator.png` / `Operator SPPG.png` / `Operator Sekolah.png` / `Investigator Petugas Berwenang.png` | Landing — "Kolaborasi Antarpihak" role cards |
+| `Role-based access.png` / `Evidence documentation.png` / `Activity history.png` / `Traceable workflow.png` / `Data-aware assessments.png` | Landing — "Akuntabilitas Operasional" cards |
+| `Adnan as a UI-UX & Video Editor.png`, `Yogawan as a Frontend Dev.png`, `Lathif as a Backend & AI Dev.png` | `/about` — team section |
+| `Thumb-1.png` / `Thumb-2.png` / `Thumb-3.png` | README banner / social preview |
 
 ### Try it locally
 
@@ -167,20 +178,22 @@ Password for every seeded account: `Password123!`
 
 | Category | Technology | Notes |
 |---|---|---|
-| Framework | [Next.js 16](https://nextjs.org) (App Router, Turbopack, Cache Components) | `cacheComponents` + `partialPrefetching` enabled in `next.config.ts`; any Server Component reading `cookies()` or the database must sit behind `<Suspense>` |
+| Framework | <img src="public/tech-stack/NexxtJS.svg" width="18" height="18" alt=""> [Next.js 16](https://nextjs.org) (App Router, Turbopack, Cache Components) | `cacheComponents` + `partialPrefetching` enabled in `next.config.ts`; any Server Component reading `cookies()` or the database must sit behind `<Suspense>` |
 | Language | TypeScript 5 | Strict mode |
 | UI Runtime | React 19 | Server + Client Components |
-| Styling | Tailwind CSS v4 | Via `@tailwindcss/turbopack`; `tw-animate-css` for motion utilities |
-| Component Primitives | Radix UI (Avatar, Dialog, Dropdown Menu, Label, Select, Separator, Slot, Tabs) | Hand-authored wrappers in `components/ui/`, following shadcn/ui conventions (`class-variance-authority`, `tailwind-merge`, `clsx`) |
+| Styling | <img src="public/tech-stack/TailwindCSS.svg" width="18" height="18" alt=""> Tailwind CSS v4 | Via `@tailwindcss/turbopack`; `tw-animate-css` for motion utilities |
+| Component Primitives | <img src="public/tech-stack/Radix UI.svg" width="18" height="18" alt=""> Radix UI (Avatar, Dialog, Dropdown Menu, Label, Select, Separator, Slot, Tabs) | Hand-authored wrappers in `components/ui/`, following <img src="public/tech-stack/ShacdnUI.svg" width="16" height="16" alt=""> shadcn/ui conventions (`class-variance-authority`, `tailwind-merge`, `clsx`) |
 | Icons | [Lucide](https://lucide.dev) | |
+| Charts | [Recharts](https://recharts.org) | Risk-level distribution bar chart (`components/risk-analysis/`) |
 | Toasts | [Sonner](https://sonner.emilkowal.ski) | |
-| Database | MongoDB Atlas | |
-| ODM | [Mongoose](https://mongoosejs.com) | Cached global connection; schemas in `models/` |
+| Database | <img src="public/tech-stack/MongoDB.svg" width="18" height="18" alt=""> MongoDB Atlas | |
+| ODM | <img src="public/tech-stack/Mongoose.svg" width="18" height="18" alt=""> [Mongoose](https://mongoosejs.com) | Cached global connection; schemas in `models/` |
 | Authentication | [`jose`](https://github.com/panva/jose) (JWT, HS256) + [`bcryptjs`](https://github.com/dcodeIO/bcrypt.js) | HTTP-only session cookie, 8-hour TTL |
-| Validation | [Zod](https://zod.dev) | One schema module per resource in `lib/validations/` |
+| Validation | <img src="public/tech-stack/Zod.svg" width="18" height="18" alt=""> [Zod](https://zod.dev) | One schema module per resource in `lib/validations/` |
 | File Storage | [Cloudinary](https://cloudinary.com) | Signed, server-authorized client-side uploads for evidence/documents |
-| Linting & Formatting | [Biome](https://biomejs.dev) | Single tool for both lint and format |
+| Linting & Formatting | <img src="public/tech-stack/Biome.svg" width="18" height="18" alt=""> [Biome](https://biomejs.dev) | Single tool for both lint and format |
 | Package Manager / Runtime | [Bun](https://bun.sh) | Also used to bundle the seed script (see note in [Development Server](#development-server)) |
+| Deployment | <img src="public/tech-stack/Vercel.svg" width="18" height="18" alt=""> [Vercel](https://vercel.com) | Live at [amangiz.vercel.app](https://amangiz.vercel.app) |
 
 ## System Architecture
 
@@ -228,20 +241,21 @@ Browser (React 19 — Server & Client Components)
 ```text
 app/
 ├── layout.tsx                  # Root layout — fonts, metadata
-├── page.tsx                    # Public landing page
-├── globals.css                 # Design tokens + Tailwind v4 theme
+├── page.tsx                    # Public landing page (splash screen on first load)
+├── globals.css                 # Design tokens + Tailwind v4 theme (teal brand palette)
 ├── login/page.tsx              # Login page
+├── about/page.tsx              # "Tentang Kami" — mission + team
 ├── (application)/app/          # Authenticated shell (route group — URL stays /app/*)
 │   ├── layout.tsx              # Sidebar + Topbar + mobile drawer
-│   ├── dashboard/               
+│   ├── dashboard/
 │   ├── batches/{page,new,[id],[id]/edit}
 │   ├── traceability/
 │   ├── distribution/{page,new,[id]}
-│   ├── incidents/               # placeholder — Roadmap Phase 3
-│   ├── risk-analysis/           # placeholder — Roadmap Phase 3
-│   ├── investigations/          # placeholder — Roadmap Phase 3
+│   ├── incidents/{page,new,[id]}
+│   ├── risk-analysis/
+│   ├── investigations/{page,[id]}
 │   ├── users/                   # Users + SPPG + Suppliers + Schools tabs
-│   └── audit-log/               # placeholder — Roadmap Phase 4
+│   └── audit-log/
 └── api/v1/                     # 56 versioned REST route handlers
     ├── auth/, users/, sppgs/, suppliers/, schools/
     ├── batches/, distributions/, incidents/, investigations/
@@ -249,10 +263,12 @@ app/
 
 components/
 ├── ui/                          # Hand-authored primitives on Radix (shadcn/ui conventions)
-├── layout/                      # Sidebar, Topbar, MobileDrawer, nav config
+├── layout/                      # Sidebar, Topbar, MobileDrawer, NotificationBell, nav config
 ├── shared/                       # DataTable, StatCard, StatusBadge, RiskBadge, EmptyState, Skeletons, ...
-├── batches/, distribution/, traceability/, users/   # Feature-specific components
-└── login-form.tsx, mobile-nav.tsx
+├── batches/, distribution/, traceability/, users/      # Feature-specific components
+├── incidents/, risk-analysis/, investigations/, audit-log/, dashboard/
+├── site-header.tsx, site-footer.tsx, section-intro.tsx # Shared chrome for /, /login, /about
+└── login-form.tsx, mobile-nav.tsx, splash-screen.tsx
 
 lib/
 ├── auth/                        # Session (JWT), password hashing, request guards
@@ -322,6 +338,7 @@ bun run dev
 Visit:
 - [http://localhost:3000](http://localhost:3000) — public landing page
 - [http://localhost:3000/login](http://localhost:3000/login) — login
+- [http://localhost:3000/about](http://localhost:3000/about) — about & team
 
 On a fresh database, seed baseline data (one account per role, plus a sample SPPG, supplier, and school) so you can actually log in:
 
@@ -350,14 +367,14 @@ See [Demo & Screenshots](#demo--screenshots) for the resulting login credentials
 |---|---|---|
 | **Phase 1 — Foundation** | Authentication & RBAC, SPPG/Supplier/School master data, Batch management, Distribution tracking | ✅ Done |
 | **Phase 2 — Traceability** | Batch → distribution → recipient chain view, explicit confirmed/pending receipt status | ✅ Done |
-| **Phase 3 — Incident Response** | Incident reporting UI, risk-assessment UI, investigation workflow UI | 🚧 In progress |
-| **Phase 4 — Dashboard & Polish** | Full operational dashboard, notification center, audit-log UI, end-to-end responsive and loading/empty-state pass | 📋 Planned |
+| **Phase 3 — Incident Response** | Incident reporting UI, risk-assessment UI, investigation workflow UI | ✅ Done |
+| **Phase 4 — Dashboard & Polish** | Full operational dashboard, notification center, audit-log UI, public site (`/`, `/login`, `/about`) on the teal design system | ✅ Done |
 
-The REST API, data models, rule-based risk engine, and permission layer backing Phases 3–4 are already implemented end to end (56 route handlers across 11 Mongoose models); the remaining work is building and wiring their screens.
+All planned phases are code-complete: 56 route handlers across 11 Mongoose models, with every screen built and wired. What's left is pre-launch hardening rather than new screens — a full live-data QA walkthrough across all four roles, and, per the in-app disclaimers, any external system integration would need to be implemented and verified before being claimed rather than assumed.
 
 ## Contributing
 
-This project is currently maintained as a single-developer effort, but contributions are welcome.
+AMANGIZ is built by a small team — see [`/about`](https://amangiz.vercel.app/about) — but outside contributions are welcome.
 
 1. Fork the repository and create a feature branch.
 2. Install dependencies with `bun install`.
