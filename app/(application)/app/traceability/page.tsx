@@ -199,10 +199,8 @@ export default function TraceabilityPage({
   return (
     <div className="flex flex-col gap-5">
       <div>
-        <h1 className="text-xl font-semibold text-text-primary">
-          Traceability
-        </h1>
-        <p className="text-sm text-text-secondary">
+        <h1 className="text-xl font-semibold text-foreground">Traceability</h1>
+        <p className="text-sm text-muted">
           Telusuri jalur batch dari pemasok hingga penerima.
         </p>
       </div>

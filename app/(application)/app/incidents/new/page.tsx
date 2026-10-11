@@ -20,10 +20,8 @@ export default function NewIncidentPage() {
   return (
     <div className="flex flex-col gap-5">
       <div>
-        <h1 className="text-xl font-semibold text-text-primary">
-          Lapor Insiden
-        </h1>
-        <p className="text-sm text-text-secondary">
+        <h1 className="text-xl font-semibold text-foreground">Lapor Insiden</h1>
+        <p className="text-sm text-muted">
           Catat dugaan insiden keamanan pangan beserta kronologinya.
         </p>
       </div>

@@ -110,8 +110,8 @@ export default function IncidentsPage({
   return (
     <div className="flex flex-col gap-5">
       <div>
-        <h1 className="text-xl font-semibold text-text-primary">Insiden</h1>
-        <p className="text-sm text-text-secondary">
+        <h1 className="text-xl font-semibold text-foreground">Insiden</h1>
+        <p className="text-sm text-muted">
           Kelola laporan dugaan insiden keamanan pangan.
         </p>
       </div>

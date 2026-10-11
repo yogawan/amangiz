@@ -100,8 +100,8 @@ export default function InvestigationsPage({
   return (
     <div className="flex flex-col gap-5">
       <div>
-        <h1 className="text-xl font-semibold text-text-primary">Investigasi</h1>
-        <p className="text-sm text-text-secondary">
+        <h1 className="text-xl font-semibold text-foreground">Investigasi</h1>
+        <p className="text-sm text-muted">
           Antrean investigasi dan tindak lanjut insiden.
         </p>
       </div>

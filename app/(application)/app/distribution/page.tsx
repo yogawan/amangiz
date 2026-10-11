@@ -115,8 +115,8 @@ export default function DistributionPage({
   return (
     <div className="flex flex-col gap-5">
       <div>
-        <h1 className="text-xl font-semibold text-text-primary">Distribusi</h1>
-        <p className="text-sm text-text-secondary">
+        <h1 className="text-xl font-semibold text-foreground">Distribusi</h1>
+        <p className="text-sm text-muted">
           Pantau pengiriman batch ke sekolah penerima.
         </p>
       </div>

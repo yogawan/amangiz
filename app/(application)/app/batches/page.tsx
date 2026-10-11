@@ -103,10 +103,8 @@ export default function BatchesPage({
   return (
     <div className="flex flex-col gap-5">
       <div>
-        <h1 className="text-xl font-semibold text-text-primary">
-          Batch Makanan
-        </h1>
-        <p className="text-sm text-text-secondary">
+        <h1 className="text-xl font-semibold text-foreground">Batch Makanan</h1>
+        <p className="text-sm text-muted">
           Kelola batch produksi dan status distribusinya.
         </p>
       </div>

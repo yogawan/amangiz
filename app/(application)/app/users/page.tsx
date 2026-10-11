@@ -68,10 +68,10 @@ export default function UsersPage({ searchParams }: PageProps<"/app/users">) {
   return (
     <div className="flex flex-col gap-5">
       <div>
-        <h1 className="text-xl font-semibold text-text-primary">
+        <h1 className="text-xl font-semibold text-foreground">
           Pengguna & Master Data
         </h1>
-        <p className="text-sm text-text-secondary">
+        <p className="text-sm text-muted">
           Kelola pengguna, SPPG, pemasok, dan sekolah.
         </p>
       </div>

@@ -22,10 +22,8 @@ export default function NewBatchPage() {
   return (
     <div className="flex flex-col gap-5">
       <div>
-        <h1 className="text-xl font-semibold text-text-primary">
-          Tambah Batch
-        </h1>
-        <p className="text-sm text-text-secondary">
+        <h1 className="text-xl font-semibold text-foreground">Tambah Batch</h1>
+        <p className="text-sm text-muted">
           Catat batch produksi baru dan bahan bakunya.
         </p>
       </div>

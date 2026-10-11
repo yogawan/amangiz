@@ -108,8 +108,8 @@ export default function AuditLogPage({
   return (
     <div className="flex flex-col gap-5">
       <div>
-        <h1 className="text-xl font-semibold text-text-primary">Audit Log</h1>
-        <p className="text-sm text-text-secondary">
+        <h1 className="text-xl font-semibold text-foreground">Audit Log</h1>
+        <p className="text-sm text-muted">
           Riwayat aktivitas penting yang tercatat di sistem.
         </p>
       </div>

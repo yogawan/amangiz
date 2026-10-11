@@ -180,9 +180,9 @@ async function DashboardGate() {
 async function Greeting() {
   const user = await getCurrentUser();
   return (
-    <p className="text-sm text-text-secondary">
+    <p className="text-sm text-muted">
       Halo,{" "}
-      <span className="font-semibold text-text-primary">
+      <span className="font-semibold text-foreground">
         {user?.name ?? "Pengguna"}
       </span>
       {user ? ` · ${ROLE_LABELS[user.role]}` : null}
@@ -211,7 +211,7 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-col gap-5">
       <div>
-        <h1 className="text-xl font-semibold text-text-primary">Dashboard</h1>
+        <h1 className="text-xl font-semibold text-foreground">Dashboard</h1>
         <Suspense fallback={<Skeleton className="h-5 w-56" />}>
           <Greeting />
         </Suspense>

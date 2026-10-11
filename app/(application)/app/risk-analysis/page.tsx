@@ -63,10 +63,10 @@ export default function RiskAnalysisPage() {
   return (
     <div className="flex flex-col gap-5">
       <div>
-        <h1 className="text-xl font-semibold text-text-primary">
+        <h1 className="text-xl font-semibold text-foreground">
           Analisis Risiko
         </h1>
-        <p className="text-sm text-text-secondary">
+        <p className="text-sm text-muted">
           Ringkasan prioritas dan faktor risiko dari seluruh insiden.
         </p>
       </div>

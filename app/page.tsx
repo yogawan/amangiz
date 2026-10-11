@@ -198,13 +198,13 @@ function Intro({
 }) {
   return (
     <div className={centered ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
-      <p className="mb-4 text-[11px] font-bold tracking-[.18em] text-green-700">
+      <p className="mb-4 text-[11px] font-bold tracking-[.18em] text-primary">
         {eyebrow}
       </p>
-      <h2 className="text-3xl font-semibold tracking-[-.045em] text-slate-950 sm:text-4xl">
+      <h2 className="text-3xl font-semibold tracking-[-.045em] text-foreground sm:text-4xl">
         {title}
       </h2>
-      <p className="mt-5 text-base leading-7 text-slate-600">{copy}</p>
+      <p className="mt-5 text-base leading-7 text-muted">{copy}</p>
     </div>
   );
 }
@@ -220,8 +220,8 @@ function LoginButton({ light = false }: { light?: boolean }) {
 
 export default function Home() {
   return (
-    <main className="overflow-hidden bg-[#f8fafc] text-slate-900">
-      <nav className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl">
+    <main className="overflow-hidden bg-background text-foreground">
+      <nav className="sticky top-0 z-50 border-b border-border/80 bg-surface/90 backdrop-blur-xl">
         <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 sm:px-8">
           <a
             href="#beranda"
@@ -236,11 +236,11 @@ export default function Home() {
               priority
               className="h-12 w-12 rounded-xl"
             />
-            <span className="text-lg font-extrabold tracking-[-.05em] text-green-950">
+            <span className="text-lg font-extrabold tracking-[-.05em] text-primary-hover">
               AMANGIZ
             </span>
           </a>
-          <div className="hidden items-center gap-7 text-sm font-medium text-slate-600 lg:flex">
+          <div className="hidden items-center gap-7 text-sm font-medium text-muted lg:flex">
             <a href="#beranda">Beranda</a>
             <a href="#cara-kerja">Cara Kerja</a>
             <a href="#fitur">Fitur Utama</a>
@@ -257,21 +257,21 @@ export default function Home() {
 
       <section
         id="beranda"
-        className="relative isolate border-b border-green-100 bg-[#f4fbf7]"
+        className="relative isolate border-b border-primary-light bg-primary-light/20"
       >
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_75%_35%,rgba(167,243,208,.72),transparent_23%),radial-gradient(circle_at_8%_16%,rgba(204,251,241,.6),transparent_24%)]" />
         <div className="mx-auto grid max-w-7xl gap-14 px-5 py-16 sm:px-8 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:py-24">
           <div className="max-w-xl">
-            <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-green-200 bg-white/80 px-3.5 py-2 text-[10px] font-bold tracking-[.14em] text-green-800">
-              <span className="h-1.5 w-1.5 rounded-full bg-green-600" />{" "}
-              PLATFORM TRACEABILITY & RESPONS PENANGANAN INSIDEN PANGAN
+            <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary-light bg-surface/80 px-3.5 py-2 text-[10px] font-bold tracking-[.14em] text-primary">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" /> PLATFORM
+              TRACEABILITY & RESPONS PENANGANAN INSIDEN PANGAN
             </p>
-            <h1 className="text-5xl font-semibold leading-[.98] tracking-[-.065em] text-green-950 sm:text-6xl lg:text-7xl">
+            <h1 className="text-5xl font-semibold leading-[.98] tracking-[-.065em] text-primary-hover sm:text-6xl lg:text-7xl">
               Jaga Gizi.
               <br />
-              <span className="text-green-700">Jaga Generasi.</span>
+              <span className="text-primary">Jaga Generasi.</span>
             </h1>
-            <p className="mt-7 text-lg leading-8 text-slate-600">
+            <p className="mt-7 text-lg leading-8 text-muted">
               Dari batch makanan hingga lokasi penerima, AMANGIZ membantu pihak
               terkait menelusuri distribusi, mencatat dugaan insiden keamanan
               pangan, dan mengoordinasikan tindak lanjut dalam satu alur kerja
@@ -285,9 +285,9 @@ export default function Home() {
                 </a>
               </Button>
             </div>
-            <p className="mt-8 text-xs font-semibold tracking-wide text-slate-500">
-              Traceability <span className="mx-2 text-green-400">•</span> Risk
-              Assessment <span className="mx-2 text-green-400">•</span> Incident
+            <p className="mt-8 text-xs font-semibold tracking-wide text-muted">
+              Traceability <span className="mx-2 text-primary">•</span> Risk
+              Assessment <span className="mx-2 text-primary">•</span> Incident
               Response
             </p>
           </div>
@@ -312,12 +312,10 @@ export default function Home() {
           {problems.map(([number, title, copy, icon]) => (
             <article
               key={title}
-              className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+              className="rounded-2xl border border-border bg-surface p-6 shadow-sm"
             >
               <div className="flex items-start justify-between">
-                <span className="text-xs font-bold text-green-700">
-                  {number}
-                </span>
+                <span className="text-xs font-bold text-primary">{number}</span>
                 <Image
                   src={icon}
                   alt=""
@@ -329,26 +327,26 @@ export default function Home() {
               <h3 className="mt-9 text-lg font-semibold tracking-[-.025em]">
                 {title}
               </h3>
-              <p className="mt-3 text-sm leading-6 text-slate-600">{copy}</p>
+              <p className="mt-3 text-sm leading-6 text-muted">{copy}</p>
             </article>
           ))}
         </div>
-        <p className="mt-8 border-l-2 border-green-600 pl-4 text-lg font-medium tracking-[-.02em]">
+        <p className="mt-8 border-l-2 border-primary pl-4 text-lg font-medium tracking-[-.02em]">
           Penanganan yang terkoordinasi dimulai dari informasi yang saling
           terhubung.
         </p>
       </section>
 
-      <section className="bg-green-950 py-20 text-white lg:py-28">
+      <section className="bg-primary-hover py-20 text-white lg:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:items-center">
           <div>
-            <p className="mb-4 text-[11px] font-bold tracking-[.18em] text-green-300">
+            <p className="mb-4 text-[11px] font-bold tracking-[.18em] text-primary-light">
               SOLUSI AMANGIZ
             </p>
             <h2 className="text-3xl font-semibold tracking-[-.045em] sm:text-4xl">
               Satu alur kerja untuk menelusuri, menilai, dan menindaklanjuti.
             </h2>
-            <p className="mt-5 leading-7 text-green-100/75">
+            <p className="mt-5 leading-7 text-primary-light/75">
               AMANGIZ menghubungkan pencatatan batch makanan, distribusi,
               laporan dugaan insiden, penilaian prioritas, dan dokumentasi
               investigasi dalam satu platform operasional.
@@ -385,7 +383,7 @@ export default function Home() {
               ] as const
             ).map(([title, copy, icon]) => (
               <div
-                className="rounded-xl border border-green-800 bg-green-900/45 p-5"
+                className="rounded-xl border border-white/10 bg-white/5 p-5"
                 key={title}
               >
                 <Image
@@ -396,7 +394,7 @@ export default function Home() {
                   className="h-16 w-16 rounded-lg"
                 />
                 <h3 className="mt-4 font-semibold">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-green-100/65">
+                <p className="mt-2 text-sm leading-6 text-primary-light/65">
                   {copy}
                 </p>
               </div>
@@ -418,32 +416,32 @@ export default function Home() {
         <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {steps.map(([number, label, title, copy]) => (
             <article
-              className="relative rounded-2xl border border-slate-200 bg-white p-6"
+              className="relative rounded-2xl border border-border bg-surface p-6"
               key={label}
             >
-              <span className="absolute right-5 top-5 text-4xl font-bold tracking-[-.08em] text-slate-100">
+              <span className="absolute right-5 top-5 text-4xl font-bold tracking-[-.08em] text-border">
                 {number}
               </span>
-              <p className="text-xs font-bold tracking-[.14em] text-green-700">
+              <p className="text-xs font-bold tracking-[.14em] text-primary">
                 {label}
               </p>
               <h3 className="mt-5 text-lg font-semibold">{title}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-600">{copy}</p>
+              <p className="mt-3 text-sm leading-6 text-muted">{copy}</p>
             </article>
           ))}
         </div>
-        <div className="mt-10 overflow-x-auto rounded-xl border border-green-100 bg-green-50 px-5 py-4 text-center text-xs font-bold tracking-[.13em] whitespace-nowrap text-green-800">
-          DETECT <span className="mx-2 text-green-400">→</span> TRACE{" "}
-          <span className="mx-2 text-green-400">→</span> ASSESS{" "}
-          <span className="mx-2 text-green-400">→</span> CONTAIN{" "}
-          <span className="mx-2 text-green-400">→</span> INVESTIGATE{" "}
-          <span className="mx-2 text-green-400">→</span> RESOLVE
+        <div className="mt-10 overflow-x-auto rounded-xl border border-primary-light bg-primary-light px-5 py-4 text-center text-xs font-bold tracking-[.13em] whitespace-nowrap text-primary">
+          DETECT <span className="mx-2 text-primary">→</span> TRACE{" "}
+          <span className="mx-2 text-primary">→</span> ASSESS{" "}
+          <span className="mx-2 text-primary">→</span> CONTAIN{" "}
+          <span className="mx-2 text-primary">→</span> INVESTIGATE{" "}
+          <span className="mx-2 text-primary">→</span> RESOLVE
         </div>
       </section>
 
       <section
         id="fitur"
-        className="border-y border-slate-200 bg-white py-20 lg:py-28"
+        className="border-y border-border bg-surface py-20 lg:py-28"
       >
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Intro
@@ -455,33 +453,28 @@ export default function Home() {
             {features.map(
               ([number, title, headline, copy, capabilities, IconComp]) => (
                 <article
-                  className="group rounded-2xl border border-slate-200 p-6 transition hover:border-green-300 hover:shadow-lg hover:shadow-green-900/5"
+                  className="group rounded-2xl border border-border p-6 transition hover:border-primary-light hover:shadow-lg hover:shadow-primary-hover/5"
                   key={title}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-green-700">
+                    <span className="text-xs font-bold text-primary">
                       {number}
                     </span>
-                    <span className="grid h-10 w-10 place-items-center rounded-xl bg-slate-100 text-slate-700 group-hover:bg-green-800 group-hover:text-white">
+                    <span className="grid h-10 w-10 place-items-center rounded-xl bg-background text-foreground group-hover:bg-primary group-hover:text-white">
                       <IconComp className="h-5 w-5" />
                     </span>
                   </div>
-                  <p className="mt-7 text-xs font-bold tracking-[.11em] text-slate-500">
+                  <p className="mt-7 text-xs font-bold tracking-[.11em] text-muted">
                     {title}
                   </p>
                   <h3 className="mt-2 text-xl font-semibold tracking-[-.035em]">
                     {headline}
                   </h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
-                    {copy}
-                  </p>
-                  <ul className="mt-5 space-y-2 border-t border-slate-100 pt-5">
+                  <p className="mt-3 text-sm leading-6 text-muted">{copy}</p>
+                  <ul className="mt-5 space-y-2 border-t border-border pt-5">
                     {capabilities.map((item) => (
-                      <li
-                        className="flex gap-2 text-xs text-slate-600"
-                        key={item}
-                      >
-                        <Check className="h-4 w-4 shrink-0 text-green-700" />
+                      <li className="flex gap-2 text-xs text-muted" key={item}>
+                        <Check className="h-4 w-4 shrink-0 text-primary" />
                         {item}
                       </li>
                     ))}
@@ -490,7 +483,7 @@ export default function Home() {
               ),
             )}
           </div>
-          <p className="mt-6 rounded-xl bg-amber-50 px-4 py-3 text-xs leading-5 text-amber-900">
+          <p className="mt-6 rounded-xl bg-warning/10 px-4 py-3 text-xs leading-5 text-foreground">
             <strong>Catatan penilaian prioritas:</strong> Penilaian berbasis
             aturan merupakan alat bantu operasional, bukan diagnosis medis atau
             penetapan penyebab insiden.
@@ -507,21 +500,21 @@ export default function Home() {
         <Traceability />
       </section>
 
-      <section className="bg-teal-950 py-20 text-white lg:py-28">
+      <section className="bg-primary-hover py-20 text-white lg:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:items-center">
           <div>
-            <p className="mb-4 text-[11px] font-bold tracking-[.18em] text-teal-300">
+            <p className="mb-4 text-[11px] font-bold tracking-[.18em] text-primary-light">
               PENILAIAN PRIORITAS
             </p>
             <h2 className="text-3xl font-semibold tracking-[-.045em] sm:text-4xl">
               Bukan sekadar skor. Pahami alasan di balik setiap prioritas.
             </h2>
-            <p className="mt-5 leading-7 text-teal-100/75">
+            <p className="mt-5 leading-7 text-primary-light/75">
               AMANGIZ menggunakan rule-based risk assessment untuk membantu
               petugas meninjau indikator yang relevan, mengetahui data yang
               masih kurang, dan menentukan kebutuhan tindak lanjut.
             </p>
-            <p className="mt-7 border-l-2 border-teal-400 pl-4 text-sm leading-6 text-teal-100/70">
+            <p className="mt-7 border-l-2 border-primary-light pl-4 text-sm leading-6 text-primary-light/70">
               Hasil penilaian bergantung pada data dan aturan yang
               dikonfigurasi. Sistem tidak menetapkan diagnosis, memastikan
               kontaminasi, atau menyimpulkan penyebab insiden secara otomatis.
@@ -559,9 +552,9 @@ export default function Home() {
           ].map(([role, copy], index) => (
             <article
               key={role}
-              className="rounded-2xl border border-slate-200 bg-white p-5"
+              className="rounded-2xl border border-border bg-surface p-5"
             >
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-green-50 text-green-800">
+              <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary-light text-primary">
                 {index === 3 ? (
                   <Search className="h-5 w-5" />
                 ) : (
@@ -569,17 +562,17 @@ export default function Home() {
                 )}
               </span>
               <h3 className="mt-5 font-semibold">{role}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600">{copy}</p>
+              <p className="mt-2 text-sm leading-6 text-muted">{copy}</p>
             </article>
           ))}
         </div>
-        <p className="mt-6 text-center text-xs leading-5 text-slate-500">
+        <p className="mt-6 text-center text-xs leading-5 text-muted">
           Akses terhadap data dan tindakan operasional dibatasi berdasarkan
           role, organisasi, serta penugasan yang berlaku.
         </p>
       </section>
 
-      <section className="border-y border-slate-200 bg-white py-20 lg:py-28">
+      <section className="border-y border-border bg-surface py-20 lg:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
           <Intro
             eyebrow="AKUNTABILITAS OPERASIONAL"
@@ -617,17 +610,15 @@ export default function Home() {
               ] as const
             ).map(([title, copy, IconComp]) => (
               <div
-                className="flex gap-3 rounded-xl border border-slate-200 p-4"
+                className="flex gap-3 rounded-xl border border-border p-4"
                 key={title}
               >
-                <span className="mt-0.5 text-green-700">
+                <span className="mt-0.5 text-primary">
                   <IconComp className="h-5 w-5" />
                 </span>
                 <div>
                   <h3 className="text-sm font-semibold">{title}</h3>
-                  <p className="mt-1 text-xs leading-5 text-slate-600">
-                    {copy}
-                  </p>
+                  <p className="mt-1 text-xs leading-5 text-muted">{copy}</p>
                 </div>
               </div>
             ))}
@@ -639,18 +630,18 @@ export default function Home() {
         id="tentang"
         className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28"
       >
-        <div className="rounded-3xl bg-gradient-to-br from-green-50 to-teal-50 p-7 sm:p-12">
+        <div className="rounded-3xl bg-gradient-to-br from-primary-light/70 to-primary-light/20 p-7 sm:p-12">
           <Intro
             eyebrow="TENTANG AMANGIZ"
             title="Teknologi untuk mendukung koordinasi keamanan pangan."
             copy="AMANGIZ dikembangkan sebagai konsep platform digital yang membantu menghubungkan informasi batch makanan, distribusi, dugaan insiden, dan tindak lanjut operasional dalam ekosistem MBG."
           />
-          <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600">
+          <p className="mt-5 max-w-2xl text-base leading-7 text-muted">
             Dengan pendekatan traceability dan workflow yang terdokumentasi,
             AMANGIZ bertujuan membantu pihak terkait memperoleh konteks yang
             lebih jelas saat meninjau suatu kejadian.
           </p>
-          <p className="mt-5 max-w-2xl text-sm font-medium leading-6 text-green-900">
+          <p className="mt-5 max-w-2xl text-sm font-medium leading-6 text-primary-hover">
             AMANGIZ dirancang untuk mendukung proses kerja manusia dan pihak
             berwenang—bukan menggantikan pemeriksaan, penilaian profesional,
             atau prosedur resmi.
@@ -665,14 +656,14 @@ export default function Home() {
           title="Pertanyaan yang sering diajukan"
           copy="Hal-hal mendasar seputar peran AMANGIZ dalam mendukung workflow penanganan dugaan insiden."
         />
-        <div className="mt-10 divide-y divide-slate-200 border-y border-slate-200">
+        <div className="mt-10 divide-y divide-border border-y border-border">
           {faqs.map(([question, answer], index) => (
             <details className="group py-5" key={question} open={index === 0}>
               <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-left font-semibold">
                 {question}
-                <ChevronDown className="shrink-0 text-green-700 transition group-open:rotate-180" />
+                <ChevronDown className="shrink-0 text-primary transition group-open:rotate-180" />
               </summary>
-              <p className="max-w-2xl pt-3 pr-8 text-sm leading-6 text-slate-600">
+              <p className="max-w-2xl pt-3 pr-8 text-sm leading-6 text-muted">
                 {answer}
               </p>
             </details>
@@ -681,14 +672,14 @@ export default function Home() {
       </section>
 
       <section className="px-5 pb-20 sm:px-8 lg:pb-28">
-        <div className="mx-auto max-w-7xl rounded-3xl bg-green-900 px-7 py-14 text-center text-white sm:px-12 lg:py-20">
-          <p className="text-[11px] font-bold tracking-[.18em] text-green-300">
+        <div className="mx-auto max-w-7xl rounded-3xl bg-primary-hover px-7 py-14 text-center text-white sm:px-12 lg:py-20">
+          <p className="text-[11px] font-bold tracking-[.18em] text-primary-light">
             AMANGIZ
           </p>
           <h2 className="mx-auto mt-4 max-w-2xl text-3xl font-semibold tracking-[-.05em] sm:text-5xl">
             Bangun alur penanganan yang lebih terhubung.
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl leading-7 text-green-100/75">
+          <p className="mx-auto mt-5 max-w-2xl leading-7 text-primary-light/75">
             Mulai dari penelusuran batch hingga dokumentasi tindak lanjut,
             AMANGIZ membantu menyatukan informasi yang dibutuhkan untuk
             mendukung koordinasi penanganan dugaan insiden keamanan pangan.
@@ -697,7 +688,7 @@ export default function Home() {
             <LoginButton light />
             <a
               href="#cara-kerja"
-              className="inline-flex items-center justify-center rounded-xl border border-green-600 px-5 py-3.5 text-sm font-semibold"
+              className="inline-flex items-center justify-center rounded-xl border border-primary px-5 py-3.5 text-sm font-semibold"
             >
               Lihat Demo
             </a>
@@ -712,32 +703,34 @@ export default function Home() {
 function Traceability() {
   return (
     <div>
-      <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xl shadow-slate-900/5 sm:p-8">
-        <p className="text-xs font-bold tracking-[.12em] text-slate-400">
+      <div className="rounded-2xl border border-border bg-surface p-5 shadow-xl shadow-foreground/5 sm:p-8">
+        <p className="text-xs font-bold tracking-[.12em] text-muted">
           CONTOH HUBUNGAN DATA
         </p>
-        <div className="mt-6 flex flex-col items-center text-center text-sm font-semibold text-slate-700">
-          <span className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-2">
+        <div className="mt-6 flex flex-col items-center text-center text-sm font-semibold text-foreground">
+          <span className="rounded-lg border border-border bg-background px-4 py-2">
             Pemasok Bahan
           </span>
-          <span className="my-1.5 text-green-500">↓</span>
-          <span className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-2">
+          <span className="my-1.5 text-primary">↓</span>
+          <span className="rounded-lg border border-border bg-background px-4 py-2">
             Bahan Baku
           </span>
-          <span className="my-1.5 text-green-500">↓</span>
-          <span className="rounded-lg bg-green-800 px-5 py-2.5 text-white">
+          <span className="my-1.5 text-primary">↓</span>
+          <span className="rounded-lg bg-primary px-5 py-2.5 text-white">
             Batch Makanan{" "}
-            <small className="ml-1 font-mono text-green-200">BT-2408-117</small>
+            <small className="ml-1 font-mono text-primary-light">
+              BT-2408-117
+            </small>
           </span>
-          <span className="my-1.5 text-green-500">↓</span>
-          <span className="rounded-lg border border-green-200 bg-green-50 px-4 py-2 text-green-900">
+          <span className="my-1.5 text-primary">↓</span>
+          <span className="rounded-lg border border-primary-light bg-primary-light px-4 py-2 text-primary-hover">
             SPPG Cempaka
           </span>
-          <span className="my-1.5 text-green-500">↓</span>
-          <span className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-2">
+          <span className="my-1.5 text-primary">↓</span>
+          <span className="rounded-lg border border-border bg-background px-4 py-2">
             Distribusi
           </span>
-          <span className="my-1.5 text-green-500">↓</span>
+          <span className="my-1.5 text-primary">↓</span>
           <div className="grid w-full max-w-md gap-2 sm:grid-cols-3">
             {[
               "Sekolah Penerima A",
@@ -745,27 +738,27 @@ function Traceability() {
               "Sekolah Penerima C",
             ].map((item) => (
               <span
-                className="rounded-lg border border-slate-200 p-2 text-[11px]"
+                className="rounded-lg border border-border p-2 text-[11px]"
                 key={item}
               >
                 {item}
               </span>
             ))}
           </div>
-          <span className="my-1.5 text-green-500">↓</span>
-          <span className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-2 text-amber-900">
+          <span className="my-1.5 text-primary">↓</span>
+          <span className="rounded-lg border border-warning/30 bg-warning/10 px-4 py-2 text-foreground">
             Laporan & tindak lanjut, jika diperlukan
           </span>
         </div>
       </div>
-      <p className="mt-4 text-xs leading-5 text-slate-500">
+      <p className="mt-4 text-xs leading-5 text-muted">
         Visualisasi menampilkan hubungan data yang tersedia dan tercatat di
         AMANGIZ. Data yang belum terhubung atau belum diverifikasi ditandai
         dengan jelas.
       </p>
       <a
         href="#fitur"
-        className="mt-5 inline-flex items-center text-sm font-semibold text-green-800"
+        className="mt-5 inline-flex items-center text-sm font-semibold text-primary"
       >
         Lihat Traceability <ArrowRight className="ml-2 h-4 w-4" />
       </a>
@@ -779,23 +772,23 @@ function RiskCard() {
     "Bukti pendukung dari lokasi terkait.",
   ];
   return (
-    <div className="rounded-2xl bg-white p-2 text-slate-900 shadow-2xl shadow-black/20">
-      <div className="rounded-xl border border-slate-100 p-5 sm:p-7">
+    <div className="rounded-2xl bg-surface p-2 text-foreground shadow-2xl shadow-black/20">
+      <div className="rounded-xl border border-border p-5 sm:p-7">
         <div className="flex items-start justify-between">
           <div>
-            <p className="text-xs font-bold tracking-[.11em] text-slate-400">
+            <p className="text-xs font-bold tracking-[.11em] text-muted">
               PENILAIAN PRIORITAS
             </p>
             <h3 className="mt-2 text-xl font-semibold">
               Prioritas pemeriksaan:{" "}
-              <span className="text-orange-600">High</span>
+              <span className="text-risk-high">High</span>
             </h3>
           </div>
-          <span className="rounded-lg bg-orange-50 px-2.5 py-1.5 text-xs font-bold text-orange-700">
+          <span className="rounded-lg bg-risk-high/10 px-2.5 py-1.5 text-xs font-bold text-risk-high">
             HIGH
           </span>
         </div>
-        <div className="mt-6 border-t border-slate-100 py-5">
+        <div className="mt-6 border-t border-border py-5">
           <p className="text-sm font-semibold">Faktor yang teridentifikasi</p>
           <ul className="mt-3 space-y-2.5">
             {[
@@ -803,29 +796,29 @@ function RiskCard() {
               "Catatan suhu perlu diverifikasi.",
               "Informasi distribusi belum lengkap.",
             ].map((item) => (
-              <li className="flex gap-2 text-sm text-slate-600" key={item}>
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-orange-500" />
+              <li className="flex gap-2 text-sm text-muted" key={item}>
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-risk-high/100" />
                 {item}
               </li>
             ))}
           </ul>
         </div>
-        <div className="border-t border-slate-100 py-5">
+        <div className="border-t border-border py-5">
           <p className="text-sm font-semibold">Data yang perlu diperiksa</p>
           <ul className="mt-3 space-y-2.5">
             {missingData.map((item) => (
-              <li className="flex gap-2 text-sm text-slate-600" key={item}>
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-300" />
+              <li className="flex gap-2 text-sm text-muted" key={item}>
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-muted/40" />
                 {item}
               </li>
             ))}
           </ul>
         </div>
-        <div className="border-t border-slate-100 pt-5">
+        <div className="border-t border-border pt-5">
           <p className="text-sm font-semibold">
             Langkah berikutnya yang disarankan
           </p>
-          <p className="mt-2 rounded-lg bg-teal-50 px-3 py-2.5 text-sm text-teal-900">
+          <p className="mt-2 rounded-lg bg-primary-light px-3 py-2.5 text-sm text-primary-hover">
             Tinjau laporan dan verifikasi informasi pendukung.
           </p>
         </div>
@@ -835,7 +828,7 @@ function RiskCard() {
 }
 function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-white">
+    <footer className="border-t border-border bg-surface">
       <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8">
         <div className="grid gap-10 md:grid-cols-[1.4fr_.6fr]">
           <div>
@@ -847,17 +840,15 @@ function Footer() {
                 height={40}
                 className="h-10 w-10 rounded-lg"
               />
-              <span className="font-extrabold tracking-[-.05em] text-green-950">
+              <span className="font-extrabold tracking-[-.05em] text-primary-hover">
                 AMANGIZ{" "}
-                <span className="font-medium text-slate-400">
-                  — Amankan Gizi
-                </span>
+                <span className="font-medium text-muted">— Amankan Gizi</span>
               </span>
             </a>
-            <p className="mt-4 text-sm font-medium text-green-800">
+            <p className="mt-4 text-sm font-medium text-primary">
               Jaga Gizi. Jaga Generasi.
             </p>
-            <p className="mt-5 max-w-xl text-xs leading-5 text-slate-500">
+            <p className="mt-5 max-w-xl text-xs leading-5 text-muted">
               AMANGIZ merupakan platform pendukung pencatatan, traceability, dan
               workflow penanganan dugaan insiden. Informasi yang ditampilkan
               bergantung pada data yang tersedia dan tidak menggantikan
@@ -866,21 +857,21 @@ function Footer() {
             </p>
           </div>
           <div>
-            <p className="text-xs font-bold tracking-[.13em] text-slate-400">
+            <p className="text-xs font-bold tracking-[.13em] text-muted">
               NAVIGASI
             </p>
-            <div className="mt-4 grid grid-cols-2 gap-3 text-sm text-slate-600">
+            <div className="mt-4 grid grid-cols-2 gap-3 text-sm text-muted">
               <a href="#beranda">Beranda</a>
               <a href="#cara-kerja">Cara Kerja</a>
               <a href="#fitur">Fitur Utama</a>
               <a href="#tentang">Tentang AMANGIZ</a>
-              <Link href="/login" className="font-semibold text-green-800">
+              <Link href="/login" className="font-semibold text-primary">
                 Masuk
               </Link>
             </div>
           </div>
         </div>
-        <div className="mt-10 border-t border-slate-100 pt-6 text-xs text-slate-400">
+        <div className="mt-10 border-t border-border pt-6 text-xs text-muted">
           © 2026 AMANGIZ. Prototype for demonstration purposes.
         </div>
       </div>

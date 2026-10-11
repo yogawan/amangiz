@@ -22,10 +22,10 @@ export default function NewDistributionPage() {
   return (
     <div className="flex flex-col gap-5">
       <div>
-        <h1 className="text-xl font-semibold text-text-primary">
+        <h1 className="text-xl font-semibold text-foreground">
           Tambah Distribusi
         </h1>
-        <p className="text-sm text-text-secondary">
+        <p className="text-sm text-muted">
           Catat pengiriman batch ke sekolah penerima.
         </p>
       </div>
