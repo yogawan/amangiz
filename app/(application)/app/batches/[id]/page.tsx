@@ -20,7 +20,12 @@ function parseId(id: string): Types.ObjectId | null {
   }
 }
 
-async function BatchDetailGate({ id }: { id: string }) {
+async function BatchDetailGate({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
   const actor = await getCurrentUser();
   if (!actor) redirect("/login");
 
@@ -104,14 +109,12 @@ async function BatchDetailGate({ id }: { id: string }) {
   );
 }
 
-export default async function BatchDetailPage({
+export default function BatchDetailPage({
   params,
 }: PageProps<"/app/batches/[id]">) {
-  const { id } = await params;
-
   return (
     <Suspense fallback={<Skeleton className="h-96 w-full" />}>
-      <BatchDetailGate id={id} />
+      <BatchDetailGate params={params} />
     </Suspense>
   );
 }

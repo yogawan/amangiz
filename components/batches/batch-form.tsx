@@ -211,7 +211,7 @@ export function BatchForm({
               required
             />
           </div>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div>
               <Label htmlFor="batch-production-date">Tanggal Produksi</Label>
               <Input

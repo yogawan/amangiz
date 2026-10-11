@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
-import { TableSkeleton } from "@/components/shared/skeletons";
+import {
+  FilterBarSkeleton,
+  TableSkeleton,
+} from "@/components/shared/skeletons";
 import { SchoolPanel } from "@/components/users/school-panel";
 import { SppgPanel } from "@/components/users/sppg-panel";
 import { SupplierPanel } from "@/components/users/supplier-panel";
@@ -41,12 +44,27 @@ async function TabPanel({ tab }: { tab: Tab }) {
   }
 }
 
-export default async function UsersPage({
+// See the note in app/(application)/app/batches/page.tsx for why `searchParams`
+// is awaited inside a Suspense boundary rather than in the page component.
+async function UsersSection({
   searchParams,
-}: PageProps<"/app/users">) {
+}: {
+  searchParams: PageProps<"/app/users">["searchParams"];
+}) {
   const params = await searchParams;
   const tab = normalizeTab(params.tab);
 
+  return (
+    <>
+      <UsersTabsNav active={tab} />
+      <Suspense key={tab} fallback={<TableSkeleton columns={5} />}>
+        <TabPanel tab={tab} />
+      </Suspense>
+    </>
+  );
+}
+
+export default function UsersPage({ searchParams }: PageProps<"/app/users">) {
   return (
     <div className="flex flex-col gap-5">
       <div>
@@ -57,9 +75,15 @@ export default async function UsersPage({
           Kelola pengguna, SPPG, pemasok, dan sekolah.
         </p>
       </div>
-      <UsersTabsNav active={tab} />
-      <Suspense key={tab} fallback={<TableSkeleton columns={5} />}>
-        <TabPanel tab={tab} />
+      <Suspense
+        fallback={
+          <>
+            <FilterBarSkeleton fields={4} />
+            <TableSkeleton columns={5} />
+          </>
+        }
+      >
+        <UsersSection searchParams={searchParams} />
       </Suspense>
     </div>
   );

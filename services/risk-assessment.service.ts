@@ -1,4 +1,6 @@
 import type { Types } from "mongoose";
+import type { AuthUser } from "@/lib/auth/guard";
+import { assertCanReadRiskAssessment, incidentScope } from "@/lib/permissions";
 import { assessRisk, type RiskEngineInput } from "@/lib/risk-engine";
 import Distribution from "@/models/Distribution";
 import FoodBatch from "@/models/FoodBatch";
@@ -113,4 +115,68 @@ export async function runRiskAssessment(
     assessedBy,
     assessedAt: new Date(),
   });
+}
+
+export interface RiskAssessmentHistoryRow {
+  _id: Types.ObjectId;
+  incidentId: Types.ObjectId;
+  incidentCode: string;
+  incidentTitle: string;
+  score: number;
+  level: string;
+  assessedAt: Date;
+  assessorName: string | null;
+}
+
+/**
+ * Cross-incident assessment history for `/app/risk-analysis` (PRD 9.2 #8
+ * "Assessment history"). Every assessment is kept, not just the latest
+ * (PRD 7.10), so a re-assessed incident shows up once per run.
+ *
+ * Driven from Incident rather than RiskAssessment so the caller's role scope
+ * (`incidentScope`) is the thing filtering the rows — RiskAssessment itself
+ * carries no organization field to scope on.
+ */
+export async function listRecentRiskAssessments(
+  actor: AuthUser,
+  limit: number,
+): Promise<RiskAssessmentHistoryRow[]> {
+  assertCanReadRiskAssessment(actor);
+
+  return Incident.aggregate<RiskAssessmentHistoryRow>([
+    { $match: incidentScope(actor) },
+    {
+      $lookup: {
+        from: "riskassessments",
+        localField: "_id",
+        foreignField: "incidentId",
+        as: "assessment",
+      },
+    },
+    { $unwind: "$assessment" },
+    { $sort: { "assessment.assessedAt": -1 } },
+    { $limit: limit },
+    {
+      $lookup: {
+        from: "users",
+        localField: "assessment.assessedBy",
+        foreignField: "_id",
+        as: "assessor",
+      },
+    },
+    {
+      $project: {
+        _id: "$assessment._id",
+        incidentId: "$_id",
+        incidentCode: "$incidentCode",
+        incidentTitle: "$title",
+        score: "$assessment.score",
+        level: "$assessment.level",
+        assessedAt: "$assessment.assessedAt",
+        assessorName: {
+          $ifNull: [{ $first: "$assessor.name" }, null],
+        },
+      },
+    },
+  ]).exec();
 }

@@ -3,7 +3,10 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { DistributionFilters } from "@/components/distribution/distribution-filters";
 import { DistributionsTable } from "@/components/distribution/distributions-table";
-import { TableSkeleton } from "@/components/shared/skeletons";
+import {
+  FilterBarSkeleton,
+  TableSkeleton,
+} from "@/components/shared/skeletons";
 import { getCurrentUser } from "@/lib/auth/current-user";
 import { populatedRef } from "@/lib/mongo-ref";
 import { distributionListQuerySchema } from "@/lib/validations/distribution";
@@ -75,9 +78,13 @@ async function DistributionsList({
   );
 }
 
-export default async function DistributionPage({
+// See the note in app/(application)/app/batches/page.tsx for why `searchParams`
+// is awaited inside a Suspense boundary rather than in the page component.
+async function DistributionSection({
   searchParams,
-}: PageProps<"/app/distribution">) {
+}: {
+  searchParams: PageProps<"/app/distribution">["searchParams"];
+}) {
   const params = await searchParams;
   const search = param(params.search);
   const status = param(params.status);
@@ -85,13 +92,7 @@ export default async function DistributionPage({
   const to = param(params.to);
 
   return (
-    <div className="flex flex-col gap-5">
-      <div>
-        <h1 className="text-xl font-semibold text-text-primary">Distribusi</h1>
-        <p className="text-sm text-text-secondary">
-          Pantau pengiriman batch ke sekolah penerima.
-        </p>
-      </div>
+    <>
       <DistributionFilters defaults={{ search, status, from, to }} />
       <Suspense
         key={`${search}-${status}-${from}-${to}`}
@@ -103,6 +104,31 @@ export default async function DistributionPage({
           from={from}
           to={to}
         />
+      </Suspense>
+    </>
+  );
+}
+
+export default function DistributionPage({
+  searchParams,
+}: PageProps<"/app/distribution">) {
+  return (
+    <div className="flex flex-col gap-5">
+      <div>
+        <h1 className="text-xl font-semibold text-text-primary">Distribusi</h1>
+        <p className="text-sm text-text-secondary">
+          Pantau pengiriman batch ke sekolah penerima.
+        </p>
+      </div>
+      <Suspense
+        fallback={
+          <>
+            <FilterBarSkeleton />
+            <TableSkeleton columns={6} />
+          </>
+        }
+      >
+        <DistributionSection searchParams={searchParams} />
       </Suspense>
     </div>
   );

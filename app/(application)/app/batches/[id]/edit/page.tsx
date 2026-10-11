@@ -20,7 +20,8 @@ function parseId(id: string): Types.ObjectId | null {
   }
 }
 
-async function EditBatchGate({ id }: { id: string }) {
+async function EditBatchGate({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const actor = await getCurrentUser();
   if (!actor) redirect("/login");
   // PRD §8.8: updating a batch is Admin / SPPG Operator only.
@@ -72,18 +73,16 @@ async function EditBatchGate({ id }: { id: string }) {
   );
 }
 
-export default async function EditBatchPage({
+export default function EditBatchPage({
   params,
 }: PageProps<"/app/batches/[id]/edit">) {
-  const { id } = await params;
-
   return (
     <div className="flex flex-col gap-5">
       <div>
         <h1 className="text-xl font-semibold text-text-primary">Edit Batch</h1>
       </div>
       <Suspense fallback={<Skeleton className="h-96 w-full" />}>
-        <EditBatchGate id={id} />
+        <EditBatchGate params={params} />
       </Suspense>
     </div>
   );

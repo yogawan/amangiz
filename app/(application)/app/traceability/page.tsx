@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { EmptyState } from "@/components/shared/empty-state";
+import { FilterBarSkeleton } from "@/components/shared/skeletons";
 import { TraceabilityChain } from "@/components/traceability/traceability-chain";
 import { TraceabilitySearch } from "@/components/traceability/traceability-search";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -165,22 +166,18 @@ async function TraceabilityResultGate({ code }: { code: string }) {
   );
 }
 
-export default async function TraceabilityPage({
+// See the note in app/(application)/app/batches/page.tsx for why `searchParams`
+// is awaited inside a Suspense boundary rather than in the page component.
+async function TraceabilitySection({
   searchParams,
-}: PageProps<"/app/traceability">) {
+}: {
+  searchParams: PageProps<"/app/traceability">["searchParams"];
+}) {
   const params = await searchParams;
   const code = typeof params.code === "string" ? params.code : undefined;
 
   return (
-    <div className="flex flex-col gap-5">
-      <div>
-        <h1 className="text-xl font-semibold text-text-primary">
-          Traceability
-        </h1>
-        <p className="text-sm text-text-secondary">
-          Telusuri jalur batch dari pemasok hingga penerima.
-        </p>
-      </div>
+    <>
       <TraceabilitySearch defaultCode={code} />
       {code ? (
         <Suspense key={code} fallback={<Skeleton className="h-96 w-full" />}>
@@ -192,6 +189,33 @@ export default async function TraceabilityPage({
           description="Cari kode batch untuk melihat jalur distribusinya."
         />
       )}
+    </>
+  );
+}
+
+export default function TraceabilityPage({
+  searchParams,
+}: PageProps<"/app/traceability">) {
+  return (
+    <div className="flex flex-col gap-5">
+      <div>
+        <h1 className="text-xl font-semibold text-text-primary">
+          Traceability
+        </h1>
+        <p className="text-sm text-text-secondary">
+          Telusuri jalur batch dari pemasok hingga penerima.
+        </p>
+      </div>
+      <Suspense
+        fallback={
+          <>
+            <FilterBarSkeleton fields={1} />
+            <Skeleton className="h-96 w-full" />
+          </>
+        }
+      >
+        <TraceabilitySection searchParams={searchParams} />
+      </Suspense>
     </div>
   );
 }

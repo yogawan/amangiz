@@ -26,7 +26,12 @@ function parseId(id: string): Types.ObjectId | null {
   }
 }
 
-async function DistributionDetailGate({ id }: { id: string }) {
+async function DistributionDetailGate({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
   const actor = await getCurrentUser();
   if (!actor) redirect("/login");
 
@@ -129,14 +134,12 @@ async function DistributionDetailGate({ id }: { id: string }) {
   );
 }
 
-export default async function DistributionDetailPage({
+export default function DistributionDetailPage({
   params,
 }: PageProps<"/app/distribution/[id]">) {
-  const { id } = await params;
-
   return (
     <Suspense fallback={<Skeleton className="h-96 w-full" />}>
-      <DistributionDetailGate id={id} />
+      <DistributionDetailGate params={params} />
     </Suspense>
   );
 }

@@ -241,6 +241,7 @@ interface LatestRiskRow {
     assessedAt: Date;
     rulesTriggered: { ruleCode: string; ruleName: string }[];
     missingData: string[];
+    recommendations: string[];
   };
 }
 
@@ -303,6 +304,9 @@ export async function getDashboardRiskOverview(user: AuthUser, limit: number) {
             "latestRisk.rulesTriggered.ruleCode": 1,
             "latestRisk.rulesTriggered.ruleName": 1,
             "latestRisk.missingData": 1,
+            // PRD 9.2 #8 lists "Recommended actions" as a component of the
+            // risk-analysis page, so it travels with the top cases.
+            "latestRisk.recommendations": 1,
           },
         },
       ]).exec(),

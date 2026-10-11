@@ -191,8 +191,8 @@ export function SchoolFormDialog({
               </SelectContent>
             </Select>
           </div>
-          <div className="grid grid-cols-2 gap-3">
-            <div className="col-span-2">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div className="sm:col-span-2">
               <Label htmlFor="school-street">Alamat</Label>
               <Input
                 id="school-street"
@@ -241,7 +241,7 @@ export function SchoolFormDialog({
               />
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div>
               <Label htmlFor="school-contact-name">Kontak</Label>
               <Input
