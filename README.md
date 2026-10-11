@@ -1,11 +1,3 @@
-<div align="center">
-
-<img src="public/Thumb-1.png" alt="AMANGIZ — Jaga Gizi. Jaga Generasi." width="100%" />
-
-<br />
-
-<img src="public/Thumb-2.png" alt="AMANGIZ — Jaga Gizi. Jaga Generasi." width="100%" />
-
 # AMANGIZ — Amankan Gizi
 
 **Food Safety & Nutrition Incident Response Platform** for the *Program Makan Bergizi Gratis* (MBG) ecosystem.
@@ -25,6 +17,20 @@
 </p>
 
 </div>
+
+## Mockup Overview
+
+<div align="center">
+
+<img src="public/Thumb-1.png" alt="AMANGIZ — Jaga Gizi. Jaga Generasi." width="100%" />
+
+<br />
+
+<img src="public/Thumb-2.png" alt="AMANGIZ — Jaga Gizi. Jaga Generasi." width="100%" />
+
+## Deck Overview
+
+<img src="public/deck.png" alt="Deck." width="100%" />
 
 ---
 
