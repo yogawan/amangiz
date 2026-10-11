@@ -13,10 +13,10 @@ import {
 } from "@/components/ui/sheet";
 
 const links = [
-  { href: "#beranda", label: "Beranda" },
-  { href: "#cara-kerja", label: "Cara Kerja" },
-  { href: "#fitur", label: "Fitur Utama" },
-  { href: "#tentang", label: "Tentang AMANGIZ" },
+  { href: "/#beranda", label: "Beranda" },
+  { href: "/#cara-kerja", label: "Cara Kerja" },
+  { href: "/#fitur", label: "Fitur Utama" },
+  { href: "/about", label: "Tentang Kami" },
 ];
 
 export function MobileNav() {
@@ -35,14 +35,14 @@ export function MobileNav() {
         </SheetHeader>
         <nav className="flex flex-col gap-1 px-4">
           {links.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
               className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted hover:bg-primary-light hover:text-primary"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
         <div className="mt-auto px-4 pb-4">
