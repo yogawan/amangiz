@@ -2,21 +2,19 @@ import {
   ArrowRight,
   Check,
   ChevronDown,
-  ClipboardList,
   Clock,
   FileText,
   Lock,
-  MapPin,
   Network,
-  Package,
   Search,
   Shield,
-  Sparkles,
   Users,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { MobileNav } from "@/components/mobile-nav";
+import { Intro } from "@/components/section-intro";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 
 const problems = [
@@ -89,7 +87,7 @@ const features = [
       "Status batch",
       "Informasi produksi dan penyimpanan",
     ],
-    Package,
+    "/Kenali riwayat setiap batch.png",
   ],
   [
     "02",
@@ -102,7 +100,7 @@ const features = [
       "Daftar lokasi penerima",
       "Referensi insiden terkait",
     ],
-    Network,
+    "/Telusuri jalur dari produksi hingga penerima.png",
   ],
   [
     "03",
@@ -115,7 +113,7 @@ const features = [
       "Konfirmasi penerimaan",
       "Dokumentasi distribusi",
     ],
-    MapPin,
+    "/Pantau status pengiriman.png",
   ],
   [
     "04",
@@ -128,7 +126,7 @@ const features = [
       "Unggah bukti",
       "Status penanganan",
     ],
-    ClipboardList,
+    "/Ubah laporan menjadi informasi yang dapat ditindaklanjuti.png",
   ],
   [
     "05",
@@ -141,7 +139,7 @@ const features = [
       "Aturan yang terpenuhi",
       "Informasi data yang kurang",
     ],
-    Sparkles,
+    "/Pahami faktor yang memengaruhi prioritas.png",
   ],
   [
     "06",
@@ -155,7 +153,7 @@ const features = [
       "Tindakan korektif",
       "Ringkasan penyelesaian",
     ],
-    FileText,
+    "/Dokumentasikan proses hingga selesai.png",
   ],
 ] as const;
 const faqs = [
@@ -185,29 +183,6 @@ const faqs = [
   ],
 ];
 
-function Intro({
-  eyebrow,
-  title,
-  copy,
-  centered = false,
-}: {
-  eyebrow: string;
-  title: string;
-  copy: string;
-  centered?: boolean;
-}) {
-  return (
-    <div className={centered ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
-      <p className="mb-4 text-[11px] font-bold tracking-[.18em] text-primary">
-        {eyebrow}
-      </p>
-      <h2 className="text-3xl font-semibold tracking-[-.045em] text-foreground sm:text-4xl">
-        {title}
-      </h2>
-      <p className="mt-5 text-base leading-7 text-muted">{copy}</p>
-    </div>
-  );
-}
 function LoginButton({ light = false }: { light?: boolean }) {
   return (
     <Button asChild variant={light ? "light" : "default"}>
@@ -221,39 +196,7 @@ function LoginButton({ light = false }: { light?: boolean }) {
 export default function Home() {
   return (
     <main className="overflow-hidden bg-background text-foreground">
-      <nav className="sticky top-0 z-50 border-b border-border/80 bg-surface/90 backdrop-blur-xl">
-        <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 sm:px-8">
-          <a
-            href="#beranda"
-            className="flex items-center gap-2.5"
-            aria-label="AMANGIZ beranda"
-          >
-            <Image
-              src="/Amangiz-Logo.png"
-              alt="AMANGIZ"
-              width={48}
-              height={48}
-              priority
-              className="h-12 w-12 rounded-xl"
-            />
-            <span className="text-lg font-extrabold tracking-[-.05em] text-primary-hover">
-              AMANGIZ
-            </span>
-          </a>
-          <div className="hidden items-center gap-7 text-sm font-medium text-muted lg:flex">
-            <a href="#beranda">Beranda</a>
-            <a href="#cara-kerja">Cara Kerja</a>
-            <a href="#fitur">Fitur Utama</a>
-            <a href="#tentang">Tentang AMANGIZ</a>
-          </div>
-          <div className="hidden lg:block">
-            <LoginButton />
-          </div>
-          <div className="lg:hidden">
-            <MobileNav />
-          </div>
-        </div>
-      </nav>
+      <SiteHeader />
 
       <section
         id="beranda"
@@ -451,18 +394,22 @@ export default function Home() {
           />
           <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {features.map(
-              ([number, title, headline, copy, capabilities, IconComp]) => (
+              ([number, title, headline, copy, capabilities, image]) => (
                 <article
                   className="group rounded-2xl border border-border p-6 transition hover:border-primary-light hover:shadow-lg hover:shadow-primary-hover/5"
                   key={title}
                 >
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-start justify-between">
                     <span className="text-xs font-bold text-primary">
                       {number}
                     </span>
-                    <span className="grid h-10 w-10 place-items-center rounded-xl bg-background text-foreground group-hover:bg-primary group-hover:text-white">
-                      <IconComp className="h-5 w-5" />
-                    </span>
+                    <Image
+                      src={image}
+                      alt=""
+                      width={64}
+                      height={64}
+                      className="h-16 w-16"
+                    />
                   </div>
                   <p className="mt-7 text-xs font-bold tracking-[.11em] text-muted">
                     {title}
@@ -695,7 +642,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <Footer />
+      <SiteFooter />
     </main>
   );
 }
@@ -824,57 +771,5 @@ function RiskCard() {
         </div>
       </div>
     </div>
-  );
-}
-function Footer() {
-  return (
-    <footer className="border-t border-border bg-surface">
-      <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8">
-        <div className="grid gap-10 md:grid-cols-[1.4fr_.6fr]">
-          <div>
-            <a href="#beranda" className="flex items-center gap-2.5">
-              <Image
-                src="/Amangiz-Logo.png"
-                alt="AMANGIZ"
-                width={40}
-                height={40}
-                className="h-10 w-10 rounded-lg"
-              />
-              <span className="font-extrabold tracking-[-.05em] text-primary-hover">
-                AMANGIZ{" "}
-                <span className="font-medium text-muted">— Amankan Gizi</span>
-              </span>
-            </a>
-            <p className="mt-4 text-sm font-medium text-primary">
-              Jaga Gizi. Jaga Generasi.
-            </p>
-            <p className="mt-5 max-w-xl text-xs leading-5 text-muted">
-              AMANGIZ merupakan platform pendukung pencatatan, traceability, dan
-              workflow penanganan dugaan insiden. Informasi yang ditampilkan
-              bergantung pada data yang tersedia dan tidak menggantikan
-              pemeriksaan medis, pengujian laboratorium, atau keputusan pihak
-              berwenang.
-            </p>
-          </div>
-          <div>
-            <p className="text-xs font-bold tracking-[.13em] text-muted">
-              NAVIGASI
-            </p>
-            <div className="mt-4 grid grid-cols-2 gap-3 text-sm text-muted">
-              <a href="#beranda">Beranda</a>
-              <a href="#cara-kerja">Cara Kerja</a>
-              <a href="#fitur">Fitur Utama</a>
-              <a href="#tentang">Tentang AMANGIZ</a>
-              <Link href="/login" className="font-semibold text-primary">
-                Masuk
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="mt-10 border-t border-border pt-6 text-xs text-muted">
-          © 2026 AMANGIZ. Prototype for demonstration purposes.
-        </div>
-      </div>
-    </footer>
   );
 }

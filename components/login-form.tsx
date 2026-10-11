@@ -1,6 +1,6 @@
 "use client";
 
-import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { Eye, EyeOff, Loader2, LogIn } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { type FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -120,7 +120,9 @@ export function LoginForm() {
             <Loader2 className="h-4 w-4 animate-spin" /> Memproses...
           </>
         ) : (
-          "Masuk"
+          <>
+            Masuk <LogIn className="h-4 w-4" />
+          </>
         )}
       </Button>
     </form>

@@ -1,7 +1,31 @@
+import { ArrowLeft, Package, School, Search, ShieldCheck } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { LoginForm } from "@/components/login-form";
+
+const roles = [
+  {
+    icon: ShieldCheck,
+    name: "Administrator",
+    description: "Mengelola pengguna, data referensi, dan konfigurasi sistem.",
+  },
+  {
+    icon: Package,
+    name: "Operator SPPG",
+    description: "Mencatat batch, produksi, dan distribusi.",
+  },
+  {
+    icon: School,
+    name: "Operator Sekolah",
+    description: "Melihat penerimaan dan melaporkan insiden.",
+  },
+  {
+    icon: Search,
+    name: "Investigator",
+    description: "Menelusuri dan mendokumentasikan investigasi.",
+  },
+] as const;
 
 export const metadata: Metadata = {
   title: "Masuk — AMANGIZ",
@@ -32,15 +56,12 @@ export default function LoginPage() {
           <Image
             src="/Auth-Ilustration.png"
             alt=""
-            width={400}
-            height={400}
+            width={640}
+            height={640}
             priority
-            className="h-auto w-full max-w-xs"
+            className="h-auto w-full max-w-xl"
           />
-          <p className="mt-8 text-[11px] font-bold tracking-[.18em] text-primary-light">
-            PLATFORM TRACEABILITY & RESPONS PENANGANAN INSIDEN PANGAN
-          </p>
-          <h2 className="mt-4 max-w-md text-2xl font-semibold tracking-[-.03em] text-white">
+          <h2 className="mt-8 max-w-md text-2xl font-semibold tracking-[-.03em] text-white">
             Satu dashboard untuk traceability dan respons insiden pangan.
           </h2>
           <p className="mt-3 max-w-sm text-sm leading-6 text-primary-light/70">
@@ -55,7 +76,7 @@ export default function LoginPage() {
       </div>
 
       <div className="flex w-full flex-col items-center justify-center bg-background px-5 py-16 lg:w-1/2">
-        <div className="w-full max-w-sm">
+        <div className="w-full max-w-md">
           <Link
             href="/"
             className="mb-8 flex items-center justify-center gap-2.5 lg:hidden"
@@ -81,10 +102,37 @@ export default function LoginPage() {
             <LoginForm />
           </div>
           <p className="mt-6 text-center text-xs text-muted">
-            <Link href="/" className="font-semibold text-primary">
-              ← Kembali ke beranda
+            <Link
+              href="/"
+              className="inline-flex items-center gap-1.5 font-semibold text-primary"
+            >
+              <ArrowLeft className="h-3.5 w-3.5" /> Kembali ke beranda
             </Link>
           </p>
+
+          <div className="mt-10 border-t border-border pt-6">
+            <p className="text-center text-xs font-semibold tracking-wide text-muted uppercase">
+              Peran Pengguna
+            </p>
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              {roles.map(({ icon: Icon, name, description }) => (
+                <div
+                  key={name}
+                  className="rounded-xl border border-border bg-surface p-3"
+                >
+                  <span className="grid h-8 w-8 place-items-center rounded-lg bg-primary-light text-primary">
+                    <Icon className="h-4 w-4" />
+                  </span>
+                  <p className="mt-2 text-xs font-semibold text-foreground">
+                    {name}
+                  </p>
+                  <p className="mt-0.5 text-[11px] leading-4 text-muted">
+                    {description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </main>
