@@ -17,6 +17,7 @@ import {
 import { ROLE_LABELS } from "@/components/layout/nav-items";
 import { CardSkeleton, TableSkeleton } from "@/components/shared/skeletons";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ApiError } from "@/lib/api/errors";
 import { getCurrentUser } from "@/lib/auth/current-user";
 import type { AuthUser } from "@/lib/auth/guard";
 import { populatedRef } from "@/lib/mongo-ref";
@@ -102,7 +103,15 @@ async function loadRecentActivity(
   if (actor.role !== "admin" && actor.role !== "investigator") return null;
 
   const query = auditLogListQuerySchema.parse({ limit: 8 });
-  const { data } = await listAuditLogs(actor, query);
+  // Recent activity is a secondary card. If the audit read is refused for a
+  // reason the role check above didn't anticipate, drop the card rather than
+  // letting a throw take down the entire dashboard.
+  const result = await listAuditLogs(actor, query).catch((error) => {
+    if (error instanceof ApiError && error.status === 403) return null;
+    throw error;
+  });
+  if (!result) return null;
+  const { data } = result;
 
   return data.map((entry) => {
     const actorRef = populatedRef<{ name: string }>(entry.actorId, ["name"]);

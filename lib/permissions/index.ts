@@ -132,8 +132,20 @@ export function assertCanReadAuditLog(user: AuthUser): void {
   }
 }
 
-/** Audit logs are organization-scoped for non-admin readers. */
+/**
+ * Audit logs are unscoped for both roles that may read them at all.
+ *
+ * `assertCanReadAuditLog` already limits this to admin and investigator, and
+ * neither is organization-scoped: PRD 3.2 gives Admin "Full" and Investigator
+ * "Authorized", never "Own" (the key that means org-limited). Investigators are
+ * `health_authority` accounts with no `organizationId` by design — the same
+ * reason `incidentScope`/`distributionScope`/`batchScope` all return `{}` for
+ * them — so scoping them by organization could only ever throw.
+ *
+ * The org-scoped branch is kept as the safe default should a future role be
+ * granted audit access.
+ */
 export function auditLogScope(user: AuthUser): QueryFragment {
-  if (isAdmin(user)) return {};
+  if (isAdmin(user) || user.role === "investigator") return {};
   return { organizationId: requireOrganization(user) };
 }
