@@ -62,7 +62,7 @@ export default function AboutPage() {
           title="Orang-orang di balik AMANGIZ."
           copy="Tim kecil yang membangun AMANGIZ sebagai konsep platform pendukung traceability dan respons insiden keamanan pangan."
         />
-        <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-3">
+        <div className="mt-12 grid gap-8 sm:grid-cols-3">
           {team.map((member) => (
             <article
               key={member.name}

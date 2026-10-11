@@ -1,20 +1,10 @@
-import {
-  ArrowRight,
-  Check,
-  ChevronDown,
-  Clock,
-  FileText,
-  Lock,
-  Network,
-  Search,
-  Shield,
-  Users,
-} from "lucide-react";
+import { ArrowRight, Check, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Intro } from "@/components/section-intro";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { SplashScreen } from "@/components/splash-screen";
 import { Button } from "@/components/ui/button";
 
 const problems = [
@@ -196,6 +186,7 @@ function LoginButton({ light = false }: { light?: boolean }) {
 export default function Home() {
   return (
     <main className="overflow-hidden bg-background text-foreground">
+      <SplashScreen />
       <SiteHeader />
 
       <section
@@ -483,31 +474,35 @@ export default function Home() {
             [
               "Administrator",
               "Mengelola pengguna, data referensi, konfigurasi, dan akses sistem.",
+              "/Administrator.png",
             ],
             [
               "Operator SPPG",
               "Mencatat batch, informasi produksi, dan distribusi sesuai kewenangannya.",
+              "/Operator SPPG.png",
             ],
             [
               "Operator Sekolah",
               "Melihat informasi penerimaan yang relevan dan melaporkan dugaan insiden.",
+              "/Operator Sekolah.png",
             ],
             [
               "Investigator / Petugas Berwenang",
               "Meninjau laporan, menelusuri batch terkait, mendokumentasikan investigasi, dan mencatat tindak lanjut.",
+              "/Investigator Petugas Berwenang.png",
             ],
-          ].map(([role, copy], index) => (
+          ].map(([role, copy, image]) => (
             <article
               key={role}
               className="rounded-2xl border border-border bg-surface p-5"
             >
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary-light text-primary">
-                {index === 3 ? (
-                  <Search className="h-5 w-5" />
-                ) : (
-                  <Users className="h-5 w-5" />
-                )}
-              </span>
+              <Image
+                src={image}
+                alt=""
+                width={56}
+                height={56}
+                className="h-14 w-14"
+              />
               <h3 className="mt-5 font-semibold">{role}</h3>
               <p className="mt-2 text-sm leading-6 text-muted">{copy}</p>
             </article>
@@ -532,37 +527,41 @@ export default function Home() {
                 [
                   "Role-based access",
                   "Akses mengikuti tanggung jawab pengguna.",
-                  Lock,
+                  "/Role-based access.png",
                 ],
                 [
                   "Evidence documentation",
                   "Bukti dan dokumen terkait tersimpan sebagai catatan kasus.",
-                  FileText,
+                  "/Evidence documentation.png",
                 ],
                 [
                   "Activity history",
                   "Perubahan penting dicatat untuk membantu peninjauan.",
-                  Clock,
+                  "/Activity history.png",
                 ],
                 [
                   "Traceable workflow",
                   "Status dan tindak lanjut dapat ditelusuri.",
-                  Network,
+                  "/Traceable workflow.png",
                 ],
                 [
                   "Data-aware assessment",
                   "Penilaian menampilkan aturan dan informasi yang digunakan.",
-                  Shield,
+                  "/Data-aware assessments.png",
                 ],
               ] as const
-            ).map(([title, copy, IconComp]) => (
+            ).map(([title, copy, image]) => (
               <div
-                className="flex gap-3 rounded-xl border border-border p-4"
+                className="flex items-center gap-3 rounded-xl border border-border p-4"
                 key={title}
               >
-                <span className="mt-0.5 text-primary">
-                  <IconComp className="h-5 w-5" />
-                </span>
+                <Image
+                  src={image}
+                  alt=""
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 shrink-0"
+                />
                 <div>
                   <h3 className="text-sm font-semibold">{title}</h3>
                   <p className="mt-1 text-xs leading-5 text-muted">{copy}</p>
