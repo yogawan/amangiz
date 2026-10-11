@@ -30,6 +30,44 @@
 
 <img src="public/deck.png" alt="Deck." width="100%" />
 
+Link deck: https://www.figma.com/deck/pT3c55UHHcqA3T9xFYIp5t
+
+## AMANGIZ's Team
+
+Meet the passionate team building AMANGIZ:
+
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <img src="public/Yogawan as a Frontend Dev.png" alt="Yogawan" width="200" style="border-radius: 8px;" />
+      <br />
+      <strong>Yogawan</strong>
+      <br />
+      Frontend Developer
+      <br />
+      <em>Building intuitive UI & seamless UX</em>
+    </td>
+    <td align="center" width="33%">
+      <img src="public/Lathif as a Backend & AI Dev.png" alt="Lathif" width="200" style="border-radius: 8px;" />
+      <br />
+      <strong>Lathif</strong>
+      <br />
+      Backend & AI Developer
+      <br />
+      <em>Designing robust APIs & intelligent systems</em>
+    </td>
+    <td align="center" width="33%">
+      <img src="public/Adnan as a UI-UX & Video Editor.png" alt="Adnan" width="200" style="border-radius: 8px;" />
+      <br />
+      <strong>Adnan</strong>
+      <br />
+      UI/UX & Video Editor
+      <br />
+      <em>Crafting visual identity & storytelling</em>
+    </td>
+  </tr>
+</table>
+
 ---
 
 ## Table of Contents
