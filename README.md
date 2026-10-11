@@ -1,10 +1,10 @@
-# AMANGIZ — Amankan Gizi
+# AMANGIZ - Amankan Gizi
 
 **Food Safety & Nutrition Incident Response Platform** for the *Program Makan Bergizi Gratis* (MBG) ecosystem.
 
 *Jaga Gizi. Jaga Generasi.*
 
-**[Live Demo → amangiz.vercel.app](https://amangiz.vercel.app)**
+**[Live Demo > amangiz.vercel.app](https://amangiz.vercel.app)**
 
 <p>
   <img alt="Next.js" src="https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js&logoColor=white">
@@ -22,10 +22,6 @@
 
 <img src="public/Thumb-1.png" alt="AMANGIZ — Jaga Gizi. Jaga Generasi." width="100%" />
 
-<br />
-
-<img src="public/Thumb-2.png" alt="AMANGIZ — Jaga Gizi. Jaga Generasi." width="100%" />
-
 ## Deck Overview
 
 <img src="public/deck.png" alt="Deck." width="100%" />
@@ -39,7 +35,7 @@ Meet the passionate team building AMANGIZ:
 <table>
   <tr>
     <td align="center" width="33%">
-      <img src="public/Yogawan as a Frontend Dev.png" alt="Yogawan" width="200" style="border-radius: 8px;" />
+      <img src="public/Yogawan.png" alt="Yogawan" width="200" style="border-radius: 8px;" />
       <br />
       <strong>Yogawan</strong>
       <br />
@@ -48,22 +44,22 @@ Meet the passionate team building AMANGIZ:
       <em>Building intuitive UI & seamless UX</em>
     </td>
     <td align="center" width="33%">
-      <img src="public/Lathif as a Backend & AI Dev.png" alt="Lathif" width="200" style="border-radius: 8px;" />
-      <br />
-      <strong>Lathif</strong>
-      <br />
-      Backend & AI Developer
-      <br />
-      <em>Designing robust APIs & intelligent systems</em>
-    </td>
-    <td align="center" width="33%">
-      <img src="public/Adnan as a UI-UX & Video Editor.png" alt="Adnan" width="200" style="border-radius: 8px;" />
+      <img src="public/Adnan.png" alt="Adnan" width="200" style="border-radius: 8px;" />
       <br />
       <strong>Adnan</strong>
       <br />
       UI/UX & Video Editor
       <br />
       <em>Crafting visual identity & storytelling</em>
+    </td>
+    <td align="center" width="33%">
+      <img src="public/Lathif.png" alt="Lathif" width="200" style="border-radius: 8px;" />
+      <br />
+      <strong>Lathif</strong>
+      <br />
+      Backend & AI Developer
+      <br />
+      <em>Designing robust APIs & intelligent systems</em>
     </td>
   </tr>
 </table>
