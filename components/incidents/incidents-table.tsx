@@ -46,8 +46,8 @@ export function IncidentsTable({
       header: "Judul",
       render: (row) => (
         <div>
-          <p className="font-medium text-text-primary">{row.title}</p>
-          <p className="text-xs text-text-secondary">
+          <p className="font-medium text-foreground">{row.title}</p>
+          <p className="text-xs text-muted">
             {row.batch?.batchCode ?? row.school?.name ?? "—"}
           </p>
         </div>
@@ -59,7 +59,7 @@ export function IncidentsTable({
       header: "Severity",
       render: (row) =>
         row.severity === "unassessed" ? (
-          <span className="inline-flex items-center rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold text-text-secondary">
+          <span className="inline-flex items-center rounded-md bg-muted/10 px-2.5 py-1 text-xs font-semibold text-muted">
             Belum Dinilai
           </span>
         ) : (

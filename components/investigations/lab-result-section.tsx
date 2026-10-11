@@ -174,7 +174,7 @@ export function LabResultSection({
               </>
             )}
             {error && (
-              <p role="alert" className="text-sm text-red-700">
+              <p role="alert" className="text-sm text-danger">
                 {error}
               </p>
             )}
@@ -185,7 +185,7 @@ export function LabResultSection({
             </div>
           </form>
         ) : (
-          <div className="text-sm text-text-secondary">
+          <div className="text-sm text-muted">
             {!sampleTesting || sampleTesting.status === "not_requested" ? (
               <p>Belum ada uji sampel yang diminta.</p>
             ) : (

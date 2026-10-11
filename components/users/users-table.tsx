@@ -44,8 +44,8 @@ export function UsersTable({ initialData }: { initialData: UserRow[] }) {
       header: "Nama",
       render: (row) => (
         <div>
-          <p className="font-medium text-text-primary">{row.name}</p>
-          <p className="text-xs text-text-secondary">{row.email}</p>
+          <p className="font-medium text-foreground">{row.name}</p>
+          <p className="text-xs text-muted">{row.email}</p>
         </div>
       ),
       sortValue: (row) => row.name,

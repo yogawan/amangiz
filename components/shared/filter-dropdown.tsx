@@ -34,7 +34,7 @@ export function FilterDropdown({
   return (
     <div className={className}>
       {label && (
-        <span className="mb-1.5 block text-xs font-semibold text-text-primary">
+        <span className="mb-1.5 block text-xs font-semibold text-foreground">
           {label}
         </span>
       )}

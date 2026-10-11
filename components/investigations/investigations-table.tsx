@@ -30,10 +30,10 @@ export function InvestigationsTable({
           href={`/app/investigations/${row._id}`}
           className="block hover:underline"
         >
-          <p className="font-mono text-xs text-text-secondary">
+          <p className="font-mono text-xs text-muted">
             {row.incident?.incidentCode ?? "—"}
           </p>
-          <p className="font-medium text-text-primary">
+          <p className="font-medium text-foreground">
             {row.incident?.title ?? "—"}
           </p>
         </Link>

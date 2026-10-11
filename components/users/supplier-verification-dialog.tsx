@@ -116,7 +116,7 @@ export function SupplierVerificationDialog({
           {error && (
             <p
               role="alert"
-              className="rounded-lg bg-red-50 px-3.5 py-2.5 text-sm text-red-700"
+              className="rounded-lg bg-danger/10 px-3.5 py-2.5 text-sm text-danger"
             >
               {error}
             </p>

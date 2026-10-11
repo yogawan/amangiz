@@ -116,7 +116,7 @@ export function TimelineSection({
               />
             </div>
             {error && (
-              <p role="alert" className="text-sm text-red-700">
+              <p role="alert" className="text-sm text-danger">
                 {error}
               </p>
             )}
@@ -128,7 +128,7 @@ export function TimelineSection({
           </form>
         )}
         {sorted.length === 0 ? (
-          <p className="text-sm text-text-secondary">Belum ada kronologi.</p>
+          <p className="text-sm text-muted">Belum ada kronologi.</p>
         ) : (
           sorted.map((entry) => (
             <div
@@ -137,13 +137,11 @@ export function TimelineSection({
             >
               <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary" />
               <div>
-                <p className="text-sm font-medium text-text-primary">
+                <p className="text-sm font-medium text-foreground">
                   {entry.action}
                 </p>
-                <p className="text-xs text-text-secondary">
-                  {entry.description}
-                </p>
-                <p className="mt-1 text-xs text-text-muted">
+                <p className="text-xs text-muted">{entry.description}</p>
+                <p className="mt-1 text-xs text-muted">
                   {new Date(entry.occurredAt).toLocaleString("id-ID")}
                   {entry.actor ? ` · ${entry.actor.name}` : ""}
                 </p>

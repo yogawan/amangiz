@@ -262,7 +262,7 @@ export function BatchForm({
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
           {ingredients.length === 0 && (
-            <p className="text-sm text-text-secondary">
+            <p className="text-sm text-muted">
               Belum ada bahan baku ditambahkan.
             </p>
           )}
@@ -341,7 +341,7 @@ export function BatchForm({
       {error && (
         <p
           role="alert"
-          className="rounded-lg bg-red-50 px-3.5 py-2.5 text-sm text-red-700"
+          className="rounded-lg bg-danger/10 px-3.5 py-2.5 text-sm text-danger"
         >
           {error}
         </p>

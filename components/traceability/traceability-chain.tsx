@@ -75,8 +75,8 @@ function formatDate(value?: string): string {
 function Field({ label, value }: { label: string; value: ReactNode }) {
   return (
     <div>
-      <p className="text-xs font-semibold text-text-secondary">{label}</p>
-      <div className="mt-0.5 text-text-primary">{value}</div>
+      <p className="text-xs font-semibold text-muted">{label}</p>
+      <div className="mt-0.5 text-foreground">{value}</div>
     </div>
   );
 }
@@ -145,9 +145,7 @@ export function TraceabilityChain({ trace }: { trace: TraceabilityChainData }) {
         </CardHeader>
         <CardContent>
           {trace.suppliers.length === 0 ? (
-            <p className="text-sm text-text-secondary">
-              Belum ada bahan baku tercatat.
-            </p>
+            <p className="text-sm text-muted">Belum ada bahan baku tercatat.</p>
           ) : (
             <Table>
               <TableHeader>
@@ -184,13 +182,13 @@ export function TraceabilityChain({ trace }: { trace: TraceabilityChainData }) {
           <CardTitle>Jalur Distribusi ({trace.distributions.length})</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
-          <p className="text-xs text-text-muted">
+          <p className="text-xs text-muted">
             Status di bawah hanya mencerminkan data yang benar-benar tercatat —
             leg tanpa waktu penerimaan ditandai "Belum Dikonfirmasi", bukan
             seolah sudah diterima.
           </p>
           {trace.distributions.length === 0 ? (
-            <p className="text-sm text-text-secondary">
+            <p className="text-sm text-muted">
               Batch ini belum didistribusikan.
             </p>
           ) : (
@@ -198,10 +196,10 @@ export function TraceabilityChain({ trace }: { trace: TraceabilityChainData }) {
               <div key={leg.id} className="rounded-lg border border-border p-4">
                 <div className="flex flex-wrap items-start justify-between gap-2">
                   <div>
-                    <p className="font-mono text-xs text-text-secondary">
+                    <p className="font-mono text-xs text-muted">
                       {leg.distributionCode}
                     </p>
-                    <p className="font-medium text-text-primary">
+                    <p className="font-medium text-foreground">
                       {leg.school
                         ? `${leg.school.code} — ${leg.school.name}`
                         : "Sekolah tidak diketahui"}
@@ -219,7 +217,7 @@ export function TraceabilityChain({ trace }: { trace: TraceabilityChainData }) {
                     />
                   </div>
                 </div>
-                <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-text-secondary sm:grid-cols-4">
+                <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-muted sm:grid-cols-4">
                   <span>
                     Jumlah: {leg.quantity} {leg.unit}
                   </span>
@@ -276,7 +274,7 @@ export function TraceabilityChain({ trace }: { trace: TraceabilityChainData }) {
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
           {trace.relatedIncidents.length === 0 ? (
-            <p className="text-sm text-text-secondary">
+            <p className="text-sm text-muted">
               Tidak ada insiden yang terkait dengan batch ini.
             </p>
           ) : (
@@ -286,13 +284,13 @@ export function TraceabilityChain({ trace }: { trace: TraceabilityChainData }) {
                 className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-border p-3"
               >
                 <div>
-                  <p className="font-mono text-xs text-text-secondary">
+                  <p className="font-mono text-xs text-muted">
                     {incident.incidentCode}
                   </p>
-                  <p className="font-medium text-text-primary">
+                  <p className="font-medium text-foreground">
                     {incident.title}
                   </p>
-                  <p className="text-xs text-text-secondary">
+                  <p className="text-xs text-muted">
                     {incident.school
                       ? `${incident.school.code} — ${incident.school.name}`
                       : "—"}
@@ -300,7 +298,7 @@ export function TraceabilityChain({ trace }: { trace: TraceabilityChainData }) {
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
                   {incident.severity === "unassessed" ? (
-                    <span className="inline-flex items-center rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold text-text-secondary">
+                    <span className="inline-flex items-center rounded-md bg-muted/10 px-2.5 py-1 text-xs font-semibold text-muted">
                       Belum Dinilai
                     </span>
                   ) : (

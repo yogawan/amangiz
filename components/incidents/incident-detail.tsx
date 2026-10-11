@@ -94,16 +94,16 @@ export function IncidentDetail({
     <div className="flex flex-col gap-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <p className="font-mono text-sm text-text-secondary">
+          <p className="font-mono text-sm text-muted">
             {incident.incidentCode}
           </p>
-          <h1 className="text-xl font-semibold text-text-primary">
+          <h1 className="text-xl font-semibold text-foreground">
             {incident.title}
           </h1>
           <div className="mt-2 flex flex-wrap items-center gap-2">
             <StatusBadge status={incident.status} />
             {incident.severity === "unassessed" ? (
-              <span className="inline-flex items-center rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold text-text-secondary">
+              <span className="inline-flex items-center rounded-md bg-muted/10 px-2.5 py-1 text-xs font-semibold text-muted">
                 Severity: Belum Dinilai
               </span>
             ) : (
@@ -203,39 +203,35 @@ export function IncidentDetail({
           />
         </CardContent>
         <CardContent className="border-t border-border pt-4">
-          <p className="text-xs font-semibold text-text-secondary">
+          <p className="text-xs font-semibold text-muted">
             Kronologi / Deskripsi
           </p>
-          <p className="mt-1 whitespace-pre-wrap text-sm text-text-primary">
+          <p className="mt-1 whitespace-pre-wrap text-sm text-foreground">
             {incident.description}
           </p>
         </CardContent>
         {incident.symptomsReported && incident.symptomsReported.length > 0 && (
           <CardContent className="border-t border-border pt-4">
-            <p className="text-xs font-semibold text-text-secondary">
+            <p className="text-xs font-semibold text-muted">
               Gejala yang Dilaporkan
             </p>
-            <p className="mt-1 text-sm text-text-primary">
+            <p className="mt-1 text-sm text-foreground">
               {incident.symptomsReported.join(", ")}
             </p>
-            <p className="mt-1 text-xs text-text-muted">
+            <p className="mt-1 text-xs text-muted">
               Catatan observasi, bukan diagnosis.
             </p>
           </CardContent>
         )}
         <CardContent className="border-t border-border pt-4">
           <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold text-text-secondary">
-              Bukti Pendukung
-            </p>
+            <p className="text-xs font-semibold text-muted">Bukti Pendukung</p>
             {permissions.canUploadEvidence && (
               <IncidentEvidenceUpload incidentId={incident._id} />
             )}
           </div>
           {incident.evidence.length === 0 ? (
-            <p className="mt-2 text-sm text-text-secondary">
-              Belum ada bukti diunggah.
-            </p>
+            <p className="mt-2 text-sm text-muted">Belum ada bukti diunggah.</p>
           ) : (
             <div className="mt-2 grid grid-cols-2 gap-3 sm:grid-cols-4">
               {incident.evidence.map((item) => (
@@ -255,7 +251,7 @@ export function IncidentDetail({
                       className="object-cover"
                     />
                   ) : (
-                    <span className="flex h-full items-center justify-center bg-background text-xs text-text-secondary">
+                    <span className="flex h-full items-center justify-center bg-background text-xs text-muted">
                       Dokumen
                     </span>
                   )}
@@ -279,7 +275,7 @@ export function IncidentDetail({
           </div>
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
-          <p className="rounded-lg bg-amber-50 px-3.5 py-2.5 text-xs leading-5 text-amber-900">
+          <p className="rounded-lg bg-warning/10 px-3.5 py-2.5 text-xs leading-5 text-foreground">
             {DISCLAIMER}
           </p>
           {!riskAssessment ? (
@@ -291,20 +287,20 @@ export function IncidentDetail({
             <>
               <div className="flex flex-wrap items-center gap-3">
                 <RiskBadge level={riskAssessment.level as RiskLevel} />
-                <span className="text-sm text-text-secondary">
+                <span className="text-sm text-muted">
                   Skor:{" "}
-                  <span className="font-mono font-semibold text-text-primary">
+                  <span className="font-mono font-semibold text-foreground">
                     {riskAssessment.score}
                   </span>
                 </span>
-                <span className="text-xs text-text-muted">
+                <span className="text-xs text-muted">
                   Engine {riskAssessment.engineVersion} ·{" "}
                   {new Date(riskAssessment.assessedAt).toLocaleString("id-ID")}
                 </span>
               </div>
               {riskAssessment.rulesTriggered.length > 0 && (
                 <div>
-                  <p className="text-xs font-semibold text-text-secondary">
+                  <p className="text-xs font-semibold text-muted">
                     Aturan yang Terpenuhi
                   </p>
                   <ul className="mt-2 space-y-2">
@@ -313,15 +309,13 @@ export function IncidentDetail({
                         key={rule.ruleCode}
                         className="rounded-lg border border-border p-3 text-sm"
                       >
-                        <p className="font-medium text-text-primary">
+                        <p className="font-medium text-foreground">
                           {rule.ruleName}{" "}
-                          <span className="font-mono text-xs text-text-muted">
+                          <span className="font-mono text-xs text-muted">
                             +{rule.weight}
                           </span>
                         </p>
-                        <p className="mt-1 text-xs text-text-secondary">
-                          {rule.reason}
-                        </p>
+                        <p className="mt-1 text-xs text-muted">{rule.reason}</p>
                       </li>
                     ))}
                   </ul>
@@ -329,20 +323,20 @@ export function IncidentDetail({
               )}
               {riskAssessment.missingData.length > 0 && (
                 <div>
-                  <p className="text-xs font-semibold text-text-secondary">
+                  <p className="text-xs font-semibold text-muted">
                     Data yang Masih Diperlukan
                   </p>
-                  <p className="mt-1 text-sm text-text-primary">
+                  <p className="mt-1 text-sm text-foreground">
                     {riskAssessment.missingData.join(", ")}
                   </p>
                 </div>
               )}
               {riskAssessment.recommendations.length > 0 && (
                 <div>
-                  <p className="text-xs font-semibold text-text-secondary">
+                  <p className="text-xs font-semibold text-muted">
                     Rekomendasi Langkah
                   </p>
-                  <ul className="mt-1 list-inside list-disc text-sm text-text-primary">
+                  <ul className="mt-1 list-inside list-disc text-sm text-foreground">
                     {riskAssessment.recommendations.map((recommendation) => (
                       <li key={recommendation}>{recommendation}</li>
                     ))}
@@ -432,8 +426,8 @@ export function IncidentDetail({
 function Field({ label, value }: { label: string; value: ReactNode }) {
   return (
     <div>
-      <p className="text-xs font-semibold text-text-secondary">{label}</p>
-      <div className="mt-0.5 text-text-primary">{value}</div>
+      <p className="text-xs font-semibold text-muted">{label}</p>
+      <div className="mt-0.5 text-foreground">{value}</div>
     </div>
   );
 }

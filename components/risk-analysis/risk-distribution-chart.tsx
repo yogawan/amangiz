@@ -55,14 +55,14 @@ export function RiskDistributionChart({
             dataKey="level"
             tickLine={false}
             axisLine={false}
-            tick={{ fill: "var(--color-text-secondary)", fontSize: 12 }}
+            tick={{ fill: "var(--color-muted)", fontSize: 12 }}
           />
           <YAxis
             allowDecimals={false}
             tickLine={false}
             axisLine={false}
             width={32}
-            tick={{ fill: "var(--color-text-muted)", fontSize: 12 }}
+            tick={{ fill: "var(--color-muted)", fontSize: 12 }}
           />
           <Tooltip
             cursor={{ fill: "var(--color-background)" }}
@@ -81,7 +81,7 @@ export function RiskDistributionChart({
             <LabelList
               dataKey="count"
               position="top"
-              fill="var(--color-text-primary)"
+              fill="var(--color-foreground)"
               fontSize={12}
               fontWeight={600}
             />

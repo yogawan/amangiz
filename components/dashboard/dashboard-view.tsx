@@ -135,14 +135,14 @@ export function DashboardView({
                       className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-border p-3 transition-colors hover:border-primary/40"
                     >
                       <div>
-                        <p className="font-mono text-xs text-text-secondary">
+                        <p className="font-mono text-xs text-muted">
                           {incident.incidentCode}
                         </p>
-                        <p className="font-medium text-text-primary">
+                        <p className="font-medium text-foreground">
                           {incident.title}
                         </p>
                         {incident.school && (
-                          <p className="text-xs text-text-muted">
+                          <p className="text-xs text-muted">
                             {incident.school.name}
                           </p>
                         )}
@@ -176,16 +176,16 @@ export function DashboardView({
                       className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-border p-3 transition-colors hover:border-primary/40"
                     >
                       <div>
-                        <p className="font-mono text-xs text-text-secondary">
+                        <p className="font-mono text-xs text-muted">
                           {distribution.distributionCode}
                         </p>
                         {distribution.school && (
-                          <p className="font-medium text-text-primary">
+                          <p className="font-medium text-foreground">
                             {distribution.school.name}
                           </p>
                         )}
                         {distribution.scheduledAt && (
-                          <p className="text-xs text-text-muted">
+                          <p className="text-xs text-muted">
                             Jadwal{" "}
                             {new Date(
                               distribution.scheduledAt,
@@ -224,18 +224,16 @@ export function DashboardView({
                     key={entry._id}
                     className="flex flex-wrap items-center justify-between gap-2 border-b border-border py-2 text-sm last:border-0"
                   >
-                    <span className="text-text-primary">
+                    <span className="text-foreground">
                       <span className="font-medium">
                         {entry.actor?.name ?? "Sistem"}
                       </span>{" "}
-                      <span className="text-text-secondary">
-                        {entry.action}
-                      </span>{" "}
-                      <span className="font-mono text-xs text-text-muted">
+                      <span className="text-muted">{entry.action}</span>{" "}
+                      <span className="font-mono text-xs text-muted">
                         {entry.resourceType}
                       </span>
                     </span>
-                    <span className="text-xs text-text-muted">
+                    <span className="text-xs text-muted">
                       {new Date(entry.createdAt).toLocaleString("id-ID", {
                         dateStyle: "medium",
                         timeStyle: "short",

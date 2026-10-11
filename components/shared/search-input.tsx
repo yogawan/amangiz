@@ -12,7 +12,7 @@ export function SearchInput({
 }: React.ComponentProps<"input"> & { containerClassName?: string }) {
   return (
     <div className={cn("relative", containerClassName)}>
-      <Search className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-text-muted" />
+      <Search className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted" />
       <Input type="search" className={cn("pl-9", className)} {...props} />
     </div>
   );

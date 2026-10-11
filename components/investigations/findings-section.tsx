@@ -111,7 +111,7 @@ export function FindingsSection({
               />
             </div>
             {error && (
-              <p role="alert" className="text-sm text-red-700">
+              <p role="alert" className="text-sm text-danger">
                 {error}
               </p>
             )}
@@ -123,21 +123,17 @@ export function FindingsSection({
           </form>
         )}
         {findings.length === 0 ? (
-          <p className="text-sm text-text-secondary">
-            Belum ada temuan tercatat.
-          </p>
+          <p className="text-sm text-muted">Belum ada temuan tercatat.</p>
         ) : (
           findings.map((finding) => (
             <div
               key={finding.title}
               className="rounded-lg border border-border p-3"
             >
-              <p className="text-sm font-medium text-text-primary">
+              <p className="text-sm font-medium text-foreground">
                 {finding.title}
               </p>
-              <p className="mt-1 text-sm text-text-secondary">
-                {finding.description}
-              </p>
+              <p className="mt-1 text-sm text-muted">{finding.description}</p>
               {finding.evidenceUrls.length > 0 && (
                 <div className="mt-2 flex flex-wrap gap-2">
                   {finding.evidenceUrls.map((url) => (

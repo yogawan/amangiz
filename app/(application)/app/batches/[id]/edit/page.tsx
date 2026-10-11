@@ -79,7 +79,7 @@ export default function EditBatchPage({
   return (
     <div className="flex flex-col gap-5">
       <div>
-        <h1 className="text-xl font-semibold text-text-primary">Edit Batch</h1>
+        <h1 className="text-xl font-semibold text-foreground">Edit Batch</h1>
       </div>
       <Suspense fallback={<Skeleton className="h-96 w-full" />}>
         <EditBatchGate params={params} />

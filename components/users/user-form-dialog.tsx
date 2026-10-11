@@ -191,9 +191,7 @@ export function UserFormDialog({
                 minLength={12}
                 required
               />
-              <p className="mt-1 text-xs text-text-muted">
-                Minimal 12 karakter.
-              </p>
+              <p className="mt-1 text-xs text-muted">Minimal 12 karakter.</p>
             </div>
           )}
           <div>
@@ -236,7 +234,7 @@ export function UserFormDialog({
           {error && (
             <p
               role="alert"
-              className="rounded-lg bg-red-50 px-3.5 py-2.5 text-sm text-red-700"
+              className="rounded-lg bg-danger/10 px-3.5 py-2.5 text-sm text-danger"
             >
               {error}
             </p>

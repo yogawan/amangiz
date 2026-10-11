@@ -170,7 +170,7 @@ export function CorrectiveActionsSection({
                 </Select>
               </div>
             ) : (
-              <p className="text-xs text-text-muted">
+              <p className="text-xs text-muted">
                 Pemilik: {selfName} (ditugaskan ke diri sendiri)
               </p>
             )}
@@ -185,7 +185,7 @@ export function CorrectiveActionsSection({
               />
             </div>
             {error && (
-              <p role="alert" className="text-sm text-red-700">
+              <p role="alert" className="text-sm text-danger">
                 {error}
               </p>
             )}
@@ -197,9 +197,7 @@ export function CorrectiveActionsSection({
           </form>
         )}
         {actions.length === 0 ? (
-          <p className="text-sm text-text-secondary">
-            Belum ada tindakan korektif.
-          </p>
+          <p className="text-sm text-muted">Belum ada tindakan korektif.</p>
         ) : (
           actions.map((item) => (
             <div
@@ -207,10 +205,10 @@ export function CorrectiveActionsSection({
               className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border p-3"
             >
               <div>
-                <p className="text-sm font-medium text-text-primary">
+                <p className="text-sm font-medium text-foreground">
                   {item.action}
                 </p>
-                <p className="text-xs text-text-secondary">
+                <p className="text-xs text-muted">
                   {item.owner?.name ?? "—"}
                   {item.dueAt
                     ? ` · Tenggat ${new Date(item.dueAt).toLocaleDateString("id-ID")}`

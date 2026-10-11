@@ -61,7 +61,7 @@ export function InvestigationDetail({
               ← {investigation.incident.incidentCode}
             </Link>
           )}
-          <h1 className="mt-1 text-xl font-semibold text-text-primary">
+          <h1 className="mt-1 text-xl font-semibold text-foreground">
             {investigation.incident?.title ?? "Investigasi"}
           </h1>
           <div className="mt-2 flex flex-wrap items-center gap-2">
@@ -90,10 +90,10 @@ export function InvestigationDetail({
       {investigation.rootCauseSummary && (
         <Card>
           <CardContent className="pt-6">
-            <p className="text-xs font-semibold text-text-secondary">
+            <p className="text-xs font-semibold text-muted">
               Ringkasan Akar Masalah
             </p>
-            <p className="mt-1 text-sm text-text-primary">
+            <p className="mt-1 text-sm text-foreground">
               {investigation.rootCauseSummary}
             </p>
           </CardContent>
@@ -102,10 +102,8 @@ export function InvestigationDetail({
       {investigation.conclusion && (
         <Card>
           <CardContent className="pt-6">
-            <p className="text-xs font-semibold text-text-secondary">
-              Kesimpulan
-            </p>
-            <p className="mt-1 text-sm text-text-primary">
+            <p className="text-xs font-semibold text-muted">Kesimpulan</p>
+            <p className="mt-1 text-sm text-foreground">
               {investigation.conclusion}
             </p>
           </CardContent>

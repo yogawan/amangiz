@@ -37,9 +37,7 @@ export function AuditLogTable({ data }: { data: AuditLogRow[] }) {
       key: "action",
       header: "Aksi",
       render: (row) => (
-        <span className="font-mono text-xs text-text-secondary">
-          {row.action}
-        </span>
+        <span className="font-mono text-xs text-muted">{row.action}</span>
       ),
       sortValue: (row) => row.action,
     },
@@ -47,7 +45,7 @@ export function AuditLogTable({ data }: { data: AuditLogRow[] }) {
       key: "resource",
       header: "Resource",
       render: (row) => (
-        <span className="font-mono text-xs text-text-secondary">
+        <span className="font-mono text-xs text-muted">
           {row.resourceType} · {row.resourceId}
         </span>
       ),

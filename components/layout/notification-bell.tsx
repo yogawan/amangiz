@@ -149,12 +149,12 @@ export function NotificationBell() {
         <DropdownMenuSeparator />
         <div className="max-h-80 overflow-y-auto">
           {loading && (
-            <p className="px-2 py-6 text-center text-sm text-text-secondary">
+            <p className="px-2 py-6 text-center text-sm text-muted">
               Memuat...
             </p>
           )}
           {!loading && notifications?.length === 0 && (
-            <p className="px-2 py-6 text-center text-sm text-text-secondary">
+            <p className="px-2 py-6 text-center text-sm text-muted">
               Belum ada notifikasi.
             </p>
           )}
@@ -173,15 +173,13 @@ export function NotificationBell() {
                   )}
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <p className="font-medium text-text-primary">
-                      {item.title}
-                    </p>
+                    <p className="font-medium text-foreground">{item.title}</p>
                     {isUnread && (
                       <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                     )}
                   </div>
-                  <p className="text-xs text-text-secondary">{item.message}</p>
-                  <p className="text-[11px] text-text-muted">
+                  <p className="text-xs text-muted">{item.message}</p>
+                  <p className="text-[11px] text-muted">
                     {new Date(item.createdAt).toLocaleString("id-ID", {
                       dateStyle: "medium",
                       timeStyle: "short",

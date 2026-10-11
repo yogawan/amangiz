@@ -12,7 +12,7 @@ function Toaster(props: ToasterProps) {
       style={
         {
           "--normal-bg": "var(--color-surface)",
-          "--normal-text": "var(--color-text-primary)",
+          "--normal-text": "var(--color-foreground)",
           "--normal-border": "var(--color-border)",
           "--success-bg": "var(--color-surface)",
           "--success-text": "var(--color-success)",

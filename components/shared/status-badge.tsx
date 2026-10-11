@@ -37,7 +37,7 @@ const STATUS_TONE: Record<string, StatusTone> = {
 };
 
 const TONE_CLASSES: Record<StatusTone, string> = {
-  neutral: "bg-slate-100 text-text-secondary",
+  neutral: "bg-muted/10 text-muted",
   info: "bg-info/10 text-info",
   success: "bg-success/10 text-success",
   warning: "bg-warning/10 text-warning",

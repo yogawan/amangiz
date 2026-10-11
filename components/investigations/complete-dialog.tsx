@@ -57,7 +57,7 @@ export function CompleteDialog({
           <DialogTitle>Selesaikan Investigasi</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <p className="text-xs text-text-muted">
+          <p className="text-xs text-muted">
             Insiden tidak otomatis ditutup — resolusi dan penutupan insiden
             tetap langkah terpisah.
           </p>
@@ -74,7 +74,7 @@ export function CompleteDialog({
           {error && (
             <p
               role="alert"
-              className="rounded-lg bg-red-50 px-3.5 py-2.5 text-sm text-red-700"
+              className="rounded-lg bg-danger/10 px-3.5 py-2.5 text-sm text-danger"
             >
               {error}
             </p>

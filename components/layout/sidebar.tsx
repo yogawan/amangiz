@@ -22,7 +22,7 @@ export function AppSidebar({ role }: { role: UserRole | null }) {
           height={32}
           className="h-8 w-8 rounded-lg"
         />
-        <span className="text-base font-extrabold tracking-[-.04em] text-green-950">
+        <span className="text-base font-extrabold tracking-[-.04em] text-primary-hover">
           AMANGIZ
         </span>
       </Link>

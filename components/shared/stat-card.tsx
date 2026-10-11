@@ -41,7 +41,7 @@ export function StatCard({
       )}
     >
       <div className="flex items-center justify-between">
-        <p className="text-xs font-semibold text-text-secondary">{label}</p>
+        <p className="text-xs font-semibold text-muted">{label}</p>
         {Icon && (
           <span
             className={cn(
@@ -53,10 +53,10 @@ export function StatCard({
           </span>
         )}
       </div>
-      <p className="text-2xl font-bold tracking-[-.02em] text-text-primary">
+      <p className="text-2xl font-bold tracking-[-.02em] text-foreground">
         {value}
       </p>
-      {hint && <p className="text-xs text-text-muted">{hint}</p>}
+      {hint && <p className="text-xs text-muted">{hint}</p>}
     </div>
   );
 

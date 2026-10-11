@@ -74,7 +74,7 @@ function NavLinkItem({
           "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
           active
             ? "bg-primary-light text-primary"
-            : "text-text-secondary hover:bg-background hover:text-text-primary",
+            : "text-muted hover:bg-background hover:text-foreground",
         )}
       >
         <Icon className="h-[18px] w-[18px] shrink-0" />

@@ -63,10 +63,8 @@ export function BatchDetail({
     <div className="flex flex-col gap-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <p className="font-mono text-sm text-text-secondary">
-            {batch.batchCode}
-          </p>
-          <h1 className="text-xl font-semibold text-text-primary">
+          <p className="font-mono text-sm text-muted">{batch.batchCode}</p>
+          <h1 className="text-xl font-semibold text-foreground">
             {batch.menuName}
           </h1>
           <div className="mt-2">
@@ -151,10 +149,8 @@ export function BatchDetail({
         </CardContent>
         {batch.productionNotes && (
           <CardContent className="border-t border-border pt-4">
-            <p className="text-xs font-semibold text-text-secondary">
-              Catatan Produksi
-            </p>
-            <p className="mt-1 text-sm text-text-primary">
+            <p className="text-xs font-semibold text-muted">Catatan Produksi</p>
+            <p className="mt-1 text-sm text-foreground">
               {batch.productionNotes}
             </p>
           </CardContent>
@@ -167,9 +163,7 @@ export function BatchDetail({
         </CardHeader>
         <CardContent>
           {batch.ingredients.length === 0 ? (
-            <p className="text-sm text-text-secondary">
-              Belum ada bahan baku tercatat.
-            </p>
+            <p className="text-sm text-muted">Belum ada bahan baku tercatat.</p>
           ) : (
             <Table>
               <TableHeader>
@@ -212,7 +206,7 @@ export function BatchDetail({
                 key={reading.recordedAt}
                 className="flex justify-between text-sm"
               >
-                <span className="text-text-secondary">
+                <span className="text-muted">
                   {new Date(reading.recordedAt).toLocaleString("id-ID")}
                 </span>
                 <span className="font-mono font-semibold">
@@ -237,8 +231,8 @@ export function BatchDetail({
 function Field({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="text-xs font-semibold text-text-secondary">{label}</p>
-      <p className="mt-0.5 text-text-primary">{value}</p>
+      <p className="text-xs font-semibold text-muted">{label}</p>
+      <p className="mt-0.5 text-foreground">{value}</p>
     </div>
   );
 }

@@ -63,10 +63,10 @@ export function DistributionDetail({
     <div className="flex flex-col gap-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <p className="font-mono text-sm text-text-secondary">
+          <p className="font-mono text-sm text-muted">
             {distribution.distributionCode}
           </p>
-          <h1 className="text-xl font-semibold text-text-primary">
+          <h1 className="text-xl font-semibold text-foreground">
             {distribution.batch?.menuName ?? "Distribusi"}
           </h1>
           <div className="mt-2">
@@ -157,10 +157,8 @@ export function DistributionDetail({
         </CardContent>
         {distribution.notes && (
           <CardContent className="border-t border-border pt-4">
-            <p className="text-xs font-semibold text-text-secondary">Catatan</p>
-            <p className="mt-1 text-sm text-text-primary">
-              {distribution.notes}
-            </p>
+            <p className="text-xs font-semibold text-muted">Catatan</p>
+            <p className="mt-1 text-sm text-foreground">{distribution.notes}</p>
           </CardContent>
         )}
       </Card>
@@ -171,7 +169,7 @@ export function DistributionDetail({
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
           {timeline.length === 0 ? (
-            <p className="text-sm text-text-secondary">Belum ada riwayat.</p>
+            <p className="text-sm text-muted">Belum ada riwayat.</p>
           ) : (
             timeline.map((entry) => (
               <div
@@ -180,10 +178,10 @@ export function DistributionDetail({
               >
                 <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary" />
                 <div>
-                  <p className="text-sm font-medium text-text-primary">
+                  <p className="text-sm font-medium text-foreground">
                     {entry.label}
                   </p>
-                  <p className="text-xs text-text-muted">
+                  <p className="text-xs text-muted">
                     {new Date(entry.at).toLocaleString("id-ID")}
                   </p>
                 </div>
@@ -204,9 +202,7 @@ export function DistributionDetail({
         </CardHeader>
         <CardContent>
           {distribution.deliveryEvidence.length === 0 ? (
-            <p className="text-sm text-text-secondary">
-              Belum ada bukti diunggah.
-            </p>
+            <p className="text-sm text-muted">Belum ada bukti diunggah.</p>
           ) : (
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
               {distribution.deliveryEvidence.map((evidence) => (
@@ -250,8 +246,8 @@ export function DistributionDetail({
 function Field({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="text-xs font-semibold text-text-secondary">{label}</p>
-      <p className="mt-0.5 text-text-primary">{value}</p>
+      <p className="text-xs font-semibold text-muted">{label}</p>
+      <p className="mt-0.5 text-foreground">{value}</p>
     </div>
   );
 }

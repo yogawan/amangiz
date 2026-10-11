@@ -49,21 +49,19 @@ export function UserMenu({ user }: { user: AuthUser }) {
           <AvatarFallback>{initials(user.name)}</AvatarFallback>
         </Avatar>
         <span className="hidden flex-col items-start sm:flex">
-          <span className="text-sm font-semibold text-text-primary">
+          <span className="text-sm font-semibold text-foreground">
             {user.name}
           </span>
-          <span className="text-xs text-text-secondary">
-            {ROLE_LABELS[user.role]}
-          </span>
+          <span className="text-xs text-muted">{ROLE_LABELS[user.role]}</span>
         </span>
-        <ChevronDown className="hidden h-4 w-4 text-text-muted sm:block" />
+        <ChevronDown className="hidden h-4 w-4 text-muted sm:block" />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel>
-          <span className="block font-semibold text-text-primary">
+          <span className="block font-semibold text-foreground">
             {user.name}
           </span>
-          <span className="block text-xs font-normal text-text-secondary">
+          <span className="block text-xs font-normal text-muted">
             {ROLE_LABELS[user.role]} ·{" "}
             {ORGANIZATION_TYPE_LABELS[user.organizationType]}
           </span>

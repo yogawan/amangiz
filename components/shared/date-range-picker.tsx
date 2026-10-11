@@ -26,7 +26,7 @@ export function DateRangePicker({
         aria-label="Dari tanggal"
         className="w-full"
       />
-      <span className="text-sm text-text-muted">—</span>
+      <span className="text-sm text-muted">—</span>
       <Input
         type="date"
         value={to ?? ""}

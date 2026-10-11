@@ -138,7 +138,7 @@ export function DataTable<T>({
                       <button
                         type="button"
                         onClick={() => toggleSort(column)}
-                        className="inline-flex items-center gap-1 hover:text-text-primary"
+                        className="inline-flex items-center gap-1 hover:text-foreground"
                       >
                         {column.header}
                         {sort?.key === column.key ? (
@@ -172,7 +172,7 @@ export function DataTable<T>({
           </Table>
 
           {totalPages > 1 && (
-            <div className="flex items-center justify-between text-sm text-text-secondary">
+            <div className="flex items-center justify-between text-sm text-muted">
               <p>
                 Halaman {currentPage} dari {totalPages} · {sorted.length} data
               </p>

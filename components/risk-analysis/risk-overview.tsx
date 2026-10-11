@@ -38,7 +38,7 @@ export interface RiskOverviewData {
 export function RiskOverview({ overview }: { overview: RiskOverviewData }) {
   return (
     <div className="flex flex-col gap-5">
-      <p className="rounded-lg bg-amber-50 px-3.5 py-2.5 text-sm leading-6 text-amber-900">
+      <p className="rounded-lg bg-warning/10 px-3.5 py-2.5 text-sm leading-6 text-foreground">
         {overview.disclaimer}
       </p>
 
@@ -57,8 +57,8 @@ export function RiskOverview({ overview }: { overview: RiskOverviewData }) {
         />
       </div>
       {overview.unassessedIncidents > 0 && (
-        <p className="text-sm text-text-secondary">
-          <span className="font-semibold text-text-primary">
+        <p className="text-sm text-muted">
+          <span className="font-semibold text-foreground">
             {overview.unassessedIncidents}
           </span>{" "}
           insiden belum dinilai risikonya.
@@ -80,9 +80,7 @@ export function RiskOverview({ overview }: { overview: RiskOverviewData }) {
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
           {overview.topCases.length === 0 ? (
-            <p className="text-sm text-text-secondary">
-              Belum ada kasus yang dinilai.
-            </p>
+            <p className="text-sm text-muted">Belum ada kasus yang dinilai.</p>
           ) : (
             overview.topCases.map((item) => (
               <div
@@ -94,21 +92,19 @@ export function RiskOverview({ overview }: { overview: RiskOverviewData }) {
                   className="flex flex-wrap items-center justify-between gap-2 p-3"
                 >
                   <div>
-                    <p className="font-mono text-xs text-text-secondary">
+                    <p className="font-mono text-xs text-muted">
                       {item.incidentCode}
                     </p>
-                    <p className="font-medium text-text-primary">
-                      {item.title}
-                    </p>
+                    <p className="font-medium text-foreground">{item.title}</p>
                     {item.latestRisk.missingData.length > 0 && (
-                      <p className="mt-1 text-xs text-text-muted">
+                      <p className="mt-1 text-xs text-muted">
                         Data kurang: {item.latestRisk.missingData.join(", ")}
                       </p>
                     )}
                   </div>
                   <div className="flex items-center gap-2">
                     <RiskBadge level={item.latestRisk.level as RiskLevel} />
-                    <span className="font-mono text-xs text-text-secondary">
+                    <span className="font-mono text-xs text-muted">
                       Skor {item.latestRisk.score}
                     </span>
                     <StatusBadge status={item.status} />
@@ -116,10 +112,10 @@ export function RiskOverview({ overview }: { overview: RiskOverviewData }) {
                 </Link>
                 {item.latestRisk.recommendations.length > 0 && (
                   <div className="border-t border-border px-3 py-2">
-                    <p className="text-xs font-semibold text-text-secondary">
+                    <p className="text-xs font-semibold text-muted">
                       Tindakan yang disarankan
                     </p>
-                    <ul className="mt-1 list-inside list-disc space-y-0.5 text-xs text-text-secondary">
+                    <ul className="mt-1 list-inside list-disc space-y-0.5 text-xs text-muted">
                       {item.latestRisk.recommendations.map((recommendation) => (
                         <li key={recommendation}>{recommendation}</li>
                       ))}
@@ -138,7 +134,7 @@ export function RiskOverview({ overview }: { overview: RiskOverviewData }) {
         </CardHeader>
         <CardContent>
           {overview.mostTriggeredRules.length === 0 ? (
-            <p className="text-sm text-text-secondary">
+            <p className="text-sm text-muted">
               Belum ada aturan yang terpenuhi.
             </p>
           ) : (
@@ -148,8 +144,8 @@ export function RiskOverview({ overview }: { overview: RiskOverviewData }) {
                   key={rule.ruleCode}
                   className="flex items-center justify-between text-sm"
                 >
-                  <span className="text-text-primary">{rule.ruleName}</span>
-                  <span className="font-mono text-xs text-text-secondary">
+                  <span className="text-foreground">{rule.ruleName}</span>
+                  <span className="font-mono text-xs text-muted">
                     {rule.count}x
                   </span>
                 </li>
@@ -165,7 +161,7 @@ export function RiskOverview({ overview }: { overview: RiskOverviewData }) {
         </CardHeader>
         <CardContent>
           {overview.assessmentHistory.length === 0 ? (
-            <p className="text-sm text-text-secondary">
+            <p className="text-sm text-muted">
               Belum ada penilaian risiko yang dijalankan.
             </p>
           ) : (
@@ -177,11 +173,11 @@ export function RiskOverview({ overview }: { overview: RiskOverviewData }) {
                     className="flex flex-wrap items-center justify-between gap-2 border-b border-border py-2 text-sm last:border-0 hover:text-primary"
                   >
                     <div>
-                      <p className="font-mono text-xs text-text-secondary">
+                      <p className="font-mono text-xs text-muted">
                         {entry.incidentCode}
                       </p>
-                      <p className="text-text-primary">{entry.incidentTitle}</p>
-                      <p className="text-xs text-text-muted">
+                      <p className="text-foreground">{entry.incidentTitle}</p>
+                      <p className="text-xs text-muted">
                         {new Date(entry.assessedAt).toLocaleString("id-ID", {
                           dateStyle: "medium",
                           timeStyle: "short",
@@ -191,7 +187,7 @@ export function RiskOverview({ overview }: { overview: RiskOverviewData }) {
                     </div>
                     <div className="flex items-center gap-2">
                       <RiskBadge level={entry.level as RiskLevel} />
-                      <span className="font-mono text-xs text-text-secondary">
+                      <span className="font-mono text-xs text-muted">
                         Skor {entry.score}
                       </span>
                     </div>
@@ -203,7 +199,7 @@ export function RiskOverview({ overview }: { overview: RiskOverviewData }) {
         </CardContent>
       </Card>
 
-      <p className="text-xs text-text-muted">
+      <p className="text-xs text-muted">
         Risk engine version: {overview.engineVersion}
       </p>
     </div>

@@ -94,7 +94,7 @@ export function LoginForm() {
             aria-label={
               showPassword ? "Sembunyikan password" : "Tampilkan password"
             }
-            className="absolute inset-y-0 right-0 flex items-center px-3 text-text-muted hover:text-text-secondary"
+            className="absolute inset-y-0 right-0 flex items-center px-3 text-muted hover:text-muted"
           >
             {showPassword ? (
               <EyeOff className="h-4 w-4" />
@@ -108,7 +108,7 @@ export function LoginForm() {
       {error ? (
         <p
           role="alert"
-          className="rounded-lg bg-red-50 px-3.5 py-2.5 text-sm text-red-700"
+          className="rounded-lg bg-danger/10 px-3.5 py-2.5 text-sm text-danger"
         >
           {error}
         </p>
