@@ -2,11 +2,11 @@
 
 <img src="public/Thumb-1.png" alt="AMANGIZ — Jaga Gizi. Jaga Generasi." width="100%" />
 
-
+<br />
 
 <img src="public/Thumb-2.png" alt="AMANGIZ — Jaga Gizi. Jaga Generasi." width="100%" />
 
-
+<br />
 
 <img src="public/Thumb-3.png" alt="AMANGIZ — Jaga Gizi. Jaga Generasi." width="100%" />
 
