@@ -20,8 +20,6 @@
 
 ## Mockup Overview
 
-<div align="center">
-
 <img src="public/Thumb-1.png" alt="AMANGIZ — Jaga Gizi. Jaga Generasi." width="100%" />
 
 <br />
