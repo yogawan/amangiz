@@ -5,7 +5,7 @@ import { IncidentReportForm } from "@/components/incidents/incident-report-form"
 import { Skeleton } from "@/components/ui/skeleton";
 import { getCurrentUser } from "@/lib/auth/current-user";
 
-export const metadata: Metadata = { title: "Lapor Insiden — AMANGIZ" };
+export const metadata: Metadata = { title: "Lapor Insiden - AMANGIZ" };
 
 // PRD §8.10: every role may report an incident — school operators are
 // auto-scoped to their own school server-side regardless of what's submitted,

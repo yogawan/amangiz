@@ -12,7 +12,7 @@ import { populatedRef } from "@/lib/mongo-ref";
 import { batchListQuerySchema } from "@/lib/validations/batch";
 import { listBatches } from "@/services/batch.service";
 
-export const metadata: Metadata = { title: "Batch Makanan — AMANGIZ" };
+export const metadata: Metadata = { title: "Batch Makanan - AMANGIZ" };
 
 function param(value: string | string[] | undefined): string | undefined {
   return typeof value === "string" ? value : undefined;

@@ -12,7 +12,7 @@ import { UsersPanel } from "@/components/users/users-panel";
 import { UsersTabsNav } from "@/components/users/users-tabs-nav";
 import { getCurrentUser } from "@/lib/auth/current-user";
 
-export const metadata: Metadata = { title: "Pengguna & Master Data — AMANGIZ" };
+export const metadata: Metadata = { title: "Pengguna & Master Data - AMANGIZ" };
 
 const TABS = ["users", "sppg", "suppliers", "schools"] as const;
 type Tab = (typeof TABS)[number];

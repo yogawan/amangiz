@@ -13,7 +13,7 @@ import {
   getDistributionTimeline,
 } from "@/services/distribution.service";
 
-export const metadata: Metadata = { title: "Detail Distribusi — AMANGIZ" };
+export const metadata: Metadata = { title: "Detail Distribusi - AMANGIZ" };
 
 const DISPATCHABLE = new Set(["planned", "delayed"]);
 const RECEIVABLE = new Set(["dispatched", "in_transit", "delayed"]);

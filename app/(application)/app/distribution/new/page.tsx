@@ -5,7 +5,7 @@ import { DistributionForm } from "@/components/distribution/distribution-form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getCurrentUser } from "@/lib/auth/current-user";
 
-export const metadata: Metadata = { title: "Tambah Distribusi — AMANGIZ" };
+export const metadata: Metadata = { title: "Tambah Distribusi - AMANGIZ" };
 
 async function NewDistributionGate() {
   const actor = await getCurrentUser();

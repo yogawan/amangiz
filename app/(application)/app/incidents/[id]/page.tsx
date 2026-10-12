@@ -10,7 +10,7 @@ import { idOf, populatedRef } from "@/lib/mongo-ref";
 import { toObjectId } from "@/lib/validations/common";
 import { getIncidentById } from "@/services/incident.service";
 
-export const metadata: Metadata = { title: "Detail Insiden — AMANGIZ" };
+export const metadata: Metadata = { title: "Detail Insiden - AMANGIZ" };
 
 const RESOLVABLE_STATUSES = new Set([
   "triaged",

@@ -12,7 +12,7 @@ import { getCurrentUser } from "@/lib/auth/current-user";
 import { populatedRef } from "@/lib/mongo-ref";
 import { getTraceabilityByBatchCode } from "@/services/traceability.service";
 
-export const metadata: Metadata = { title: "Traceability — AMANGIZ" };
+export const metadata: Metadata = { title: "Traceability - AMANGIZ" };
 
 interface TraceBatch {
   _id: Types.ObjectId;

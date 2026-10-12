@@ -12,7 +12,7 @@ import { populatedRef } from "@/lib/mongo-ref";
 import { auditLogListQuerySchema } from "@/lib/validations/audit-log";
 import { listAuditLogs } from "@/services/audit-log.service";
 
-export const metadata: Metadata = { title: "Audit Log — AMANGIZ" };
+export const metadata: Metadata = { title: "Audit Log - AMANGIZ" };
 
 function param(value: string | string[] | undefined): string | undefined {
   return typeof value === "string" ? value : undefined;

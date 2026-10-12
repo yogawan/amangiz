@@ -10,7 +10,7 @@ import { idOf, populatedRef } from "@/lib/mongo-ref";
 import { toObjectId } from "@/lib/validations/common";
 import { getInvestigationById } from "@/services/investigation.service";
 
-export const metadata: Metadata = { title: "Detail Investigasi — AMANGIZ" };
+export const metadata: Metadata = { title: "Detail Investigasi - AMANGIZ" };
 
 function parseId(id: string): Types.ObjectId | null {
   try {

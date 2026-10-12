@@ -5,7 +5,7 @@ import { BatchForm } from "@/components/batches/batch-form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getCurrentUser } from "@/lib/auth/current-user";
 
-export const metadata: Metadata = { title: "Tambah Batch — AMANGIZ" };
+export const metadata: Metadata = { title: "Tambah Batch - AMANGIZ" };
 
 async function NewBatchGate() {
   const actor = await getCurrentUser();

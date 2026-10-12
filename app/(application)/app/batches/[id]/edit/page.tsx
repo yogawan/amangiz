@@ -10,7 +10,7 @@ import { idOf } from "@/lib/mongo-ref";
 import { toObjectId } from "@/lib/validations/common";
 import { getBatchById } from "@/services/batch.service";
 
-export const metadata: Metadata = { title: "Edit Batch — AMANGIZ" };
+export const metadata: Metadata = { title: "Edit Batch - AMANGIZ" };
 
 function parseId(id: string): Types.ObjectId | null {
   try {

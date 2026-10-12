@@ -7,7 +7,7 @@ import { getCurrentUser } from "@/lib/auth/current-user";
 import { getDashboardRiskOverview } from "@/services/dashboard.service";
 import { listRecentRiskAssessments } from "@/services/risk-assessment.service";
 
-export const metadata: Metadata = { title: "Analisis Risiko — AMANGIZ" };
+export const metadata: Metadata = { title: "Analisis Risiko - AMANGIZ" };
 
 // PRD §3.2: Risk Assessment has no access row for School Operator.
 async function RiskAnalysisGate() {

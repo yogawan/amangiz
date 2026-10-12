@@ -31,7 +31,7 @@ import {
 } from "@/services/dashboard.service";
 
 export const metadata: Metadata = {
-  title: "Dashboard — AMANGIZ",
+  title: "Dashboard - AMANGIZ",
 };
 
 function quickActionsFor(role: UserRole): QuickAction[] {

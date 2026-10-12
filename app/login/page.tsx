@@ -28,7 +28,7 @@ const roles = [
 ] as const;
 
 export const metadata: Metadata = {
-  title: "Masuk — AMANGIZ",
+  title: "Masuk - AMANGIZ",
   description:
     "Masuk ke dashboard AMANGIZ untuk mengelola traceability dan insiden keamanan pangan.",
 };
