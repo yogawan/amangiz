@@ -253,9 +253,9 @@ export default function Home() {
                 <Image
                   src={icon}
                   alt=""
-                  width={80}
-                  height={80}
-                  className="h-20 w-20"
+                  width={96}
+                  height={96}
+                  className="h-24 w-24"
                 />
               </div>
               <h3 className="mt-9 text-lg font-semibold tracking-[-.025em]">
@@ -323,9 +323,9 @@ export default function Home() {
                 <Image
                   src={icon}
                   alt=""
-                  width={64}
-                  height={64}
-                  className="h-16 w-16 rounded-lg"
+                  width={96}
+                  height={96}
+                  className="h-24 w-24 rounded-lg"
                 />
                 <h3 className="mt-4 font-semibold">{title}</h3>
                 <p className="mt-2 text-sm leading-6 text-primary-light/65">
@@ -397,9 +397,9 @@ export default function Home() {
                     <Image
                       src={image}
                       alt=""
-                      width={64}
-                      height={64}
-                      className="h-16 w-16"
+                      width={96}
+                      height={96}
+                      className="h-24 w-24"
                     />
                   </div>
                   <p className="mt-7 text-xs font-bold tracking-[.11em] text-muted">
@@ -499,9 +499,9 @@ export default function Home() {
               <Image
                 src={image}
                 alt=""
-                width={56}
-                height={56}
-                className="h-14 w-14"
+                width={96}
+                height={96}
+                className="h-24 w-24"
               />
               <h3 className="mt-5 font-semibold">{role}</h3>
               <p className="mt-2 text-sm leading-6 text-muted">{copy}</p>
@@ -558,9 +558,9 @@ export default function Home() {
                 <Image
                   src={image}
                   alt=""
-                  width={40}
-                  height={40}
-                  className="h-10 w-10 shrink-0"
+                  width={96}
+                  height={96}
+                  className="h-24 w-24 shrink-0"
                 />
                 <div>
                   <h3 className="text-sm font-semibold">{title}</h3>

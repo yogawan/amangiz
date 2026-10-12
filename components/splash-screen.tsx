@@ -33,14 +33,11 @@ export function SplashScreen() {
       <Image
         src="/Amangiz-Logo.png"
         alt="AMANGIZ"
-        width={88}
-        height={88}
+        width={256}
+        height={256}
         priority
-        className="h-20 w-20 animate-pulse rounded-2xl"
+        className="h-64 w-64 animate-pulse rounded-2xl"
       />
-      <span className="text-lg font-extrabold tracking-[-.05em] text-white">
-        AMANGIZ
-      </span>
     </div>
   );
 }

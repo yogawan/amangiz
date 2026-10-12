@@ -1,4 +1,4 @@
-import { ArrowLeft, Package, School, Search, ShieldCheck } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,22 +6,22 @@ import { LoginForm } from "@/components/login-form";
 
 const roles = [
   {
-    icon: ShieldCheck,
+    image: "/Administrator.png",
     name: "Administrator",
     description: "Mengelola pengguna, data referensi, dan konfigurasi sistem.",
   },
   {
-    icon: Package,
+    image: "/Operator SPPG.png",
     name: "Operator SPPG",
     description: "Mencatat batch, produksi, dan distribusi.",
   },
   {
-    icon: School,
+    image: "/Operator Sekolah.png",
     name: "Operator Sekolah",
     description: "Melihat penerimaan dan melaporkan insiden.",
   },
   {
-    icon: Search,
+    image: "/Investigator Petugas Berwenang.png",
     name: "Investigator",
     description: "Menelusuri dan mendokumentasikan investigasi.",
   },
@@ -115,14 +115,18 @@ export default function LoginPage() {
               Peran Pengguna
             </p>
             <div className="mt-4 grid grid-cols-2 gap-3">
-              {roles.map(({ icon: Icon, name, description }) => (
+              {roles.map(({ image, name, description }) => (
                 <div
                   key={name}
                   className="rounded-xl border border-border bg-surface p-3"
                 >
-                  <span className="grid h-8 w-8 place-items-center rounded-lg bg-primary-light text-primary">
-                    <Icon className="h-4 w-4" />
-                  </span>
+                  <Image
+                    src={image}
+                    alt=""
+                    width={64}
+                    height={64}
+                    className="h-16 w-16 object-contain"
+                  />
                   <p className="mt-2 text-xs font-semibold text-foreground">
                     {name}
                   </p>
