@@ -102,9 +102,9 @@ export function DashboardView({
                 <Image
                   src={action.image}
                   alt=""
-                  width={18}
-                  height={18}
-                  className="h-[18px] w-[18px] object-contain"
+                  width={24}
+                  height={24}
+                  className="h-6 w-6 object-contain"
                 />
                 {action.label}
               </Link>

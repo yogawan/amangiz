@@ -29,9 +29,9 @@ export function EmptyState({
         <Image
           src={image}
           alt=""
-          width={56}
-          height={56}
-          className="h-14 w-14 object-contain"
+          width={80}
+          height={80}
+          className="h-20 w-20 object-contain"
         />
       ) : (
         <span className="grid h-12 w-12 place-items-center rounded-full bg-background text-muted">

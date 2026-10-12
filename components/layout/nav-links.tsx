@@ -80,9 +80,9 @@ function NavLinkItem({
         <Image
           src={item.image}
           alt=""
-          width={22}
-          height={22}
-          className="h-[22px] w-[22px] shrink-0 object-contain"
+          width={32}
+          height={32}
+          className="h-8 w-8 shrink-0 object-contain"
         />
         {item.label}
       </Link>
