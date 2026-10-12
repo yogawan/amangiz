@@ -1,11 +1,4 @@
-import {
-  AlertTriangle,
-  ClipboardList,
-  type LucideIcon,
-  Package,
-  ShieldAlert,
-  Truck,
-} from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { EmptyState } from "@/components/shared/empty-state";
 import { StatCard } from "@/components/shared/stat-card";
@@ -49,7 +42,7 @@ export interface DashboardActivityRow {
 export interface QuickAction {
   label: string;
   href: string;
-  icon: LucideIcon;
+  image: string;
 }
 
 export function DashboardView({
@@ -71,14 +64,14 @@ export function DashboardView({
         <StatCard
           label="Batch Aktif"
           value={summary.batches.active}
-          icon={Package}
+          image="/Batch.png"
           href="/app/batches"
           hint={`${summary.batches.total} total batch`}
         />
         <StatCard
           label="Distribusi Hari Ini"
           value={summary.distributions.today}
-          icon={Truck}
+          image="/Distribusi.png"
           href="/app/distribution"
           hint={`${summary.distributions.delayed} terlambat`}
           tone={summary.distributions.delayed > 0 ? "warning" : "default"}
@@ -86,7 +79,7 @@ export function DashboardView({
         <StatCard
           label="Laporan Insiden"
           value={summary.incidents.total}
-          icon={AlertTriangle}
+          image="/Laporan.png"
           href="/app/incidents"
           hint={`${summary.incidents.open} masih terbuka`}
           tone={summary.incidents.open > 0 ? "warning" : "default"}
@@ -94,7 +87,7 @@ export function DashboardView({
         <StatCard
           label="Kasus Prioritas Tinggi"
           value={summary.risk.highPriorityCases}
-          icon={ShieldAlert}
+          image="/Kasus.png"
           href="/app/risk-analysis"
           hint="Risk level high/critical"
           tone={summary.risk.highPriorityCases > 0 ? "danger" : "default"}
@@ -106,7 +99,13 @@ export function DashboardView({
           {quickActions.map((action) => (
             <Button key={action.href} asChild variant="outline" size="sm">
               <Link href={action.href}>
-                <action.icon className="h-4 w-4" />
+                <Image
+                  src={action.image}
+                  alt=""
+                  width={18}
+                  height={18}
+                  className="h-[18px] w-[18px] object-contain"
+                />
                 {action.label}
               </Link>
             </Button>
@@ -122,7 +121,7 @@ export function DashboardView({
           <CardContent>
             {recentIncidents.length === 0 ? (
               <EmptyState
-                icon={AlertTriangle}
+                image="/sidebar-insiden.png"
                 title="Belum ada insiden"
                 description="Laporan insiden terbaru akan muncul di sini."
               />
@@ -163,7 +162,7 @@ export function DashboardView({
           <CardContent>
             {overdueDistributions.length === 0 ? (
               <EmptyState
-                icon={Truck}
+                image="/Distribusi.png"
                 title="Tidak ada distribusi terlambat"
                 description="Distribusi yang melewati jadwal tanpa dikirim akan muncul di sini."
               />
@@ -213,7 +212,7 @@ export function DashboardView({
           <CardContent>
             {recentActivity.length === 0 ? (
               <EmptyState
-                icon={ClipboardList}
+                image="/Activity history.png"
                 title="Belum ada aktivitas"
                 description="Aktivitas penting yang tercatat di audit log akan muncul di sini."
               />

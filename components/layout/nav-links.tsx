@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -63,7 +64,6 @@ function NavLinkItem({
   active: boolean;
   onNavigate?: () => void;
 }) {
-  const Icon = item.icon;
   return (
     <li>
       <Link
@@ -77,7 +77,13 @@ function NavLinkItem({
             : "text-muted hover:bg-background hover:text-foreground",
         )}
       >
-        <Icon className="h-[18px] w-[18px] shrink-0" />
+        <Image
+          src={item.image}
+          alt=""
+          width={22}
+          height={22}
+          className="h-[22px] w-[22px] shrink-0 object-contain"
+        />
         {item.label}
       </Link>
     </li>

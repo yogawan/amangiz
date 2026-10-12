@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
@@ -16,6 +17,7 @@ interface StatCardProps {
   label: string;
   value: ReactNode;
   icon?: LucideIcon;
+  image?: string;
   href?: string;
   hint?: string;
   tone?: StatTone;
@@ -27,6 +29,7 @@ export function StatCard({
   label,
   value,
   icon: Icon,
+  image,
   href,
   hint,
   tone = "default",
@@ -42,15 +45,25 @@ export function StatCard({
     >
       <div className="flex items-center justify-between">
         <p className="text-xs font-semibold text-muted">{label}</p>
-        {Icon && (
-          <span
-            className={cn(
-              "grid h-9 w-9 shrink-0 place-items-center rounded-lg",
-              TONE_CLASSES[tone],
-            )}
-          >
-            <Icon className="h-[18px] w-[18px]" />
-          </span>
+        {image ? (
+          <Image
+            src={image}
+            alt=""
+            width={40}
+            height={40}
+            className="h-10 w-10 shrink-0 object-contain"
+          />
+        ) : (
+          Icon && (
+            <span
+              className={cn(
+                "grid h-9 w-9 shrink-0 place-items-center rounded-lg",
+                TONE_CLASSES[tone],
+              )}
+            >
+              <Icon className="h-[18px] w-[18px]" />
+            </span>
+          )
         )}
       </div>
       <p className="text-2xl font-bold tracking-[-.02em] text-foreground">

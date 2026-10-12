@@ -1,11 +1,3 @@
-import {
-  AlertTriangle,
-  FileSearch,
-  Package,
-  ShieldAlert,
-  Truck,
-  Users,
-} from "lucide-react";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
@@ -38,31 +30,43 @@ function quickActionsFor(role: UserRole): QuickAction[] {
   switch (role) {
     case "admin":
       return [
-        { label: "Tambah Batch", href: "/app/batches/new", icon: Package },
+        {
+          label: "Tambah Batch",
+          href: "/app/batches/new",
+          image: "/Batch.png",
+        },
         {
           label: "Buat Distribusi",
           href: "/app/distribution/new",
-          icon: Truck,
+          image: "/Distribusi.png",
         },
         {
           label: "Lapor Insiden",
           href: "/app/incidents/new",
-          icon: AlertTriangle,
+          image: "/Laporan.png",
         },
-        { label: "Kelola Pengguna", href: "/app/users", icon: Users },
+        {
+          label: "Kelola Pengguna",
+          href: "/app/users",
+          image: "/Pengguna.png",
+        },
       ];
     case "sppg_operator":
       return [
-        { label: "Tambah Batch", href: "/app/batches/new", icon: Package },
+        {
+          label: "Tambah Batch",
+          href: "/app/batches/new",
+          image: "/Batch.png",
+        },
         {
           label: "Buat Distribusi",
           href: "/app/distribution/new",
-          icon: Truck,
+          image: "/Distribusi.png",
         },
         {
           label: "Lapor Insiden",
           href: "/app/incidents/new",
-          icon: AlertTriangle,
+          image: "/Laporan.png",
         },
       ];
     case "investigator":
@@ -70,17 +74,17 @@ function quickActionsFor(role: UserRole): QuickAction[] {
         {
           label: "Lihat Investigasi",
           href: "/app/investigations",
-          icon: FileSearch,
+          image: "/sidebar-investigasi.png",
         },
         {
           label: "Analisis Risiko",
           href: "/app/risk-analysis",
-          icon: ShieldAlert,
+          image: "/sidebar-analisis-resiko.png",
         },
         {
           label: "Lapor Insiden",
           href: "/app/incidents/new",
-          icon: AlertTriangle,
+          image: "/Laporan.png",
         },
       ];
     case "school_operator":
@@ -88,7 +92,7 @@ function quickActionsFor(role: UserRole): QuickAction[] {
         {
           label: "Lapor Insiden",
           href: "/app/incidents/new",
-          icon: AlertTriangle,
+          image: "/Laporan.png",
         },
       ];
     default:

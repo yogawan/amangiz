@@ -1,21 +1,9 @@
-import {
-  AlertTriangle,
-  ClipboardList,
-  FileSearch,
-  LayoutDashboard,
-  type LucideIcon,
-  Network,
-  Package,
-  ShieldAlert,
-  Truck,
-  Users,
-} from "lucide-react";
 import type { OrganizationType, UserRole } from "@/models/User";
 
 export interface NavItem {
   href: string;
   label: string;
-  icon: LucideIcon;
+  image: string;
   roles: readonly UserRole[];
 }
 
@@ -24,51 +12,51 @@ export const NAV_ITEMS: readonly NavItem[] = [
   {
     href: "/app/dashboard",
     label: "Dashboard",
-    icon: LayoutDashboard,
+    image: "/sidebar-dashboard.png",
     roles: ["admin", "sppg_operator", "school_operator", "investigator"],
   },
   {
     href: "/app/batches",
     label: "Batch Makanan",
-    icon: Package,
+    image: "/sidebar-batch-makanan.png",
     roles: ["admin", "sppg_operator", "school_operator", "investigator"],
   },
   {
     href: "/app/traceability",
     label: "Traceability",
-    icon: Network,
+    image: "/sidebar-traceability.png",
     roles: ["admin", "sppg_operator", "school_operator", "investigator"],
   },
   {
     href: "/app/distribution",
     label: "Distribusi",
-    icon: Truck,
+    image: "/sidebar-distribusi.png",
     roles: ["admin", "sppg_operator", "school_operator", "investigator"],
   },
   {
     href: "/app/incidents",
     label: "Insiden",
-    icon: AlertTriangle,
+    image: "/sidebar-insiden.png",
     roles: ["admin", "sppg_operator", "school_operator", "investigator"],
   },
   {
     href: "/app/risk-analysis",
     label: "Analisis Risiko",
-    icon: ShieldAlert,
+    image: "/sidebar-analisis-resiko.png",
     // PRD §3.2: Risk Assessment has no access row for School Operator.
     roles: ["admin", "sppg_operator", "investigator"],
   },
   {
     href: "/app/investigations",
     label: "Investigasi",
-    icon: FileSearch,
+    image: "/sidebar-investigasi.png",
     // PRD §3.2: Investigation is Admin full / Investigator assigned-or-full only.
     roles: ["admin", "investigator"],
   },
   {
     href: "/app/users",
     label: "Pengguna & Master Data",
-    icon: Users,
+    image: "/sidebar-pengguna.png",
     // PRD §9.2 #10: "Akses hanya tersedia bagi Administrator."
     roles: ["admin"],
   },
@@ -79,7 +67,7 @@ export const SECONDARY_NAV_ITEMS: readonly NavItem[] = [
   {
     href: "/app/audit-log",
     label: "Audit Log",
-    icon: ClipboardList,
+    image: "/Activity history.png",
     roles: ["admin", "investigator"],
   },
 ] as const;
