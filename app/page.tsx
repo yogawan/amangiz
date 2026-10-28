@@ -1,4 +1,14 @@
-import { ArrowRight, Check, ChevronDown } from "lucide-react";
+import {
+  ArrowRight,
+  Check,
+  CheckCircle2,
+  ChevronDown,
+  Gauge,
+  Microscope,
+  Route,
+  ShieldAlert,
+  Siren,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/reveal";
@@ -65,6 +75,14 @@ const steps = [
     "Dokumentasikan penyelesaian.",
     "Hasil investigasi, keputusan, dan tindakan korektif dicatat agar proses dapat ditinjau kembali.",
   ],
+] as const;
+const pipeline = [
+  ["DETECT", Siren],
+  ["TRACE", Route],
+  ["ASSESS", Gauge],
+  ["CONTAIN", ShieldAlert],
+  ["INVESTIGATE", Microscope],
+  ["RESOLVE", CheckCircle2],
 ] as const;
 const features = [
   [
@@ -385,13 +403,24 @@ export default function Home() {
         <Reveal
           variant="up"
           delay={0.1}
-          className="mt-10 overflow-x-auto rounded-xl border border-primary-light bg-primary-light px-5 py-4 text-center text-xs font-bold tracking-[.13em] whitespace-nowrap text-primary"
+          stagger={0.08}
+          className="mt-10 flex flex-wrap items-start justify-center gap-y-4 rounded-xl border border-primary-light bg-primary-light px-5 py-6"
         >
-          DETECT <span className="mx-2 text-primary">→</span> TRACE{" "}
-          <span className="mx-2 text-primary">→</span> ASSESS{" "}
-          <span className="mx-2 text-primary">→</span> CONTAIN{" "}
-          <span className="mx-2 text-primary">→</span> INVESTIGATE{" "}
-          <span className="mx-2 text-primary">→</span> RESOLVE
+          {pipeline.map(([label, Icon], index) => (
+            <div className="flex items-start" key={label}>
+              <div className="flex w-20 flex-col items-center gap-2 text-center sm:w-24">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <span className="text-[10px] font-bold tracking-[.1em] text-primary">
+                  {label}
+                </span>
+              </div>
+              {index < pipeline.length - 1 ? (
+                <ArrowRight className="mt-2.5 h-4 w-4 shrink-0 text-primary/40" />
+              ) : null}
+            </div>
+          ))}
         </Reveal>
       </section>
 
