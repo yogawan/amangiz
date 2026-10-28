@@ -2,15 +2,18 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import {
+  CardSkeleton,
   FilterBarSkeleton,
   TableSkeleton,
 } from "@/components/shared/skeletons";
+import { StatCard } from "@/components/shared/stat-card";
 import { SchoolPanel } from "@/components/users/school-panel";
 import { SppgPanel } from "@/components/users/sppg-panel";
 import { SupplierPanel } from "@/components/users/supplier-panel";
 import { UsersPanel } from "@/components/users/users-panel";
 import { UsersTabsNav } from "@/components/users/users-tabs-nav";
 import { getCurrentUser } from "@/lib/auth/current-user";
+import { getMasterDataSummary } from "@/services/master-data.service";
 
 export const metadata: Metadata = { title: "Pengguna & Master Data - AMANGIZ" };
 
@@ -44,6 +47,42 @@ async function TabPanel({ tab }: { tab: Tab }) {
   }
 }
 
+// Same admin-only gate as TabPanel — kept here too since this runs in a
+// sibling Suspense boundary and can't rely on that redirect firing first.
+async function UsersStats() {
+  const actor = await getCurrentUser();
+  if (!actor || actor.role !== "admin") {
+    redirect("/app/dashboard");
+  }
+
+  const summary = await getMasterDataSummary(actor);
+
+  return (
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <StatCard
+        label="Total Pengguna"
+        value={summary.users}
+        image="/stats-card-placeholder-image.png"
+      />
+      <StatCard
+        label="Total SPPG"
+        value={summary.sppgs}
+        image="/stats-card-placeholder-image.png"
+      />
+      <StatCard
+        label="Total Pemasok"
+        value={summary.suppliers}
+        image="/stats-card-placeholder-image.png"
+      />
+      <StatCard
+        label="Total Sekolah"
+        value={summary.schools}
+        image="/stats-card-placeholder-image.png"
+      />
+    </div>
+  );
+}
+
 // See the note in app/(application)/app/batches/page.tsx for why `searchParams`
 // is awaited inside a Suspense boundary rather than in the page component.
 async function UsersSection({
@@ -75,6 +114,18 @@ export default function UsersPage({ searchParams }: PageProps<"/app/users">) {
           Kelola pengguna, SPPG, pemasok, dan sekolah.
         </p>
       </div>
+      <Suspense
+        fallback={
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+          </div>
+        }
+      >
+        <UsersStats />
+      </Suspense>
       <Suspense
         fallback={
           <>

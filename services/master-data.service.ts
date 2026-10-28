@@ -163,3 +163,17 @@ export async function listSchools(actor: AuthUser, query: SchoolListQuery) {
     scopedToOwnSchool: actor.role === "school_operator",
   };
 }
+
+/** Per-tab totals for the `/app/users` stat row. */
+export async function getMasterDataSummary(actor: AuthUser) {
+  assertCanManageUsers(actor);
+
+  const [users, sppgs, suppliers, schools] = await Promise.all([
+    User.countDocuments({}).exec(),
+    SPPG.countDocuments({}).exec(),
+    Supplier.countDocuments({}).exec(),
+    School.countDocuments({}).exec(),
+  ]);
+
+  return { users, sppgs, suppliers, schools };
+}
