@@ -75,6 +75,7 @@ export function LoginForm({ prefill }: { prefill?: DemoCredentials | null }) {
       }
 
       const next = new URLSearchParams(window.location.search).get("next");
+      setLoading(false);
       router.push(safeNextPath(next));
       router.refresh();
     } catch {

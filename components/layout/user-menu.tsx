@@ -1,7 +1,6 @@
 "use client";
 
 import { ChevronDown, LogOut } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -27,15 +26,17 @@ function initials(name: string): string {
 }
 
 export function UserMenu({ user }: { user: AuthUser }) {
-  const router = useRouter();
   const [loggingOut, setLoggingOut] = useState(false);
 
   async function handleLogout() {
     setLoggingOut(true);
     try {
       await apiPost("/api/v1/auth/logout");
-      router.push("/login");
-      router.refresh();
+      // Hard navigation (not router.push) so /login always mounts fresh —
+      // a soft client-side nav can restore the previous /login visit's
+      // component state (stale "Memproses..." button, demo modal already
+      // dismissed) instead of remounting it.
+      window.location.href = "/login";
     } catch {
       toast.error("Gagal keluar. Coba lagi.");
       setLoggingOut(false);
