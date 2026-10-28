@@ -4,12 +4,15 @@ import { Suspense } from "react";
 import { IncidentFilters } from "@/components/incidents/incident-filters";
 import { IncidentsTable } from "@/components/incidents/incidents-table";
 import {
+  CardSkeleton,
   FilterBarSkeleton,
   TableSkeleton,
 } from "@/components/shared/skeletons";
+import { StatCard } from "@/components/shared/stat-card";
 import { getCurrentUser } from "@/lib/auth/current-user";
 import { populatedRef } from "@/lib/mongo-ref";
 import { incidentListQuerySchema } from "@/lib/validations/incident";
+import { getDashboardSummary } from "@/services/dashboard.service";
 import { listIncidents } from "@/services/incident.service";
 
 export const metadata: Metadata = { title: "Insiden - AMANGIZ" };
@@ -71,6 +74,43 @@ async function IncidentsList({
   );
 }
 
+async function IncidentsStats() {
+  const actor = await getCurrentUser();
+  if (!actor) redirect("/login");
+
+  const { incidents } = await getDashboardSummary(actor);
+  const severityHigh = incidents.bySeverity.high ?? 0;
+  const severityCritical = incidents.bySeverity.critical ?? 0;
+
+  return (
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <StatCard
+        label="Total Insiden"
+        value={incidents.total}
+        image="/stats-card-placeholder-image.png"
+      />
+      <StatCard
+        label="Terbuka"
+        value={incidents.open}
+        image="/stats-card-placeholder-image.png"
+        tone={incidents.open > 0 ? "warning" : "default"}
+      />
+      <StatCard
+        label="Severity Tinggi"
+        value={severityHigh}
+        image="/stats-card-placeholder-image.png"
+        tone={severityHigh > 0 ? "warning" : "default"}
+      />
+      <StatCard
+        label="Severity Kritis"
+        value={severityCritical}
+        image="/stats-card-placeholder-image.png"
+        tone={severityCritical > 0 ? "danger" : "default"}
+      />
+    </div>
+  );
+}
+
 // See the note in app/(application)/app/batches/page.tsx for why `searchParams`
 // is awaited inside a Suspense boundary rather than in the page component.
 async function IncidentsSection({
@@ -115,6 +155,18 @@ export default function IncidentsPage({
           Kelola laporan dugaan insiden keamanan pangan.
         </p>
       </div>
+      <Suspense
+        fallback={
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+          </div>
+        }
+      >
+        <IncidentsStats />
+      </Suspense>
       <Suspense
         fallback={
           <>
