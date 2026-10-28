@@ -6,7 +6,7 @@ Food safety & nutrition incident-response platform for Indonesia's *Program Maka
 
 ## Thumbnail
 
-![AMANGIZ Thumbnail](./public/Thumb-1.png)
+<img src="./public/Thumb-1.png" alt="AMANGIZ Thumbnail" width="100%" />
 
 ## Tech Stack
 
@@ -47,12 +47,17 @@ Copy the example file and fill in real values:
 cp .env.example .env.local
 ```
 
-| Variable | Description |
-|---|---|
-| `MONGODB_URI` | MongoDB Atlas (or compatible) connection string |
-| `SESSION_SECRET` | HS256 signing key for the session JWT (≥ 32 characters) |
-| `CLOUDINARY_CLOUD_NAME` / `CLOUDINARY_API_KEY` / `CLOUDINARY_API_SECRET` | Cloudinary credentials for evidence/document storage |
-| `IS_SANDBOX` | When `true`, `/login` shows a demo-accounts modal for trying every role |
+<table width="100%">
+  <thead>
+    <tr><th>Variable</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>MONGODB_URI</code></td><td>MongoDB Atlas (or compatible) connection string</td></tr>
+    <tr><td><code>SESSION_SECRET</code></td><td>HS256 signing key for the session JWT (≥ 32 characters)</td></tr>
+    <tr><td><code>CLOUDINARY_CLOUD_NAME</code> / <code>CLOUDINARY_API_KEY</code> / <code>CLOUDINARY_API_SECRET</code></td><td>Cloudinary credentials for evidence/document storage</td></tr>
+    <tr><td><code>IS_SANDBOX</code></td><td>When <code>true</code>, <code>/login</code> shows a demo-accounts modal for trying every role</td></tr>
+  </tbody>
+</table>
 
 ### 4. Run Development Server
 
@@ -68,20 +73,30 @@ On a fresh database, seed baseline accounts so you can log in:
 bun run seed
 ```
 
-| Role | Email | Password |
-|---|---|---|
-| Administrator | `admin@amangiz.test` | `Password123!` |
-| SPPG Operator | `sppg.cempaka@amangiz.test` | `Password123!` |
-| School Operator | `sekolah.cikarang@amangiz.test` | `Password123!` |
-| Investigator | `investigator@amangiz.test` | `Password123!` |
+<table width="100%">
+  <thead>
+    <tr><th>Role</th><th>Email</th><th>Password</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Administrator</td><td><code>admin@amangiz.test</code></td><td><code>Password123!</code></td></tr>
+    <tr><td>SPPG Operator</td><td><code>sppg.cempaka@amangiz.test</code></td><td><code>Password123!</code></td></tr>
+    <tr><td>School Operator</td><td><code>sekolah.cikarang@amangiz.test</code></td><td><code>Password123!</code></td></tr>
+    <tr><td>Investigator</td><td><code>investigator@amangiz.test</code></td><td><code>Password123!</code></td></tr>
+  </tbody>
+</table>
 
 ## Team
 
-| Photo | Name | Role |
-|---|---|---|
-| <img src="./public/Yogawan.png" width="80" style="border-radius: 50%;" /> | Yogawan | Frontend Developer |
-| <img src="./public/Adnan.png" width="80" style="border-radius: 50%;" /> | Adnan | UI/UX & Video Editor |
-| <img src="./public/Lathif.png" width="80" style="border-radius: 50%;" /> | Lathif | Backend & AI Developer |
+<table width="100%">
+  <thead>
+    <tr><th>Photo</th><th>Name</th><th>Role</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><img src="./public/Yogawan.png" width="80" style="border-radius: 50%;" /></td><td>Yogawan</td><td>Frontend Developer</td></tr>
+    <tr><td><img src="./public/Adnan.png" width="80" style="border-radius: 50%;" /></td><td>Adnan</td><td>UI/UX & Video Editor</td></tr>
+    <tr><td><img src="./public/Lathif.png" width="80" style="border-radius: 50%;" /></td><td>Lathif</td><td>Backend & AI Developer</td></tr>
+  </tbody>
+</table>
 
 ## License
 
