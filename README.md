@@ -77,11 +77,11 @@ bun run seed
 
 ## Team
 
-| Name | Role |
-|---|---|
-| Yogawan | Frontend Developer |
-| Adnan | UI/UX & Video Editor |
-| Lathif | Backend & AI Developer |
+| Photo | Name | Role |
+|---|---|---|
+| <img src="./public/Yogawan.png" width="80" style="border-radius: 50%;" /> | Yogawan | Frontend Developer |
+| <img src="./public/Adnan.png" width="80" style="border-radius: 50%;" /> | Adnan | UI/UX & Video Editor |
+| <img src="./public/Lathif.png" width="80" style="border-radius: 50%;" /> | Lathif | Backend & AI Developer |
 
 ## License
 
