@@ -2,7 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { LoginForm } from "@/components/login-form";
+import { LoginCredentials } from "@/components/login-credentials";
 import { Reveal } from "@/components/reveal";
 
 const roles = [
@@ -35,6 +35,8 @@ export const metadata: Metadata = {
 };
 
 export default function LoginPage() {
+  const isSandbox = process.env.IS_SANDBOX === "true";
+
   return (
     <main className="flex min-h-screen">
       <div className="relative hidden w-1/2 flex-col justify-between overflow-hidden bg-primary-hover p-12 lg:flex">
@@ -110,7 +112,7 @@ export default function LoginPage() {
             </p>
           </Reveal>
           <Reveal variant="up" delay={0.15} className="mt-8">
-            <LoginForm />
+            <LoginCredentials isSandbox={isSandbox} />
           </Reveal>
           <Reveal variant="fade" delay={0.25}>
             <p className="mt-6 text-center text-xs text-muted">

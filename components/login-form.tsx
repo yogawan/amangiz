@@ -19,14 +19,25 @@ function safeNextPath(value: string | null): string {
   return value?.startsWith("/app") ? value : "/app/dashboard";
 }
 
-export function LoginForm() {
+interface DemoCredentials {
+  email: string;
+  password: string;
+}
+
+export function LoginForm({ prefill }: { prefill?: DemoCredentials | null }) {
   const router = useRouter();
   const formRef = useRef<HTMLFormElement>(null);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState(prefill?.email ?? "");
+  const [password, setPassword] = useState(prefill?.password ?? "");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!prefill) return;
+    setEmail(prefill.email);
+    setPassword(prefill.password);
+  }, [prefill]);
 
   useEffect(() => {
     if (!error || !formRef.current) return;
