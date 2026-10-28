@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   experimental: {
     agentFeedback: true,
     hideLogsAfterAbort: true,
+    agentUpgrade: "security",
   },
   cacheComponents: true,
   partialPrefetching: true,
