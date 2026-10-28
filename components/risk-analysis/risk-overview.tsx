@@ -43,16 +43,27 @@ export function RiskOverview({ overview }: { overview: RiskOverviewData }) {
       </p>
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <StatCard label="Low" value={overview.byLevel.low} />
+        <StatCard
+          label="Low"
+          value={overview.byLevel.low}
+          image="/stats-card-placeholder-image.png"
+        />
         <StatCard
           label="Medium"
           value={overview.byLevel.medium}
+          image="/stats-card-placeholder-image.png"
           tone="warning"
         />
-        <StatCard label="High" value={overview.byLevel.high} tone="warning" />
+        <StatCard
+          label="High"
+          value={overview.byLevel.high}
+          image="/stats-card-placeholder-image.png"
+          tone="warning"
+        />
         <StatCard
           label="Critical"
           value={overview.byLevel.critical}
+          image="/stats-card-placeholder-image.png"
           tone="danger"
         />
       </div>
