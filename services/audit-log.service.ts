@@ -43,3 +43,27 @@ export async function listAuditLogs(actor: AuthUser, query: AuditLogListQuery) {
 
   return { data, pagination: paginationMeta(query.page, query.limit, total) };
 }
+
+/** Entry counts for the `/app/audit-log` stat row, same scope as the list. */
+export async function getAuditLogSummary(actor: AuthUser) {
+  assertCanReadAuditLog(actor);
+
+  const scope = auditLogScope(actor);
+  const now = new Date();
+  const todayStart = new Date(
+    Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()),
+  );
+  const weekStart = new Date(todayStart.getTime() - 6 * 24 * 60 * 60 * 1000);
+
+  const [total, today, thisWeek] = await Promise.all([
+    AuditLog.countDocuments(scope).exec(),
+    AuditLog.countDocuments(
+      mergeFilters(scope, { createdAt: { $gte: todayStart } }),
+    ).exec(),
+    AuditLog.countDocuments(
+      mergeFilters(scope, { createdAt: { $gte: weekStart } }),
+    ).exec(),
+  ]);
+
+  return { total, today, thisWeek };
+}

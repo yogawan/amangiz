@@ -4,13 +4,18 @@ import { Suspense } from "react";
 import { AuditLogFilters } from "@/components/audit-log/audit-log-filters";
 import { AuditLogTable } from "@/components/audit-log/audit-log-table";
 import {
+  CardSkeleton,
   FilterBarSkeleton,
   TableSkeleton,
 } from "@/components/shared/skeletons";
+import { StatCard } from "@/components/shared/stat-card";
 import { getCurrentUser } from "@/lib/auth/current-user";
 import { populatedRef } from "@/lib/mongo-ref";
 import { auditLogListQuerySchema } from "@/lib/validations/audit-log";
-import { listAuditLogs } from "@/services/audit-log.service";
+import {
+  getAuditLogSummary,
+  listAuditLogs,
+} from "@/services/audit-log.service";
 
 export const metadata: Metadata = { title: "Audit Log - AMANGIZ" };
 
@@ -71,6 +76,39 @@ async function AuditLogList({
   );
 }
 
+// PRD §3.2: Audit Log has no access row for sppg_operator/school_operator —
+// same gate as AuditLogList, kept here too since this runs in a sibling
+// Suspense boundary and can't rely on that redirect firing first.
+async function AuditLogStats() {
+  const actor = await getCurrentUser();
+  if (!actor) redirect("/login");
+  if (actor.role !== "admin" && actor.role !== "investigator") {
+    redirect("/app/dashboard");
+  }
+
+  const summary = await getAuditLogSummary(actor);
+
+  return (
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+      <StatCard
+        label="Total Log"
+        value={summary.total}
+        image="/stats-card-placeholder-image.png"
+      />
+      <StatCard
+        label="Hari Ini"
+        value={summary.today}
+        image="/stats-card-placeholder-image.png"
+      />
+      <StatCard
+        label="7 Hari Terakhir"
+        value={summary.thisWeek}
+        image="/stats-card-placeholder-image.png"
+      />
+    </div>
+  );
+}
+
 // See the note in app/(application)/app/batches/page.tsx for why `searchParams`
 // is awaited inside a Suspense boundary rather than in the page component.
 async function AuditLogSection({
@@ -113,6 +151,17 @@ export default function AuditLogPage({
           Riwayat aktivitas penting yang tercatat di sistem.
         </p>
       </div>
+      <Suspense
+        fallback={
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+          </div>
+        }
+      >
+        <AuditLogStats />
+      </Suspense>
       <Suspense
         fallback={
           <>
