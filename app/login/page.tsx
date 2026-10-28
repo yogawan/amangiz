@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { LoginForm } from "@/components/login-form";
+import { Reveal } from "@/components/reveal";
 
 const roles = [
   {
@@ -39,20 +40,26 @@ export default function LoginPage() {
       <div className="relative hidden w-1/2 flex-col justify-between overflow-hidden bg-primary-hover p-12 lg:flex">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_85%_15%,rgba(17,94,89,.35),transparent_45%),radial-gradient(circle_at_10%_85%,rgba(15,118,110,.3),transparent_45%)]" />
 
-        <Link href="/" className="flex items-center gap-2.5">
-          <Image
-            src="/Amangiz-Logo.png"
-            alt="AMANGIZ"
-            width={44}
-            height={44}
-            className="h-11 w-11 rounded-xl"
-          />
-          <span className="text-lg font-extrabold tracking-[-.05em] text-white">
-            AMANGIZ
-          </span>
-        </Link>
+        <Reveal variant="fade">
+          <Link href="/" className="flex items-center gap-2.5">
+            <Image
+              src="/Amangiz-Logo.png"
+              alt="AMANGIZ"
+              width={44}
+              height={44}
+              className="h-11 w-11 rounded-xl"
+            />
+            <span className="text-lg font-extrabold tracking-[-.05em] text-white">
+              AMANGIZ
+            </span>
+          </Link>
+        </Reveal>
 
-        <div className="flex flex-col items-center text-center">
+        <Reveal
+          variant="up"
+          delay={0.15}
+          className="flex flex-col items-center text-center"
+        >
           <Image
             src="/Auth-Ilustration.png"
             alt=""
@@ -68,11 +75,13 @@ export default function LoginPage() {
             Telusuri distribusi, catat dugaan insiden, dan kelola tindak lanjut
             dalam satu alur kerja yang terintegrasi.
           </p>
-        </div>
+        </Reveal>
 
-        <p className="text-xs font-semibold tracking-wide text-primary-light/50">
-          © 2026 AMANGIZ. Prototype for demonstration purposes.
-        </p>
+        <Reveal variant="fade" delay={0.3}>
+          <p className="text-xs font-semibold tracking-wide text-primary-light/50">
+            © 2026 AMANGIZ. Prototype for demonstration purposes.
+          </p>
+        </Reveal>
       </div>
 
       <div className="flex w-full flex-col items-center justify-center bg-background px-5 py-16 lg:w-1/2">
@@ -92,29 +101,38 @@ export default function LoginPage() {
               AMANGIZ
             </span>
           </Link>
-          <h1 className="text-xl font-semibold text-foreground">
-            Masuk ke Dashboard
-          </h1>
-          <p className="mt-1.5 text-sm text-muted">
-            Gunakan akun yang diberikan oleh administrator AMANGIZ.
-          </p>
-          <div className="mt-8">
+          <Reveal variant="up">
+            <h1 className="text-xl font-semibold text-foreground">
+              Masuk ke Dashboard
+            </h1>
+            <p className="mt-1.5 text-sm text-muted">
+              Gunakan akun yang diberikan oleh administrator AMANGIZ.
+            </p>
+          </Reveal>
+          <Reveal variant="up" delay={0.15} className="mt-8">
             <LoginForm />
-          </div>
-          <p className="mt-6 text-center text-xs text-muted">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-1.5 font-semibold text-primary"
-            >
-              <ArrowLeft className="h-3.5 w-3.5" /> Kembali ke beranda
-            </Link>
-          </p>
+          </Reveal>
+          <Reveal variant="fade" delay={0.25}>
+            <p className="mt-6 text-center text-xs text-muted">
+              <Link
+                href="/"
+                className="inline-flex items-center gap-1.5 font-semibold text-primary"
+              >
+                <ArrowLeft className="h-3.5 w-3.5" /> Kembali ke beranda
+              </Link>
+            </p>
+          </Reveal>
 
           <div className="mt-10 border-t border-border pt-6">
             <p className="text-center text-xs font-semibold tracking-wide text-muted uppercase">
               Peran Pengguna
             </p>
-            <div className="mt-4 grid grid-cols-2 gap-3">
+            <Reveal
+              variant="up"
+              stagger={0.08}
+              delay={0.1}
+              className="mt-4 grid grid-cols-2 gap-3"
+            >
               {roles.map(({ image, name, description }) => (
                 <div
                   key={name}
@@ -135,7 +153,7 @@ export default function LoginPage() {
                   </p>
                 </div>
               ))}
-            </div>
+            </Reveal>
           </div>
         </div>
       </div>

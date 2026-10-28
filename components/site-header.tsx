@@ -1,12 +1,32 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { MobileNav } from "@/components/mobile-nav";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <nav className="sticky top-0 z-50 border-b border-border/80 bg-surface/90 backdrop-blur-xl">
+    <nav
+      className={cn(
+        "fixed top-0 right-0 left-0 z-50 border-b transition-colors duration-300",
+        scrolled
+          ? "border-border/80 bg-surface/90 backdrop-blur-xl"
+          : "border-transparent bg-transparent",
+      )}
+    >
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 sm:px-8">
         <Link
           href="/#beranda"

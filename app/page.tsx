@@ -1,6 +1,7 @@
 import { ArrowRight, Check, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Reveal } from "@/components/reveal";
 import { Intro } from "@/components/section-intro";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -185,7 +186,7 @@ function LoginButton({ light = false }: { light?: boolean }) {
 
 export default function Home() {
   return (
-    <main className="overflow-hidden bg-background text-foreground">
+    <main className="overflow-hidden bg-background pt-[72px] text-foreground">
       <SplashScreen />
       <SiteHeader />
 
@@ -195,11 +196,14 @@ export default function Home() {
       >
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_75%_35%,rgba(167,243,208,.72),transparent_23%),radial-gradient(circle_at_8%_16%,rgba(204,251,241,.6),transparent_24%)]" />
         <div className="mx-auto grid max-w-7xl gap-14 px-5 py-16 sm:px-8 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:py-24">
-          <div className="max-w-xl">
-            <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary-light bg-surface/80 px-3.5 py-2 text-[10px] font-bold tracking-[.14em] text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary" /> PLATFORM
-              TRACEABILITY & RESPONS PENANGANAN INSIDEN PANGAN
-            </p>
+          <Reveal variant="up" className="max-w-xl">
+            <Image
+              src="/PLATFORM TRACEABILITY & RESPONS PENANGANAN INSIDEN PANGAN.png"
+              alt="Platform Traceability & Respons Penanganan Insiden Pangan"
+              width={584}
+              height={200}
+              className="mb-6 h-auto w-64"
+            />
             <h1 className="text-5xl font-semibold leading-[.98] tracking-[-.065em] text-primary-hover sm:text-6xl lg:text-7xl">
               Jaga Gizi.
               <br />
@@ -224,15 +228,17 @@ export default function Home() {
               Assessment <span className="mx-2 text-primary">•</span> Incident
               Response
             </p>
-          </div>
-          <Image
-            src="/Hero.png"
-            alt=""
-            width={560}
-            height={560}
-            priority
-            className="mx-auto h-auto w-full max-w-md lg:max-w-lg"
-          />
+          </Reveal>
+          <Reveal variant="scale" delay={0.2}>
+            <Image
+              src="/Hero.png"
+              alt=""
+              width={560}
+              height={560}
+              priority
+              className="mx-auto h-auto w-full max-w-md lg:max-w-lg"
+            />
+          </Reveal>
         </div>
       </section>
 
@@ -242,7 +248,11 @@ export default function Home() {
           title="Saat informasi tersebar, penanganan membutuhkan koordinasi ekstra."
           copy="Ekosistem distribusi makanan melibatkan banyak pihak dan tahapan. Ketika muncul dugaan masalah keamanan pangan, informasi mengenai batch, jalur distribusi, penerima, dan tindak lanjut perlu ditelusuri dengan cepat serta dicatat secara konsisten."
         />
-        <div className="mt-12 grid gap-4 md:grid-cols-3">
+        <Reveal
+          variant="up"
+          stagger={0.15}
+          className="mt-12 grid gap-4 md:grid-cols-3"
+        >
           {problems.map(([number, title, copy, icon]) => (
             <article
               key={title}
@@ -264,7 +274,7 @@ export default function Home() {
               <p className="mt-3 text-sm leading-6 text-muted">{copy}</p>
             </article>
           ))}
-        </div>
+        </Reveal>
         <p className="mt-8 border-l-2 border-primary pl-4 text-lg font-medium tracking-[-.02em]">
           Penanganan yang terkoordinasi dimulai dari informasi yang saling
           terhubung.
@@ -273,7 +283,7 @@ export default function Home() {
 
       <section className="bg-primary-hover py-20 text-white lg:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:items-center">
-          <div>
+          <Reveal variant="left">
             <p className="mb-4 text-[11px] font-bold tracking-[.18em] text-primary-light">
               SOLUSI AMANGIZ
             </p>
@@ -290,8 +300,12 @@ export default function Home() {
                 Jelajahi Cara Kerja <ArrowRight className="h-4 w-4" />
               </a>
             </Button>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
+          </Reveal>
+          <Reveal
+            variant="right"
+            stagger={0.12}
+            className="grid gap-3 sm:grid-cols-2"
+          >
             {(
               [
                 [
@@ -333,7 +347,7 @@ export default function Home() {
                 </p>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -347,7 +361,11 @@ export default function Home() {
           title="Dari laporan awal hingga tindak lanjut yang terdokumentasi."
           copy="AMANGIZ membantu menghubungkan setiap tahap penanganan agar pihak yang berwenang dapat memahami konteks kejadian dan menentukan langkah berikutnya berdasarkan informasi yang tersedia."
         />
-        <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <Reveal
+          variant="up"
+          stagger={0.1}
+          className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+        >
           {steps.map(([number, label, title, copy]) => (
             <article
               className="relative rounded-2xl border border-border bg-surface p-6"
@@ -363,14 +381,18 @@ export default function Home() {
               <p className="mt-3 text-sm leading-6 text-muted">{copy}</p>
             </article>
           ))}
-        </div>
-        <div className="mt-10 overflow-x-auto rounded-xl border border-primary-light bg-primary-light px-5 py-4 text-center text-xs font-bold tracking-[.13em] whitespace-nowrap text-primary">
+        </Reveal>
+        <Reveal
+          variant="up"
+          delay={0.1}
+          className="mt-10 overflow-x-auto rounded-xl border border-primary-light bg-primary-light px-5 py-4 text-center text-xs font-bold tracking-[.13em] whitespace-nowrap text-primary"
+        >
           DETECT <span className="mx-2 text-primary">→</span> TRACE{" "}
           <span className="mx-2 text-primary">→</span> ASSESS{" "}
           <span className="mx-2 text-primary">→</span> CONTAIN{" "}
           <span className="mx-2 text-primary">→</span> INVESTIGATE{" "}
           <span className="mx-2 text-primary">→</span> RESOLVE
-        </div>
+        </Reveal>
       </section>
 
       <section
@@ -383,7 +405,11 @@ export default function Home() {
             title="Informasi yang terhubung. Tindak lanjut yang lebih terarah."
             copy="Setiap fitur AMANGIZ dirancang untuk mendukung bagian penting dalam proses traceability dan penanganan dugaan insiden keamanan pangan."
           />
-          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <Reveal
+            variant="up"
+            stagger={0.1}
+            className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+          >
             {features.map(
               ([number, title, headline, copy, capabilities, image]) => (
                 <article
@@ -420,7 +446,7 @@ export default function Home() {
                 </article>
               ),
             )}
-          </div>
+          </Reveal>
           <p className="mt-6 rounded-xl bg-warning/10 px-4 py-3 text-xs leading-5 text-foreground">
             <strong>Catatan penilaian prioritas:</strong> Penilaian berbasis
             aturan merupakan alat bantu operasional, bukan diagnosis medis atau
@@ -430,17 +456,21 @@ export default function Home() {
       </section>
 
       <section className="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:py-28">
-        <Intro
-          eyebrow="TELUSURI HUBUNGAN DATA"
-          title="Ketahui ke mana batch dikirim dan siapa yang perlu ditindaklanjuti."
-          copy="Saat sebuah batch perlu diperiksa, petugas dapat melihat jalur distribusi yang tercatat dan mengidentifikasi lokasi penerima yang relevan untuk pemeriksaan lebih lanjut."
-        />
-        <Traceability />
+        <Reveal variant="left">
+          <Intro
+            eyebrow="TELUSURI HUBUNGAN DATA"
+            title="Ketahui ke mana batch dikirim dan siapa yang perlu ditindaklanjuti."
+            copy="Saat sebuah batch perlu diperiksa, petugas dapat melihat jalur distribusi yang tercatat dan mengidentifikasi lokasi penerima yang relevan untuk pemeriksaan lebih lanjut."
+          />
+        </Reveal>
+        <Reveal variant="right" delay={0.15}>
+          <Traceability />
+        </Reveal>
       </section>
 
       <section className="bg-primary-hover py-20 text-white lg:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:items-center">
-          <div>
+          <Reveal variant="left">
             <p className="mb-4 text-[11px] font-bold tracking-[.18em] text-primary-light">
               PENILAIAN PRIORITAS
             </p>
@@ -457,8 +487,10 @@ export default function Home() {
               dikonfigurasi. Sistem tidak menetapkan diagnosis, memastikan
               kontaminasi, atau menyimpulkan penyebab insiden secara otomatis.
             </p>
-          </div>
-          <RiskCard />
+          </Reveal>
+          <Reveal variant="scale" delay={0.15}>
+            <RiskCard />
+          </Reveal>
         </div>
       </section>
 
@@ -469,7 +501,11 @@ export default function Home() {
           title="Setiap pihak melihat informasi sesuai perannya."
           copy="AMANGIZ mendukung koordinasi dengan akses yang disesuaikan terhadap tanggung jawab dan cakupan data masing-masing pengguna."
         />
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <Reveal
+          variant="up"
+          stagger={0.1}
+          className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+        >
           {[
             [
               "Administrator",
@@ -507,7 +543,7 @@ export default function Home() {
               <p className="mt-2 text-sm leading-6 text-muted">{copy}</p>
             </article>
           ))}
-        </div>
+        </Reveal>
         <p className="mt-6 text-center text-xs leading-5 text-muted">
           Akses terhadap data dan tindakan operasional dibatasi berdasarkan
           role, organisasi, serta penugasan yang berlaku.
@@ -516,12 +552,18 @@ export default function Home() {
 
       <section className="border-y border-border bg-surface py-20 lg:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
-          <Intro
-            eyebrow="AKUNTABILITAS OPERASIONAL"
-            title="Setiap tindakan penting perlu memiliki jejak yang jelas."
-            copy="Dalam penanganan insiden, bukan hanya hasil akhir yang penting. Riwayat perubahan, bukti pendukung, dan pihak yang melakukan tindakan juga perlu terdokumentasi."
-          />
-          <div className="grid gap-3 sm:grid-cols-2">
+          <Reveal variant="left">
+            <Intro
+              eyebrow="AKUNTABILITAS OPERASIONAL"
+              title="Setiap tindakan penting perlu memiliki jejak yang jelas."
+              copy="Dalam penanganan insiden, bukan hanya hasil akhir yang penting. Riwayat perubahan, bukti pendukung, dan pihak yang melakukan tindakan juga perlu terdokumentasi."
+            />
+          </Reveal>
+          <Reveal
+            variant="right"
+            stagger={0.08}
+            className="grid gap-3 sm:grid-cols-2"
+          >
             {(
               [
                 [
@@ -568,7 +610,7 @@ export default function Home() {
                 </div>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -576,7 +618,10 @@ export default function Home() {
         id="tentang"
         className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28"
       >
-        <div className="rounded-3xl bg-gradient-to-br from-primary-light/70 to-primary-light/20 p-7 sm:p-12">
+        <Reveal
+          variant="scale"
+          className="rounded-3xl bg-gradient-to-br from-primary-light/70 to-primary-light/20 p-7 sm:p-12"
+        >
           <Intro
             eyebrow="TENTANG AMANGIZ"
             title="Teknologi untuk mendukung koordinasi keamanan pangan."
@@ -592,7 +637,7 @@ export default function Home() {
             berwenang—bukan menggantikan pemeriksaan, penilaian profesional,
             atau prosedur resmi.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <section className="mx-auto max-w-3xl px-5 py-20 sm:px-8 lg:py-28">
@@ -602,7 +647,11 @@ export default function Home() {
           title="Pertanyaan yang sering diajukan"
           copy="Hal-hal mendasar seputar peran AMANGIZ dalam mendukung workflow penanganan dugaan insiden."
         />
-        <div className="mt-10 divide-y divide-border border-y border-border">
+        <Reveal
+          variant="up"
+          stagger={0.08}
+          className="mt-10 divide-y divide-border border-y border-border"
+        >
           {faqs.map(([question, answer], index) => (
             <details className="group py-5" key={question} open={index === 0}>
               <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-left font-semibold">
@@ -614,11 +663,14 @@ export default function Home() {
               </p>
             </details>
           ))}
-        </div>
+        </Reveal>
       </section>
 
       <section className="px-5 pb-20 sm:px-8 lg:pb-28">
-        <div className="mx-auto max-w-7xl rounded-3xl bg-primary-hover px-7 py-14 text-center text-white sm:px-12 lg:py-20">
+        <Reveal
+          variant="scale"
+          className="mx-auto max-w-7xl rounded-3xl bg-primary-hover px-7 py-14 text-center text-white sm:px-12 lg:py-20"
+        >
           <p className="text-[11px] font-bold tracking-[.18em] text-primary-light">
             AMANGIZ
           </p>
@@ -639,7 +691,7 @@ export default function Home() {
               Lihat Demo
             </a>
           </div>
-        </div>
+        </Reveal>
       </section>
       <SiteFooter />
     </main>
@@ -649,54 +701,13 @@ export default function Home() {
 function Traceability() {
   return (
     <div>
-      <div className="rounded-2xl border border-border bg-surface p-5 shadow-xl shadow-foreground/5 sm:p-8">
-        <p className="text-xs font-bold tracking-[.12em] text-muted">
-          CONTOH HUBUNGAN DATA
-        </p>
-        <div className="mt-6 flex flex-col items-center text-center text-sm font-semibold text-foreground">
-          <span className="rounded-lg border border-border bg-background px-4 py-2">
-            Pemasok Bahan
-          </span>
-          <span className="my-1.5 text-primary">↓</span>
-          <span className="rounded-lg border border-border bg-background px-4 py-2">
-            Bahan Baku
-          </span>
-          <span className="my-1.5 text-primary">↓</span>
-          <span className="rounded-lg bg-primary px-5 py-2.5 text-white">
-            Batch Makanan{" "}
-            <small className="ml-1 font-mono text-primary-light">
-              BT-2408-117
-            </small>
-          </span>
-          <span className="my-1.5 text-primary">↓</span>
-          <span className="rounded-lg border border-primary-light bg-primary-light px-4 py-2 text-primary-hover">
-            SPPG Cempaka
-          </span>
-          <span className="my-1.5 text-primary">↓</span>
-          <span className="rounded-lg border border-border bg-background px-4 py-2">
-            Distribusi
-          </span>
-          <span className="my-1.5 text-primary">↓</span>
-          <div className="grid w-full max-w-md gap-2 sm:grid-cols-3">
-            {[
-              "Sekolah Penerima A",
-              "Sekolah Penerima B",
-              "Sekolah Penerima C",
-            ].map((item) => (
-              <span
-                className="rounded-lg border border-border p-2 text-[11px]"
-                key={item}
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-          <span className="my-1.5 text-primary">↓</span>
-          <span className="rounded-lg border border-warning/30 bg-warning/10 px-4 py-2 text-foreground">
-            Laporan & tindak lanjut, jika diperlukan
-          </span>
-        </div>
-      </div>
+      <Image
+        src="/Contoh Hubungan Data.png"
+        alt="Contoh hubungan data dari pemasok bahan hingga sekolah penerima"
+        width={578}
+        height={432}
+        className="mx-auto h-auto w-full max-w-md"
+      />
       <p className="mt-4 text-xs leading-5 text-muted">
         Visualisasi menampilkan hubungan data yang tersedia dan tercatat di
         AMANGIZ. Data yang belum terhubung atau belum diverifikasi ditandai

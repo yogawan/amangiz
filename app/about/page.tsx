@@ -30,7 +30,7 @@ const team = [
 
 export default function AboutPage() {
   return (
-    <main className="overflow-hidden bg-background text-foreground">
+    <main className="overflow-hidden bg-background pt-[72px] text-foreground">
       <SiteHeader />
 
       <section className="relative isolate border-b border-primary-light bg-primary-light/20">

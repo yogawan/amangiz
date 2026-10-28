@@ -1,8 +1,9 @@
 "use client";
 
+import gsap from "gsap";
 import { Eye, EyeOff, Loader2, LogIn } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { type FormEvent, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -20,11 +21,21 @@ function safeNextPath(value: string | null): string {
 
 export function LoginForm() {
   const router = useRouter();
+  const formRef = useRef<HTMLFormElement>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!error || !formRef.current) return;
+    gsap.fromTo(
+      formRef.current,
+      { x: -10 },
+      { x: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" },
+    );
+  }, [error]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -62,7 +73,7 @@ export function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
       <div>
         <Label htmlFor="email">Email</Label>
         <Input
