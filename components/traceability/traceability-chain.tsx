@@ -88,20 +88,24 @@ export function TraceabilityChain({ trace }: { trace: TraceabilityChainData }) {
         <StatCard
           label="Total Distribusi"
           value={trace.summary.totalDistributions}
+          image="/stats-card-placeholder-image.png"
         />
         <StatCard
           label="Terkonfirmasi Diterima"
           value={trace.summary.confirmedReceipts}
+          image="/stats-card-placeholder-image.png"
           tone="success"
         />
         <StatCard
           label="Belum Terkonfirmasi"
           value={trace.summary.pendingReceipts}
+          image="/stats-card-placeholder-image.png"
           tone="warning"
         />
         <StatCard
           label="Insiden Terkait"
           value={trace.summary.relatedIncidentCount}
+          image="/stats-card-placeholder-image.png"
           tone={trace.summary.relatedIncidentCount > 0 ? "danger" : "default"}
         />
       </div>
