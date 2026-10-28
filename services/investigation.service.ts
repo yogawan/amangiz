@@ -55,6 +55,20 @@ export async function listInvestigations(
   return { data, pagination: paginationMeta(query.page, query.limit, total) };
 }
 
+/** Status counts for the `/app/investigations` stat row, same scope as the queue. */
+export async function getInvestigationSummary(actor: AuthUser) {
+  assertCanReadInvestigations(actor);
+
+  const [total, pending, inProgress, completed] = await Promise.all([
+    Investigation.countDocuments({}).exec(),
+    Investigation.countDocuments({ status: "pending" }).exec(),
+    Investigation.countDocuments({ status: "in_progress" }).exec(),
+    Investigation.countDocuments({ status: "completed" }).exec(),
+  ]);
+
+  return { total, pending, inProgress, completed };
+}
+
 /** Detail read for `/app/investigations/[id]`. */
 export async function getInvestigationById(
   actor: AuthUser,

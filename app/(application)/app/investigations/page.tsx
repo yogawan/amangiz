@@ -4,13 +4,18 @@ import { Suspense } from "react";
 import { InvestigationFilters } from "@/components/investigations/investigation-filters";
 import { InvestigationsTable } from "@/components/investigations/investigations-table";
 import {
+  CardSkeleton,
   FilterBarSkeleton,
   TableSkeleton,
 } from "@/components/shared/skeletons";
+import { StatCard } from "@/components/shared/stat-card";
 import { getCurrentUser } from "@/lib/auth/current-user";
 import { populatedRef } from "@/lib/mongo-ref";
 import { investigationListQuerySchema } from "@/lib/validations/investigation";
-import { listInvestigations } from "@/services/investigation.service";
+import {
+  getInvestigationSummary,
+  listInvestigations,
+} from "@/services/investigation.service";
 
 export const metadata: Metadata = { title: "Investigasi - AMANGIZ" };
 
@@ -70,6 +75,46 @@ async function InvestigationsList({
   );
 }
 
+// PRD §3.2: Investigation is Admin full / Investigator assigned-or-full only
+// — same gate as InvestigationsList, kept here too since this runs in a
+// sibling Suspense boundary and can't rely on that redirect firing first.
+async function InvestigationsStats() {
+  const actor = await getCurrentUser();
+  if (!actor) redirect("/login");
+  if (actor.role !== "admin" && actor.role !== "investigator") {
+    redirect("/app/dashboard");
+  }
+
+  const summary = await getInvestigationSummary(actor);
+
+  return (
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <StatCard
+        label="Total Investigasi"
+        value={summary.total}
+        image="/stats-card-placeholder-image.png"
+      />
+      <StatCard
+        label="Pending"
+        value={summary.pending}
+        image="/stats-card-placeholder-image.png"
+        tone={summary.pending > 0 ? "warning" : "default"}
+      />
+      <StatCard
+        label="In Progress"
+        value={summary.inProgress}
+        image="/stats-card-placeholder-image.png"
+      />
+      <StatCard
+        label="Completed"
+        value={summary.completed}
+        image="/stats-card-placeholder-image.png"
+        tone="success"
+      />
+    </div>
+  );
+}
+
 // See the note in app/(application)/app/batches/page.tsx for why `searchParams`
 // is awaited inside a Suspense boundary rather than in the page component.
 async function InvestigationsSection({
@@ -105,6 +150,18 @@ export default function InvestigationsPage({
           Antrean investigasi dan tindak lanjut insiden.
         </p>
       </div>
+      <Suspense
+        fallback={
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+          </div>
+        }
+      >
+        <InvestigationsStats />
+      </Suspense>
       <Suspense
         fallback={
           <>
