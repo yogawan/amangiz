@@ -62,22 +62,22 @@ async function UsersStats() {
       <StatCard
         label="Total Pengguna"
         value={summary.users}
-        image="/stats-card-placeholder-image.png"
+        image="/Pengguna.png"
       />
       <StatCard
         label="Total SPPG"
         value={summary.sppgs}
-        image="/stats-card-placeholder-image.png"
+        image="/Total SPPG.png"
       />
       <StatCard
         label="Total Pemasok"
         value={summary.suppliers}
-        image="/stats-card-placeholder-image.png"
+        image="/Total Pemasok.png"
       />
       <StatCard
         label="Total Sekolah"
         value={summary.schools}
-        image="/stats-card-placeholder-image.png"
+        image="/Total Sekolah.png"
       />
     </div>
   );

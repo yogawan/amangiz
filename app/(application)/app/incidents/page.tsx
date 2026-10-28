@@ -87,24 +87,24 @@ async function IncidentsStats() {
       <StatCard
         label="Total Insiden"
         value={incidents.total}
-        image="/stats-card-placeholder-image.png"
+        image="/Laporan.png"
       />
       <StatCard
         label="Terbuka"
         value={incidents.open}
-        image="/stats-card-placeholder-image.png"
+        image="/Laporan.png"
         tone={incidents.open > 0 ? "warning" : "default"}
       />
       <StatCard
         label="Severity Tinggi"
         value={severityHigh}
-        image="/stats-card-placeholder-image.png"
+        image="/Laporan.png"
         tone={severityHigh > 0 ? "warning" : "default"}
       />
       <StatCard
         label="Severity Kritis"
         value={severityCritical}
-        image="/stats-card-placeholder-image.png"
+        image="/Laporan.png"
         tone={severityCritical > 0 ? "danger" : "default"}
       />
     </div>

@@ -77,26 +77,18 @@ async function BatchesStats() {
 
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-      <StatCard
-        label="Total Batch"
-        value={batches.total}
-        image="/stats-card-placeholder-image.png"
-      />
-      <StatCard
-        label="Batch Aktif"
-        value={batches.active}
-        image="/stats-card-placeholder-image.png"
-      />
+      <StatCard label="Total Batch" value={batches.total} image="/Batch.png" />
+      <StatCard label="Batch Aktif" value={batches.active} image="/Batch.png" />
       <StatCard
         label="On Hold"
         value={batches.onHold}
-        image="/stats-card-placeholder-image.png"
+        image="/Batch.png"
         tone={batches.onHold > 0 ? "warning" : "default"}
       />
       <StatCard
         label="Recalled"
         value={batches.recalled}
-        image="/stats-card-placeholder-image.png"
+        image="/Batch.png"
         tone={batches.recalled > 0 ? "danger" : "default"}
       />
     </div>

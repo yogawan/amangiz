@@ -92,23 +92,23 @@ async function InvestigationsStats() {
       <StatCard
         label="Total Investigasi"
         value={summary.total}
-        image="/stats-card-placeholder-image.png"
+        image="/Kasus.png"
       />
       <StatCard
         label="Pending"
         value={summary.pending}
-        image="/stats-card-placeholder-image.png"
+        image="/Kasus.png"
         tone={summary.pending > 0 ? "warning" : "default"}
       />
       <StatCard
         label="In Progress"
         value={summary.inProgress}
-        image="/stats-card-placeholder-image.png"
+        image="/Kasus.png"
       />
       <StatCard
         label="Completed"
         value={summary.completed}
-        image="/stats-card-placeholder-image.png"
+        image="/Kasus.png"
         tone="success"
       />
     </div>

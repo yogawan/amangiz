@@ -92,18 +92,18 @@ async function DistributionStats() {
       <StatCard
         label="Distribusi Hari Ini"
         value={distributions.today}
-        image="/stats-card-placeholder-image.png"
+        image="/Distribusi.png"
       />
       <StatCard
         label="Menunggu Penerimaan"
         value={distributions.pendingReceipt}
-        image="/stats-card-placeholder-image.png"
+        image="/Distribusi.png"
         tone={distributions.pendingReceipt > 0 ? "warning" : "default"}
       />
       <StatCard
         label="Terlambat"
         value={distributions.delayed}
-        image="/stats-card-placeholder-image.png"
+        image="/Distribusi.png"
         tone={distributions.delayed > 0 ? "danger" : "default"}
       />
     </div>

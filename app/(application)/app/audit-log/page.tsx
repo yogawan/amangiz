@@ -93,17 +93,17 @@ async function AuditLogStats() {
       <StatCard
         label="Total Log"
         value={summary.total}
-        image="/stats-card-placeholder-image.png"
+        image="/Activity history.png"
       />
       <StatCard
         label="Hari Ini"
         value={summary.today}
-        image="/stats-card-placeholder-image.png"
+        image="/Activity history.png"
       />
       <StatCard
         label="7 Hari Terakhir"
         value={summary.thisWeek}
-        image="/stats-card-placeholder-image.png"
+        image="/Activity history.png"
       />
     </div>
   );
