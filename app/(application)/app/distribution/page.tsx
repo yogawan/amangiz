@@ -4,12 +4,15 @@ import { Suspense } from "react";
 import { DistributionFilters } from "@/components/distribution/distribution-filters";
 import { DistributionsTable } from "@/components/distribution/distributions-table";
 import {
+  CardSkeleton,
   FilterBarSkeleton,
   TableSkeleton,
 } from "@/components/shared/skeletons";
+import { StatCard } from "@/components/shared/stat-card";
 import { getCurrentUser } from "@/lib/auth/current-user";
 import { populatedRef } from "@/lib/mongo-ref";
 import { distributionListQuerySchema } from "@/lib/validations/distribution";
+import { getDashboardSummary } from "@/services/dashboard.service";
 import { listDistributions } from "@/services/distribution.service";
 
 export const metadata: Metadata = { title: "Distribusi - AMANGIZ" };
@@ -78,6 +81,35 @@ async function DistributionsList({
   );
 }
 
+async function DistributionStats() {
+  const actor = await getCurrentUser();
+  if (!actor) redirect("/login");
+
+  const { distributions } = await getDashboardSummary(actor);
+
+  return (
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+      <StatCard
+        label="Distribusi Hari Ini"
+        value={distributions.today}
+        image="/stats-card-placeholder-image.png"
+      />
+      <StatCard
+        label="Menunggu Penerimaan"
+        value={distributions.pendingReceipt}
+        image="/stats-card-placeholder-image.png"
+        tone={distributions.pendingReceipt > 0 ? "warning" : "default"}
+      />
+      <StatCard
+        label="Terlambat"
+        value={distributions.delayed}
+        image="/stats-card-placeholder-image.png"
+        tone={distributions.delayed > 0 ? "danger" : "default"}
+      />
+    </div>
+  );
+}
+
 // See the note in app/(application)/app/batches/page.tsx for why `searchParams`
 // is awaited inside a Suspense boundary rather than in the page component.
 async function DistributionSection({
@@ -120,6 +152,17 @@ export default function DistributionPage({
           Pantau pengiriman batch ke sekolah penerima.
         </p>
       </div>
+      <Suspense
+        fallback={
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+          </div>
+        }
+      >
+        <DistributionStats />
+      </Suspense>
       <Suspense
         fallback={
           <>
