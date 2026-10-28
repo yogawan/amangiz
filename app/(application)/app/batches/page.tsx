@@ -4,13 +4,16 @@ import { Suspense } from "react";
 import { BatchFilters } from "@/components/batches/batch-filters";
 import { BatchesTable } from "@/components/batches/batches-table";
 import {
+  CardSkeleton,
   FilterBarSkeleton,
   TableSkeleton,
 } from "@/components/shared/skeletons";
+import { StatCard } from "@/components/shared/stat-card";
 import { getCurrentUser } from "@/lib/auth/current-user";
 import { populatedRef } from "@/lib/mongo-ref";
 import { batchListQuerySchema } from "@/lib/validations/batch";
 import { listBatches } from "@/services/batch.service";
+import { getDashboardSummary } from "@/services/dashboard.service";
 
 export const metadata: Metadata = { title: "Batch Makanan - AMANGIZ" };
 
@@ -66,6 +69,40 @@ async function BatchesList({
   );
 }
 
+async function BatchesStats() {
+  const actor = await getCurrentUser();
+  if (!actor) redirect("/login");
+
+  const { batches } = await getDashboardSummary(actor);
+
+  return (
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <StatCard
+        label="Total Batch"
+        value={batches.total}
+        image="/stats-card-placeholder-image.png"
+      />
+      <StatCard
+        label="Batch Aktif"
+        value={batches.active}
+        image="/stats-card-placeholder-image.png"
+      />
+      <StatCard
+        label="On Hold"
+        value={batches.onHold}
+        image="/stats-card-placeholder-image.png"
+        tone={batches.onHold > 0 ? "warning" : "default"}
+      />
+      <StatCard
+        label="Recalled"
+        value={batches.recalled}
+        image="/stats-card-placeholder-image.png"
+        tone={batches.recalled > 0 ? "danger" : "default"}
+      />
+    </div>
+  );
+}
+
 /**
  * `searchParams` is unknowable at build time, so it can only be awaited inside
  * a Suspense boundary (`cacheComponents: true` fails the build otherwise). The
@@ -108,6 +145,18 @@ export default function BatchesPage({
           Kelola batch produksi dan status distribusinya.
         </p>
       </div>
+      <Suspense
+        fallback={
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+          </div>
+        }
+      >
+        <BatchesStats />
+      </Suspense>
       <Suspense
         fallback={
           <>
