@@ -87,11 +87,11 @@ bun run seed
 
 ## Team
 
-| No. | Nama Lengkap | NIM | Peran / Keterangan |
-|---|---|---|---|
-| 1. | Lathif Ramadhan | 5231811022 | Ketua Tim / System Architect & AI Engineer |
-| 2. | Yogawan Aditya Pratama | 5220411056 | Anggota / Frontend & Backend |
-| 3. | Ahmad Fata Dani Adnan | 5230411042 | Anggota / UI-UX Designer & Researcher |
+| No. | Foto | Nama Lengkap | NIM | Peran / Keterangan |
+|---|---|---|---|---|
+| 1. | <img src="./public/Lathif.png" width="80" style="border-radius: 50%;" /> | Lathif Ramadhan | 5231811022 | Ketua Tim / System Architect & AI Engineer |
+| 2. | <img src="./public/Yogawan.png" width="80" style="border-radius: 50%;" /> | Yogawan Aditya Pratama | 5220411056 | Anggota / Frontend & Backend |
+| 3. | <img src="./public/Adnan.png" width="80" style="border-radius: 50%;" /> | Ahmad Fata Dani Adnan | 5230411042 | Anggota / UI-UX Designer & Researcher |
 
 ## License
 
