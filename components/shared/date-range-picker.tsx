@@ -18,21 +18,26 @@ export function DateRangePicker({
   className?: string;
 }) {
   return (
-    <div className={cn("flex items-center gap-2", className)}>
+    <div
+      className={cn(
+        "flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center",
+        className,
+      )}
+    >
       <Input
         type="date"
         value={from ?? ""}
         onChange={(event) => onFromChange(event.target.value || undefined)}
         aria-label="Dari tanggal"
-        className="w-full"
+        className="w-full sm:w-auto"
       />
-      <span className="text-sm text-muted">—</span>
+      <span className="hidden text-sm text-muted sm:inline">—</span>
       <Input
         type="date"
         value={to ?? ""}
         onChange={(event) => onToChange(event.target.value || undefined)}
         aria-label="Sampai tanggal"
-        className="w-full"
+        className="w-full sm:w-auto"
       />
     </div>
   );
